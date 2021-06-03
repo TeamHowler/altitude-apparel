@@ -1,0 +1,31 @@
+{
+  "name": "project-catwalk",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon server",
+    "react-dev": "webpack --config ./webpack.config.js --mode development -w"
+  },
+  "keywords": [],
+  "author": "Team Howler <https://github.com/TeamHowler>",
+  "dependencies": {
+    "axios": "^0.21.1",
+    "eslint": "^7.27.0",
+    "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-plugin-import": "^2.23.4",
+    "express": "^4.17.1",
+    "jquery": "^3.5.1",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.11.6",
+    "@babel/preset-env": "^7.11.5",
+    "@babel/preset-react": "^7.10.4",
+    "babel-loader": "^8.1.0",
+    "nodemon": "^2.0.4",
+    "webpack": "^4.46.0",
+    "webpack-cli": "^4.5.0"
+  }
+}
