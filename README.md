@@ -29,7 +29,7 @@ To run the testing files, run the following terminal command:`npm run test`
 
 # Testing info:
 
-[1](https://www.robinwieruch.de/react-testing-jest)
-[2](https://jestjs.io/docs/getting-started)
-[3](https://testing-library.com/docs/react-testing-library/api/)
-[quick tutorial:](https://www.youtube.com/watch?v=3e1GHCA3GP0)
+[React/Jest Testing](https://www.robinwieruch.de/react-testing-jest)
+[Jest Docs](https://jestjs.io/docs/getting-started)
+[React Testing Docs](https://testing-library.com/docs/react-testing-library/api/)
+[Quick Tutorial:](https://www.youtube.com/watch?v=3e1GHCA3GP0)
