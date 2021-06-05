@@ -104,6 +104,6 @@ dist
 .tern-port
 
 
-./public.bundle.js
+./public/bundle.js
 
 config.js

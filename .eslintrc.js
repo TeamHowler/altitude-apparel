@@ -22,6 +22,7 @@ module.exports = {
   'plugins': [
     'react',
   ],
+  'ignorePatterns': ['public/bundle.js', 'config.js'],
   'rules': {
     'require-jsdoc': 0,
   },
