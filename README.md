@@ -1,6 +1,3 @@
-# project-catwalk
-Front End Capstone
-
 # Altitude Apparel
 Welcome to Altitude Apparel’s retail portal! Thank you for taking an interest in our code. Altitude Apparel is a Javascript library used to market & sell our apparel. Peruse the below topics to aid you in getting started working with this repo.
 ***
@@ -30,14 +27,9 @@ To run the testing files, run the following terminal command:`npm run test`
 - Mikka Tully
 
 
-//// testing info ////
+# Testing info:
 
-https://www.robinwieruch.de/react-testing-jest
-
-https://jestjs.io/docs/getting-started
-
-https://testing-library.com/docs/react-testing-library/api/
-
-quick tutorial:
-https://www.youtube.com/watch?v=3e1GHCA3GP0
-
+[title](https://www.robinwieruch.de/react-testing-jest)
+[title](https://jestjs.io/docs/getting-started)
+[title](https://testing-library.com/docs/react-testing-library/api/)
+[quick tutorial:](https://www.youtube.com/watch?v=3e1GHCA3GP0)
