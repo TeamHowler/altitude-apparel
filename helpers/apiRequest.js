@@ -1,10 +1,10 @@
 const axios = require('axios');
 const config = require('../config.js');
 
-let sendAPIRequest = (addtlUrlPath, callback) => {
+let sendAPIRequest = (addtlUrlPath, reqMethod, callback) => {
   let options = {
-    method: 'GET',
-    url: 'https://app-hrsei-api.herokuapp.com/api/fec2/:HR-BLD17/' + addtlUrlPath,
+    method: reqMethod,
+    url: 'https://app-hrsei-api.herokuapp.com/api/fec2/HR-BLD17/' + addtlUrlPath,
     // url: 'https://api.github.com/users/' + username + '/repos',
     headers: {
       'User-Agent': 'request',
