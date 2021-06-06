@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+// import React, { useState } from 'react';
 
-function ProductDetail() {
+// function ProductDetail() {
 
-}
+// }
 
-export default ProductDetail;
+// export default ProductDetail;

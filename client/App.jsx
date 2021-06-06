@@ -17,7 +17,7 @@ function App() {
           <Button variant="primary">Go somewhere</Button>
         </Card.Body>
       </Card>
-      <ProductDetail />
+      {/* <ProductDetail /> */}
     </div>
   );
 }
