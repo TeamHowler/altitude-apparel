@@ -4,12 +4,13 @@ const app = express();
 const path = require('path');
 const port = 3000;
 const router = require('./routes.js');
+const products = require('./controllers/products.js');
 
 app.use(express.static(path.join(__dirname, '..', 'public')));
 app.use(express.json());
 
 // Set up our routes
-app.use('/classes', router);
+app.use('/products', products);
 
 // app.get('/products', (req, res) => {
 //   api.sendAPIRequest('/products', 'GET', (err, result) => {
