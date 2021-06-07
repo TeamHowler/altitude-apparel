@@ -7,13 +7,55 @@ const port = 3000;
 app.use(express.static(path.join(__dirname, '..', 'public')));
 app.use(express.json());
 
-app.get('/api/products/:url', (req, res) => {
-  const url = req.params.url;
-  api.sendAPIRequest(url, 'GET', (err, result) => {
+
+app.get('/products', (req, res) => {
+  api.sendAPIRequest('/products', 'GET', (err, result) => {
     if (err) {
-      console.log(err);
+      console.log('err in app.get====', err);
+      res.send(err);
     } else {
-      console.log(result);
+      console.log('result in app.get===', result);
+      res.send(result);
+    }
+  });
+});
+
+app.get('/products/:product_id', (req, res) => {
+  const id = req.params.product_id;
+  console.log('url in app.get====', req.params);
+  api.sendAPIRequest('/products/' + `${id}`, 'GET', (err, result) => {
+    if (err) {
+      console.log('err in app.get====', err);
+      res.send(err);
+    } else {
+      console.log('result in app.get===', result);
+      res.send(result);
+    }
+  });
+});
+
+app.get('/products/:product_id/styles', (req, res) => {
+  const id = req.params.product_id;
+  api.sendAPIRequest('/products/' + `${id}` + '/styles', 'GET', (err, result) => {
+    if (err) {
+      console.log('err in app.get====', err);
+      res.send(err);
+    } else {
+      console.log('result in app.get===', result);
+      res.send(result);
+    }
+  });
+});
+
+app.get('/products/:product_id/related', (req, res) => {
+  const id = req.params.product_id;
+  api.sendAPIRequest('/products/' + `${id}` + '/related', 'GET', (err, result) => {
+    if (err) {
+      console.log('err in app.get====', err);
+      res.send(err);
+    } else {
+      console.log('result in app.get===', result);
+      res.send(result);
     }
   });
 });
