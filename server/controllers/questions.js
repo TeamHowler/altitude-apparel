@@ -16,19 +16,17 @@ module.exports = {
   },
 
   getAnswers: function(req, res) {
-    const productId = req.params.product_id;
     const questionId = req.params.question_id;
-    api.sendAPIRequest(`/qa/questions/?product_id=${productId}&?
-      question_id=${questionId}/answers`, 'GET',
-    (err, result) => {
-      if (err) {
-        console.log('err in app.get====', err);
-        res.send(err);
-      } else {
-        console.log('result in app.get===', result);
-        res.send(result);
-      }
-    });
+    api.sendAPIRequest(`/qa/questions/${questionId}/answers/?count=10`,
+        'GET', (err, result) => {
+          if (err) {
+            console.log('err in app.get====', err);
+            res.send(err);
+          } else {
+            console.log('result in app.get===', result);
+            res.send(result);
+          }
+        });
   },
 
 // post: function (req, res) {}

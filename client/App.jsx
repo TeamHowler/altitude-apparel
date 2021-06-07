@@ -1,5 +1,5 @@
 
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import axios from 'axios';
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
@@ -10,7 +10,7 @@ function App() {
   const fetch = () => {
     axios.get('/products')
         .then((response) => {
-          updateProduct(response);
+          updateProduct(response.data);
         })
         .catch((err) => {
           console.log(err);
@@ -19,8 +19,7 @@ function App() {
 
   useEffect(() => {
     fetch();
-    console.log(product);
-  });
+  }, []);
 
   return (
     <div>
@@ -32,9 +31,9 @@ function App() {
              and make up the bulk of
             the cards content.
           </Card.Text>
-          <Button variant="primary" onClick={(e) => {
+          <Button onClick={(e) => {
             e.preventDefault();
-            console.log(product);
+            alert('hello');
           }
           }>Go somewhere</Button>
         </Card.Body>
