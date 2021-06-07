@@ -3,6 +3,7 @@ import React, {useState, useEffect} from 'react';
 import axios from 'axios';
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
+import RatingsReviews from './RatingsReviews/RatingsReviews';
 
 function App() {
   const [product, updateProduct] = useState('');
@@ -39,6 +40,9 @@ function App() {
         </Card.Body>
       </Card>
       {/* <ProductDetail /> */}
+
+      {/* <RatingsReviews /> */}
+      {/* <RatingsReviews /> */}
     </div>
   );
 }
