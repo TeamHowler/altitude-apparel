@@ -1,11 +1,17 @@
 // create routes using express.Router()
-const controller = require('./controllers');
-const router = require('express').Router();
+const products = require('./controllers/products.js');
+const reviews = require('./controllers/reviews.js');
+const express = require('express');
+const router = express.Router();
 
 // Connect controller methods to their corresponding routes
-router.get('/products', controller.products.getAll);
+router.get('/', products.getAll);
 
-router.get('/products/:product_id', controller.products.getOne);
+router.get('/:product_id', products.getOne);
+
+router.get('/:product_id/styles', products.getStyles);
+
+// router.get('/reviews/:product_id', reviews.getAll);
 
 // router.post('/messages', controller.messages.post);
 

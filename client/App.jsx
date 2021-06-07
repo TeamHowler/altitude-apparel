@@ -1,9 +1,27 @@
 
-import React from 'react';
+import React, {useState} from 'react';
+import axios from 'axios';
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
 
 function App() {
+  const [product, updateProduct] = useState('');
+
+  const fetch = () => {
+    axios.get('/products')
+        .then((response) => {
+          updateProduct(response);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+  };
+
+  useEffect(() => {
+    fetch();
+    console.log(product);
+  });
+
   return (
     <div>
       <Card style={{width: '18rem', background: 'lightblue'}}>
@@ -14,7 +32,11 @@ function App() {
              and make up the bulk of
             the cards content.
           </Card.Text>
-          <Button variant="primary">Go somewhere</Button>
+          <Button variant="primary" onClick={(e) => {
+            e.preventDefault();
+            console.log(product);
+          }
+          }>Go somewhere</Button>
         </Card.Body>
       </Card>
       {/* <ProductDetail /> */}
