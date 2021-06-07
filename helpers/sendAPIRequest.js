@@ -11,12 +11,11 @@ const sendAPIRequest = (addtlUrlPath, reqMethod, callback) => {
       'Authorization': `token ${config.TOKEN}`,
     },
   };
-
   axios(options)
-      .then(function(response) {
+      .then((response) => {
         callback(null, response);
       })
-      .catch(function(err) {
+      .catch((err) => {
         callback(err, null);
       });
 };
