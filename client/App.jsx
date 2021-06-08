@@ -25,15 +25,16 @@ function App() {
   };
 
   const fetchReviews = () => {
-  axios.get(`/reviews/${currentId}`)
-      .then((response) => {
-        console.log('response.data in app - fetch reviews', response.data.results);
-        updateReview(response.data.results);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-};
+    axios.get(`/reviews/${currentId}`)
+        .then((response) => {
+          console.log('response.data in app - fetch reviews',
+              response.data.results);
+          updateReview(response.data.results);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+  };
 
 
   useEffect(() => {
@@ -73,10 +74,10 @@ function App() {
             </Form>
           </Navbar.Collapse>
         </Navbar>
+        <ProductDetails />
+        <StarterOutlineRR />
+        <QuestionsAnswers />
       </Container>
-      <ProductDetails />
-      <StarterOutlineRR />
-      <QuestionsAnswers />
     </ProductContext.Provider>
   );
 }
