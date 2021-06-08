@@ -10,6 +10,10 @@ const paragraphStyle = {
   marginLeft: 10,
 };
 
+// const questions = () => {
+//   axios.get('')
+// }
+
 const QuestionsAnswers = () => (
 
   <Container>
