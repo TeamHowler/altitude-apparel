@@ -1,19 +1,47 @@
 
 import React, {useState, useEffect} from 'react';
 import axios from 'axios';
-import Card from 'react-bootstrap/Card';
-import Button from 'react-bootstrap/Button';
+import {ProductContext} from './context.js';
+import ProductDetails from './ProductDetails/ProductDetails.jsx';
 import RatingsReviews from './RatingsReviews/RatingsReviews.jsx';
-import ProductContext from './context.js';
 
 function App() {
-  const [product, setProduct] = useState('');
-  const [products, setProducts] = useState([]);
+  const[currentProduct, setCurrentProduct] = useState({product_id: '18078'});
+  const [products, updateProduct] = useState([]);
+  const[reviews, updateReview] = useState([]);
+  const[styles, updateStyles] = useState([]);
 
+  // /18078/styles'
+  // /${currentProduct.product_id}/styles
   const fetch = () => {
-    axios.get('/products')
+    axios.get(`/products`)
         .then((response) => {
+          console.log('response.data in app - fetch products', response.data);
           updateProduct(response.data);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+  };
+
+  const fetchStyles = () => {
+    const productStyle = {currentProduct};
+    console.log('product passed into fetch styles', `/products/${productStyle.currentProduct.product_id}/styles`);
+    axios.get(`/products/${productStyle.currentProduct.product_id}/styles`)
+        .then((response) => {
+          console.log('response in app - fetch styles', response.data.results);
+          updateStyles(response.data.results);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+  };
+
+  const fetchReviews = () => {
+    axios.get('/reviews/18078')
+        .then((response) => {
+          console.log('response.data in app - fetch reviews', response.data.results);
+          updateReview(response.data.results);
         })
         .catch((err) => {
           console.log(err);
@@ -22,14 +50,24 @@ function App() {
 
   useEffect(() => {
     fetch();
+    fetchReviews();
+    fetchStyles();
+    // products.map((product) => fetchStyles({product}));
   }, []);
 
   return (
-    <ProductContext.Provider>
+    <ProductContext.Provider value={{
+      products,
+    }}>
+      {/* {products.map((product) =>
+        <ProductDetails key={product.style_id} product={product} />)} */}
 
-      <ProductDetail />
+      {styles.map((style) =>
+        <ProductDetails key={style.style_id} style={style} />)}
 
-      <RatingsReviews />
+      {reviews.map((review) =>
+        <RatingsReviews key={review.review_id} review={review} />)}
+      {/* <RatingsReviews /> */}
     </ProductContext.Provider>
   );
 }
