@@ -33,7 +33,7 @@ function ProductDetails() {
     </div></center>;
   } else {
     return (
-      <Container style={{background: 'green', padding: '2rem'}}>
+      <Container style={{background: 'bone', padding: '2rem'}}>
         <Row>
           <Col style={{height: 'auto'}}>
             <Carousel>
