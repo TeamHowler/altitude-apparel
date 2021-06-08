@@ -6,7 +6,7 @@ import ProductDetails from './ProductDetails/ProductDetails.jsx';
 import RatingsReviews from './RatingsReviews/RatingsReviews.jsx';
 
 function App() {
-  const[currentProduct, setCurrentProduct] = useState({product_id: '18078'});
+  const[currentProduct, setCurrentProduct] = useState({product_id: '18080'});
   const [products, updateProduct] = useState([]);
   const[reviews, updateReview] = useState([]);
   const[styles, updateStyles] = useState([]);
@@ -38,7 +38,8 @@ function App() {
   };
 
   const fetchReviews = () => {
-    axios.get('/reviews/18078')
+    const currentID = {currentProduct};
+    axios.get(`/reviews/${currentID.currentProduct.product_id}`)
         .then((response) => {
           console.log('response.data in app - fetch reviews', response.data.results);
           updateReview(response.data.results);
