@@ -8,11 +8,10 @@ import StarterOutlineRR from './RatingsReviews/StarterOutlineRR.jsx';
 import QuestionsAnswers from './QuestionsAnswers/QuestionsAnswers.jsx';
 
 function App() {
-  const [currentId, setCurrentId] = useState(18080);
+  const [currentId, setCurrentId] = useState(18078);
   const [currentProduct, updateProduct] = useState([]);
   const [reviews, updateReview] = useState([]);
-  // /18078/styles'
-  // /${currentProduct.product_id}/styles
+
   const fetch = () => {
     axios.get(`/products/${currentId}`)
         .then((response) => {
@@ -25,15 +24,14 @@ function App() {
   };
 
   const fetchReviews = () => {
-  axios.get(`/reviews/${currentId}`)
-      .then((response) => {
-        console.log('response.data in app - fetch reviews', response.data.results);
-        updateReview(response.data.results);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-};
+    axios.get(`/reviews/${currentId}`)
+        .then((response) => {
+          updateReview(response.data.results);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+  };
 
 
   useEffect(() => {
@@ -45,6 +43,7 @@ function App() {
   return (
     <ProductContext.Provider value={{
       currentProduct,
+      reviews,
     }}>
       <Container>
         <Navbar bg="light" expand="lg">
@@ -73,10 +72,10 @@ function App() {
             </Form>
           </Navbar.Collapse>
         </Navbar>
+        <ProductDetails />
+        <QuestionsAnswers />
+        <StarterOutlineRR reviews={reviews} />
       </Container>
-      <ProductDetails />
-      <StarterOutlineRR />
-      <QuestionsAnswers />
     </ProductContext.Provider>
   );
 }
