@@ -1,5 +1,5 @@
 import React, {useContext} from 'react';
-import productContext from '../context.js';
+// import productContext from '../context.js';
 import {Row, Col, DropdownButton, Dropdown, Button} from 'react-bootstrap/';
 import RatingsReviews from './RatingsReviews.jsx';
 
