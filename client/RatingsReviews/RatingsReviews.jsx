@@ -1,33 +1,24 @@
 import React, {useContext} from 'react';
 import productContext from '../context.js';
-import Container from 'react-bootstrap/Container';
-import {Row, Image} from 'react-bootstrap/';
-import Col from 'react-bootstrap/Col';
-import Card from 'react-bootstrap/Card';
-import CardColumns from 'react-bootstrap/CardColumns';
-// import images from './graph_images.png';
+import {Row, Image, Container, Col, Card, CardColumns} from 'react-bootstrap/';
+
 
 function RatingsReviews({review}) {
   // const {} = useContext(productContext);
   console.log('review inside of Ratings Reviews', review);
 
   return (
-    <Container fluid>
-      <Row >
-        <Col border="primary" md={4}>
-          <Image thumbnail />
-        </Col>
-        <Col md={8}>
-          <Card.Body>
-            <Card.Title>{review.summary}</Card.Title>
-            <Card.Text>
-              {review.body}
-            </Card.Text>
-          </Card.Body>
-          {review.date}
-        </Col>
-      </Row>
-    </Container>
+    <Row>
+      <Col style={{background: 'lightpink'}}>
+        <Card.Body>
+          <Card.Title>{review.summary}</Card.Title>
+          <Card.Text>
+            {review.body}
+          </Card.Text>
+        </Card.Body>
+        {review.date}
+      </Col>
+    </Row>
   );
 }
 
@@ -44,6 +35,21 @@ export default RatingsReviews;
 // </Card.Body>
 // </Card>
 
+
+{/* <Row >
+<Col style={{background: 'blue'}} border="primary" md={4}>
+  <Image thumbnail />
+</Col>
+<Col style={{background: 'blue'}} md={8}>
+  <Card.Body>
+    <Card.Title>{review.summary}</Card.Title>
+    <Card.Text>
+      {review.body}
+    </Card.Text>
+  </Card.Body>
+  {review.date}
+</Col>
+</Row> */}
 
 {/* <Card border="primary" style={{ width: '18rem' }}>
             <Card.Img variant="top" src="holder.js/100px180" />
