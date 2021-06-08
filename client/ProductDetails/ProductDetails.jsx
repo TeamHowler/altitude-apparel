@@ -1,7 +1,15 @@
-// import React, { useState } from 'react';
+import React, {useContext, useState, useEffect} from 'react';
+import {ProductContext} from '../context.js';
 
-// function ProductDetail() {
 
-// }
+function ProductDetails() {
+  const {products} = useContext(ProductContext);
 
-// export default ProductDetail;
+  return (
+    <div>
+      {console.log(products)}
+    </div>
+  );
+}
+
+export default ProductDetails;
