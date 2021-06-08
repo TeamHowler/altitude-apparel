@@ -7,6 +7,7 @@ import RatingsReviews from './RatingsReviews.jsx';
 function StarterOutlineRR({reviews}) {
   // const {} = useContext(productContext);
 
+
   return (
     <div>
       <h4>Ratings & Reviews</h4>
