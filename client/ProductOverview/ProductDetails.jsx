@@ -1,7 +1,7 @@
 import React, {useContext, useState, useEffect} from 'react';
 import {ProductContext} from '../context.js';
 import {Container, Carousel, Col, Row} from 'react-bootstrap';
-import Image from './Image.jsx';
+import CarouselPhotos from './CarouselPhotos.jsx';
 import axios from 'axios';
 
 function ProductDetails() {
@@ -33,14 +33,14 @@ function ProductDetails() {
     </div></center>;
   } else {
     return (
-      <Container style={{background: 'green', padding: '2rem'}}>
+      <Container style={{background: '#f3f7f0', padding: '2rem'}}>
         <Row>
           <Col style={{height: 'auto'}}>
-            <Carousel>
+            <Carousel interval={null}>
               {currentStyle.results[0].photos.map((image) => {
                 return (
                   <Carousel.Item style={{height: '30rem'}} key={image.url}>
-                    <Image image={image} key={image.url} />;
+                    <CarouselPhotos image={image} key={image.url} />
                   </Carousel.Item>
                 );
               })}
