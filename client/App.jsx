@@ -4,7 +4,7 @@ import {ProductContext} from './context.js';
 import ProductOverview from './ProductOverview/ProductOverview.jsx';
 import {Nav, Navbar, NavDropdown, Container,
   FormControl, Button, Form} from 'react-bootstrap';
-import StarterOutlineRR from './RatingsReviews/StarterOutlineRR.jsx';
+import RatingsAndReviews from './RatingsReviews/RatingsAndReviews.jsx';
 import QuestionsAnswers from './QuestionsAnswers/QuestionsAnswers.jsx';
 
 function App() {
@@ -38,7 +38,6 @@ function App() {
   useEffect(() => {
     fetch();
     fetchReviews();
-    // products.map((product) => fetchStyles({product}));
   }, []);
 
   return (
@@ -49,6 +48,7 @@ function App() {
       currentStyle,
       updateCurrentStyle,
       reviews,
+      currentId,
     }}>
       <Container>
         <Navbar bg="light" expand="lg">
@@ -79,7 +79,7 @@ function App() {
         </Navbar>
         <ProductOverview />
         <QuestionsAnswers />
-        <StarterOutlineRR reviews={reviews} />
+        <RatingsAndReviews />
       </Container>
     </ProductContext.Provider>
   );
