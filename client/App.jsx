@@ -15,7 +15,6 @@ function App() {
   const fetch = () => {
     axios.get(`/products/${currentId}`)
         .then((response) => {
-          console.log('response.data in app - fetch products', response.data);
           updateProduct(response.data);
         })
         .catch((err) => {
