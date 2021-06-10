@@ -8,7 +8,6 @@ module.exports = {
         console.log('err in app.get====', err);
         res.send(err);
       } else {
-        console.log('result in app.get===', result);
         res.send(result);
       }
     });
@@ -22,7 +21,6 @@ module.exports = {
             console.log('err in app.get====', err);
             res.send(err);
           } else {
-            console.log('result in app.get===', result);
             res.send(result);
           }
         });

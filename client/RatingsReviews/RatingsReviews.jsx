@@ -5,7 +5,7 @@ import {Row, Image, Container, Col, Card, CardColumns} from 'react-bootstrap/';
 
 function RatingsReviews({review}) {
   // const {} = useContext(productContext);
-  console.log('review inside of Ratings Reviews', review);
+  // console.log('review inside of Ratings Reviews', review);
 
   return (
     <Row>

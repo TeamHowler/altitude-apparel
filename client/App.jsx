@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import axios from 'axios';
 import {ProductContext} from './context.js';
-import ProductDetails from './ProductDetails/ProductDetails.jsx';
+import ProductOverview from './ProductOverview/ProductOverview.jsx';
 import {Nav, Navbar, NavDropdown, Container,
   FormControl, Button, Form} from 'react-bootstrap';
 import StarterOutlineRR from './RatingsReviews/StarterOutlineRR.jsx';
@@ -11,11 +11,12 @@ function App() {
   const [currentId, setCurrentId] = useState(18078);
   const [currentProduct, updateProduct] = useState([]);
   const [reviews, updateReview] = useState([]);
+  const [styles, updateStyles] = useState([]);
+  const [currentStyle, updateCurrentStyle] = useState({});
 
   const fetch = () => {
     axios.get(`/products/${currentId}`)
         .then((response) => {
-          console.log('response.data in app - fetch products', response.data);
           updateProduct(response.data);
         })
         .catch((err) => {
@@ -43,6 +44,10 @@ function App() {
   return (
     <ProductContext.Provider value={{
       currentProduct,
+      styles,
+      updateStyles,
+      currentStyle,
+      updateCurrentStyle,
       reviews,
     }}>
       <Container>
@@ -72,7 +77,7 @@ function App() {
             </Form>
           </Navbar.Collapse>
         </Navbar>
-        <ProductDetails />
+        <ProductOverview />
         <QuestionsAnswers />
         <StarterOutlineRR reviews={reviews} />
       </Container>
