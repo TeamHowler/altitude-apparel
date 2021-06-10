@@ -1,17 +1,16 @@
 import React, {useContext, useState, useEffect} from 'react';
 import {ProductContext} from '../context.js';
-import {Container, Carousel, Col, Row} from 'react-bootstrap';
-import CarouselPhotos from './CarouselPhotos.jsx';
+import {Container, Col, Row} from 'react-bootstrap';
+import CarouselComponent from './CarouselComponent.jsx';
 import axios from 'axios';
 
 function ProductDetails() {
-  const {currentProduct} = useContext(ProductContext);
-  const [currentStyle, updateStyle] = useState([]);
+  const {currentProduct, updateStyles, styles, updateCurrentStyle} = useContext(ProductContext);
 
   const getStyles = () => {
     axios.get(`/products/${currentProduct.id}/styles`)
         .then((response) => {
-          updateStyle(response.data);
+          updateStyles(response.data);
         })
         .catch((err) => {
           console.log(err);
@@ -27,24 +26,23 @@ function ProductDetails() {
     }
   }, [currentProduct]);
 
-  if (currentStyle.length === 0) {
+  if (styles.length === 0) {
     return <center><div className="spinner-border" role="status">
       <span className="sr-only">Loading...</span>
     </div></center>;
   } else {
+    if (currentProduct) {
+      styles.results.forEach((result) => {
+        if (result['default?']) {
+          updateCurrentStyle(result);
+        }
+      });
+    }
     return (
       <Container style={{background: '#f3f7f0', padding: '2rem'}}>
         <Row>
           <Col style={{height: 'auto'}}>
-            <Carousel interval={null}>
-              {currentStyle.results[0].photos.map((image) => {
-                return (
-                  <Carousel.Item style={{height: '30rem'}} key={image.url}>
-                    <CarouselPhotos image={image} key={image.url} />
-                  </Carousel.Item>
-                );
-              })}
-            </Carousel>
+            <CarouselComponent />
           </Col>
           <Col>
             <Row >
