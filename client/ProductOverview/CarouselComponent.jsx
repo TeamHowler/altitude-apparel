@@ -4,7 +4,7 @@ import {ProductContext} from '../context.js';
 import {Carousel} from 'react-bootstrap';
 
 const CarouselComponent = () => {
-  const {currentStyle, styles} = useContext(ProductContext);
+  const {currentStyle} = useContext(ProductContext);
 
   if (currentStyle.photos === undefined) {
     return <center><div className="spinner-border" role="status">

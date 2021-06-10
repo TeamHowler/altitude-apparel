@@ -1,13 +1,12 @@
 import React, {useContext, useEffect} from 'react';
 import {ProductContext} from '../context.js';
 import axios from 'axios';
-import ProductDetail from './ProductDetail.jsx';
+import ProductDetails from './ProductDetails.jsx';
 import {Container} from 'react-bootstrap';
 
 
 function ProductOverview() {
-  const {currentProduct, styles, updateStyles, currentStyle,
-    updateCurrentStyle} = useContext(ProductContext);
+  const {currentProduct, updateStyles} = useContext(ProductContext);
 
   const getStyles = () => {
     axios.get(`/products/${currentProduct.id}/styles`)
@@ -30,7 +29,7 @@ function ProductOverview() {
 
   return (
     <Container style={{background: '#ecf5eb', padding: '2rem'}}>
-      <ProductDetail />
+      <ProductDetails />
     </Container>
   );
 }
