@@ -4,19 +4,17 @@ import {ProductContext} from './context.js';
 import ProductDetails from './ProductDetails/ProductDetails.jsx';
 import {Nav, Navbar, NavDropdown, Container,
   FormControl, Button, Form} from 'react-bootstrap';
-import StarterOutlineRR from './RatingsReviews/StarterOutlineRR.jsx';
+import RatingsAndReviews from './RatingsReviews/RatingsAndReviews.jsx';
 import QuestionsAnswers from './QuestionsAnswers/QuestionsAnswers.jsx';
 
 function App() {
-  const [currentId, setCurrentId] = useState(18080);
+  const [currentId, setCurrentId] = useState(18078);
   const [currentProduct, updateProduct] = useState([]);
   const [reviews, updateReview] = useState([]);
-  // /18078/styles'
-  // /${currentProduct.product_id}/styles
+
   const fetch = () => {
     axios.get(`/products/${currentId}`)
         .then((response) => {
-          console.log('response.data in app - fetch products', response.data);
           updateProduct(response.data);
         })
         .catch((err) => {
@@ -25,26 +23,26 @@ function App() {
   };
 
   const fetchReviews = () => {
-  axios.get(`/reviews/${currentId}`)
-      .then((response) => {
-        console.log('response.data in app - fetch reviews', response.data.results);
-        updateReview(response.data.results);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-};
+    axios.get(`/reviews/${currentId}`)
+        .then((response) => {
+          updateReview(response.data.results);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+  };
 
 
   useEffect(() => {
     fetch();
     fetchReviews();
-    // products.map((product) => fetchStyles({product}));
   }, []);
 
   return (
     <ProductContext.Provider value={{
       currentProduct,
+      reviews,
+      currentId,
     }}>
       <Container>
         <Navbar bg="light" expand="lg">
@@ -73,10 +71,10 @@ function App() {
             </Form>
           </Navbar.Collapse>
         </Navbar>
+        <ProductDetails />
+        <QuestionsAnswers />
+        <RatingsAndReviews />
       </Container>
-      <ProductDetails />
-      <StarterOutlineRR />
-      <QuestionsAnswers />
     </ProductContext.Provider>
   );
 }
