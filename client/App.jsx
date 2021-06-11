@@ -8,7 +8,7 @@ import RatingsAndReviews from './RatingsReviews/RatingsAndReviews.jsx';
 import QuestionsAnswers from './QuestionsAnswers/QuestionsAnswers.jsx';
 
 function App() {
-  const [currentId, setCurrentId] = useState(18078);
+  const [currentId, setCurrentId] = useState(18080);
   const [currentProduct, updateProduct] = useState([]);
   const [reviews, updateReview] = useState([]);
   const [styles, updateStyles] = useState([]);
