@@ -17,15 +17,18 @@ function CarouselComponent() {
       <Carousel interval={null}>
         {currentStyle.photos.map((image) => {
           return (
+
             <Carousel.Item style={{height: '30rem',
-              width: '30rem', backgroundSize: 'cover'}}
+              width: '25rem', backgroundSize: 'cover'}}
             key={image.url}>
               <CarouselPhotos image={image} key={image.url} />
+
             </Carousel.Item>
           );
         })}
         {console.log('carousel, ', currentStyle)}
       </Carousel>
+
     );
   };
 };

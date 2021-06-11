@@ -23,35 +23,45 @@ function Size() {
       }
     }
     return (
-      <Row>
-        <Dropdown style={{background: '#f3f7f0', borderColor: 'black',
-          color: 'black'}}>
-          <Dropdown.Toggle variant="success" id="dropdown-basic">
+      <Row >
+        <>
+          <style type="text/css">
+            {`
+              #customDrop {
+                background-color: transparent;
+                border-color: black;
+                color: black;
+              }
+            `}
+          </style>
+          <Dropdown >
+            <Dropdown.Toggle id="customDrop">
                     Select A Size
-          </Dropdown.Toggle>
-          <Dropdown.Menu>
-            {skuArr.map((item) => {
-              return <Dropdown.Item key={item.sku}>{item.size}
-              </Dropdown.Item>;
-            })}
-            {console.log(skuArr)}
-            <Dropdown.Item></Dropdown.Item>
-          </Dropdown.Menu>
-        </Dropdown>
-        <Dropdown style={{background: '#f3f7f0', borderColor: 'black',
-          color: 'black'}}>
-          <Dropdown.Toggle variant="success" id="dropdown-basic">
+            </Dropdown.Toggle>
+            <Dropdown.Menu m={5}>
+              {skuArr.map((item) => {
+                return <Dropdown.Item key={item.sku}>{item.size}
+                </Dropdown.Item>;
+              })}
+              {console.log(skuArr)}
+              <Dropdown.Item></Dropdown.Item>
+            </Dropdown.Menu>
+          </Dropdown>
+          <Dropdown >
+            <Dropdown.Toggle id="customDrop">
                         1
-          </Dropdown.Toggle>
-          <Dropdown.Menu>
-            {skuArr.map((item) => {
-              return <Dropdown.Item key={item.sku}>{item.quantity}
-              </Dropdown.Item>;
-            })}
-            {console.log(skuArr)}
-            <Dropdown.Item></Dropdown.Item>
-          </Dropdown.Menu>
-        </Dropdown>
+            </Dropdown.Toggle>
+            <Dropdown.Menu>
+              {skuArr.map((item) => {
+                return <Dropdown.Item
+                  key={item.sku}>{item.quantity}
+                </Dropdown.Item>;
+              })}
+              {console.log(skuArr)}
+              <Dropdown.Item></Dropdown.Item>
+            </Dropdown.Menu>
+          </Dropdown>
+        </>
       </Row>
     );
   }

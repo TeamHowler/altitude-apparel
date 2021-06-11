@@ -1,10 +1,12 @@
 import React, {useContext, useState, useEffect} from 'react';
 import {ProductContext} from '../context.js';
-import {Container, Col, Row, Button, Dropdown} from 'react-bootstrap';
+import {Container, Col, Row, Button, Overlay} from 'react-bootstrap';
 import CarouselComponent from './CarouselComponent.jsx';
 import axios from 'axios';
 import Thumbnails from './Thumbnails.jsx';
 import Size from './Size.jsx';
+import Scroll from 'react-scroll';
+const ScrollLink = Scroll.ScrollLink;
 
 function ProductDetails() {
   const {currentProduct, updateStyles,
@@ -54,7 +56,7 @@ function ProductDetails() {
             <Container>
               <Row style={{marginBottom: '50px'}}>
                 <div>
-                <p>Reviews</p>
+                  <a href="#sixty-char-cap">Click me</a>
                   <h3>{currentProduct.category}</h3>
                   <h1>{currentProduct.name}</h1>
                   <h3>${currentProduct.default_price}</h3>
@@ -66,7 +68,7 @@ function ProductDetails() {
               <Row >
                 <Size />
               </Row>
-              <Row flexGrow>
+              <Row >
                 <Button style={{background: '#f3f7f0', borderColor: 'black',
                   color: 'black'}}>
                 Add To Cart</Button>
