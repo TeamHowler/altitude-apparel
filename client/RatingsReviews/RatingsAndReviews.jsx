@@ -7,9 +7,20 @@ import StarRatingComponent from 'react-star-rating-component';
 
 
 function RatingsAndReviews() {
-  const {reviews, currentId} = useContext(ProductContext);
+  const {currentId} = useContext(ProductContext);
+  const [reviews, updateReview] = useState([]);
   const [rating, updateRating] = useState(0);
   const [count, updateCount] = useState(0);
+
+  const fetchAllReviews = () => {
+    axios.get(`/reviews/${currentId}&count=${count}`)
+        .then((response) => {
+          updateReview(response.data.results);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+  };
 
   const fetchRating = () => {
     axios.get(`/reviews/meta/${currentId}`)
@@ -37,8 +48,9 @@ function RatingsAndReviews() {
   };
 
   useEffect(() => {
+    fetchAllReviews();
     fetchRating();
-  }, []);
+  }, [count]);
 
   if (reviews.length === 0) {
     return <center><div className="spinner-border" role="status">
@@ -53,19 +65,22 @@ function RatingsAndReviews() {
           <Col style={{background: 'lightpurple'}} border="primary" md={4}>
             {/* <Image thumbnail /> */}
             <h6>Rating Rounded to Nearest Whole Number:</h6>
-            <StarRatingComponent
-              name="rate1"
-              starCount={5}
-              value={rating}
-            />
+            <span>
+              <h4>{rating}</h4>
+              <StarRatingComponent
+                name="rate1"
+                starCount={5}
+                value={rating}
+              />
+            </span>
           </Col>
 
           {/* Reviews: */}
           <Col style={{background: 'lightblue'}} md={8}>
             {/* Reviews Heading with Dropdown: */}
             <h5>
-              {count} reviews, sorted by
-              <DropdownButton id="dropdown-basic-button" title="Sort On:">
+              {count} reviews
+              <DropdownButton id="dropdown-basic-button" title="Sort By:">
                 <Dropdown.Item href="#/action-1">Relevance</Dropdown.Item>
                 <Dropdown.Item href="#/action-2">Helpful</Dropdown.Item>
                 <Dropdown.Item href="#/action-3">Newest</Dropdown.Item>

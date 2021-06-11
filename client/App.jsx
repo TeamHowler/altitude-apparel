@@ -10,7 +10,6 @@ import QuestionsAnswers from './QuestionsAnswers/QuestionsAnswers.jsx';
 function App() {
   const [currentId, setCurrentId] = useState(18078);
   const [currentProduct, updateProduct] = useState([]);
-  const [reviews, updateReview] = useState([]);
   const [styles, updateStyles] = useState([]);
   const [currentStyle, updateCurrentStyle] = useState({});
 
@@ -24,20 +23,8 @@ function App() {
         });
   };
 
-  const fetchReviews = () => {
-    axios.get(`/reviews/${currentId}`)
-        .then((response) => {
-          updateReview(response.data.results);
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-  };
-
-
   useEffect(() => {
     fetch();
-    fetchReviews();
   }, []);
 
   return (
@@ -47,7 +34,7 @@ function App() {
       updateStyles,
       currentStyle,
       updateCurrentStyle,
-      reviews,
+      // reviews,
       currentId,
     }}>
       <Container>
