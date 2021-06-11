@@ -4,13 +4,12 @@ import {ProductContext} from './context.js';
 import ProductOverview from './ProductOverview/ProductOverview.jsx';
 import {Nav, Navbar, NavDropdown, Container,
   FormControl, Button, Form} from 'react-bootstrap';
-import StarterOutlineRR from './RatingsReviews/StarterOutlineRR.jsx';
+import RatingsAndReviews from './RatingsReviews/RatingsAndReviews.jsx';
 import QuestionsAnswers from './QuestionsAnswers/QuestionsAnswers.jsx';
 
 function App() {
   const [currentId, setCurrentId] = useState(18078);
   const [currentProduct, updateProduct] = useState([]);
-  const [reviews, updateReview] = useState([]);
   const [styles, updateStyles] = useState([]);
   const [currentStyle, updateCurrentStyle] = useState(undefined);
   const [defaultStyle, updateDefault] = useState(true);
@@ -25,21 +24,8 @@ function App() {
         });
   };
 
-  const fetchReviews = () => {
-    axios.get(`/reviews/${currentId}`)
-        .then((response) => {
-          updateReview(response.data.results);
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-  };
-
-
   useEffect(() => {
     fetch();
-    fetchReviews();
-    // products.map((product) => fetchStyles({product}));
   }, []);
 
   return (
@@ -49,9 +35,14 @@ function App() {
       updateStyles,
       currentStyle,
       updateCurrentStyle,
+<<<<<<< HEAD
       reviews,
       defaultStyle,
       updateDefault,
+=======
+      // reviews,
+      currentId,
+>>>>>>> 37063228889af3a2953d06c464149713af5ced2b
     }}>
       <Container>
         <Navbar bg="light" expand="lg">
@@ -82,7 +73,7 @@ function App() {
         </Navbar>
         <ProductOverview />
         <QuestionsAnswers />
-        <StarterOutlineRR reviews={reviews} />
+        <RatingsAndReviews />
       </Container>
     </ProductContext.Provider>
   );
