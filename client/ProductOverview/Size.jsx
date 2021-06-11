@@ -1,3 +1,4 @@
+/* eslint-disable guard-for-in */
 import React, {useContext} from 'react';
 import {ProductContext} from '../context.js';
 import {Dropdown, Row} from 'react-bootstrap';

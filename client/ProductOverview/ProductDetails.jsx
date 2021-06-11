@@ -51,26 +51,28 @@ function ProductDetails() {
             <p>{currentProduct.description}</p>
           </Col>
           <Col>
-            <Row md={1}>
-              <div>
-                <p>{currentProduct.category}</p>
-                <h1>{currentProduct.name}</h1>
-                <h3>${currentProduct.default_price}</h3>
-              </div>
-              Reviews
-            </Row>
-            <Row md={1}>
-              <Thumbnails />
-            </Row>
-            <Row md={1}>
-              <Size />
-            </Row>
-            <Row md={1}>
-              <Button style={{background: '#f3f7f0', borderColor: 'black',
-                color: 'black'}}>
+            <Container>
+              <Row style={{marginBottom: '50px'}}>
+                <div>
+                <p>Reviews</p>
+                  <h3>{currentProduct.category}</h3>
+                  <h1>{currentProduct.name}</h1>
+                  <h3>${currentProduct.default_price}</h3>
+                </div>
+              </Row>
+              <Row style={{marginBottom: '50px'}}>
+                <Thumbnails />
+              </Row>
+              <Row >
+                <Size />
+              </Row>
+              <Row flexGrow>
+                <Button style={{background: '#f3f7f0', borderColor: 'black',
+                  color: 'black'}}>
                 Add To Cart</Button>
-              {console.log('currentProduct, ', currentProduct)}
-            </Row>
+                {console.log('currentProduct, ', currentProduct)}
+              </Row>
+            </Container>
           </Col>
         </Row>
       </Container>
