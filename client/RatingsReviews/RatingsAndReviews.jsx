@@ -7,10 +7,8 @@ import StarRatingComponent from 'react-star-rating-component';
 
 
 function RatingsAndReviews() {
-  const {currentId} = useContext(ProductContext);
-  const [reviews, updateReview] = useState([]);
-  const [rating, updateRating] = useState(0);
-  const [count, updateCount] = useState(0);
+  const {currentId, reviews, rating, count, updateReview,
+    updateRating, updateCount} = useContext(ProductContext);
 
   const fetchAllReviews = () => {
     axios.get(`/reviews/${currentId}&count=${count}`)
