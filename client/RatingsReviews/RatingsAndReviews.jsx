@@ -1,11 +1,44 @@
-import React, {useContext} from 'react';
+import React, {useContext, useState, useEffect} from 'react';
+import axios from 'axios';
 import {ProductContext} from '../context.js';
 import {Row, Col, DropdownButton, Dropdown, Button} from 'react-bootstrap/';
 import ReviewTiles from './ReviewTiles.jsx';
+import StarRatingComponent from 'react-star-rating-component';
 
 
 function RatingsAndReviews() {
-  const {reviews} = useContext(ProductContext);
+  const {reviews, currentId} = useContext(ProductContext);
+  const [rating, updateRating] = useState(0);
+  const [count, updateCount] = useState(0);
+
+  const fetchRating = () => {
+    axios.get(`/reviews/meta/${currentId}`)
+        .then((response) => {
+          const rate = response.data.ratings;
+          const oneStarSum = parseInt(rate['1']);
+          const twoStarSum = parseInt(rate['2']) * 2;
+          const threeStarSum = parseInt(rate['3']) * 3;
+          const fourStarSum = parseInt(rate['4']) * 4;
+          const fiveStarSum = parseInt(rate['5']) * 5;
+          const sum = oneStarSum + twoStarSum + threeStarSum + fourStarSum + fiveStarSum;
+          const oneStarCt = parseInt(rate['1']);
+          const twoStarCt = parseInt(rate['2']);
+          const threeStarCt = parseInt(rate['3']);
+          const fourStarCt = parseInt(rate['4']);
+          const fiveStarCt = parseInt(rate['5']);
+          const totalRatings = oneStarCt + twoStarCt + threeStarCt + fourStarCt + fiveStarCt;
+          updateCount(totalRatings);
+          const ave = Math.round(sum/totalRatings);
+          updateRating(ave);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+  };
+
+  useEffect(() => {
+    fetchRating();
+  }, []);
 
   if (reviews.length === 0) {
     return <center><div className="spinner-border" role="status">
@@ -19,14 +52,19 @@ function RatingsAndReviews() {
           {/* Graphs: */}
           <Col style={{background: 'lightpurple'}} border="primary" md={4}>
             {/* <Image thumbnail /> */}
-            <h6>Graph Images go here:</h6>
+            <h6>Rating Rounded to Nearest Whole Number:</h6>
+            <StarRatingComponent
+              name="rate1"
+              starCount={5}
+              value={rating}
+            />
           </Col>
 
           {/* Reviews: */}
           <Col style={{background: 'lightblue'}} md={8}>
             {/* Reviews Heading with Dropdown: */}
             <h5>
-              {reviews.length} reviews, sorted by
+              {count} reviews, sorted by
               <DropdownButton id="dropdown-basic-button" title="Sort On:">
                 <Dropdown.Item href="#/action-1">Relevance</Dropdown.Item>
                 <Dropdown.Item href="#/action-2">Helpful</Dropdown.Item>
