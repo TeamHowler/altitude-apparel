@@ -1,4 +1,4 @@
-import React, {useContext, useEffect} from 'react';
+import React, {useContext} from 'react';
 import CarouselPhotos from './CarouselPhotos.jsx';
 import {ProductContext} from '../context.js';
 import {Carousel} from 'react-bootstrap';
@@ -17,12 +17,14 @@ function CarouselComponent() {
       <Carousel interval={null}>
         {currentStyle.photos.map((image) => {
           return (
-            <Carousel.Item style={{height: '30rem'}} key={image.url}>
+            <Carousel.Item style={{height: '30rem',
+              width: '30rem', backgroundSize: 'cover'}}
+            key={image.url}>
               <CarouselPhotos image={image} key={image.url} />
             </Carousel.Item>
           );
         })}
-        {console.log('carousel, ', currentStyle.name)}
+        {console.log('carousel, ', currentStyle)}
       </Carousel>
     );
   };

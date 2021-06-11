@@ -4,6 +4,7 @@ import {Container, Col, Row, Button, Dropdown} from 'react-bootstrap';
 import CarouselComponent from './CarouselComponent.jsx';
 import axios from 'axios';
 import Thumbnails from './Thumbnails.jsx';
+import Size from './Size.jsx';
 
 function ProductDetails() {
   const {currentProduct, updateStyles,
@@ -50,46 +51,25 @@ function ProductDetails() {
             <p>{currentProduct.description}</p>
           </Col>
           <Col>
-            <Row >
+            <Row md={1}>
               <div>
                 <p>{currentProduct.category}</p>
                 <h1>{currentProduct.name}</h1>
                 <h3>${currentProduct.default_price}</h3>
               </div>
+              Reviews
             </Row>
-            <Row>
+            <Row md={1}>
               <Thumbnails />
             </Row>
-            <Row>
-              <Dropdown style={{background: '#f3f7f0', borderColor: 'black',
-                color: 'black'}}>
-                <Dropdown.Toggle variant="success" id="dropdown-basic">
-                    Select A Size
-                </Dropdown.Toggle>
-                <Dropdown.Menu>
-                  <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
-                  <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
-                  <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
-                </Dropdown.Menu>
-              </Dropdown>
-              <Dropdown style={{background: '#f3f7f0', borderColor: 'black',
-                color: 'black'}}>
-                <Dropdown.Toggle variant="success" id="dropdown-basic">
-                    1
-                </Dropdown.Toggle>
-                <Dropdown.Menu>
-                  <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
-                  <Dropdown.Item href="#/action-2">
-                    Another action</Dropdown.Item>
-                  <Dropdown.Item href="#/action-3">
-                    Something else</Dropdown.Item>
-                </Dropdown.Menu>
-              </Dropdown>
+            <Row md={1}>
+              <Size />
+            </Row>
+            <Row md={1}>
               <Button style={{background: '#f3f7f0', borderColor: 'black',
                 color: 'black'}}>
                 Add To Cart</Button>
-              <Button>&#8902;</Button>
-              {console.log('currentProduct, ', currentStyle)}
+              {console.log('currentProduct, ', currentProduct)}
             </Row>
           </Col>
         </Row>

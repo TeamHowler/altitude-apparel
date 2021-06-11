@@ -11,10 +11,10 @@ function Thumbnails() {
     return (
       <Container>
         {/* <p>Style: {currentStyle.name}</p> */}
-        <Row xs={4}>
+        <Row xs={6}>
           {styles.results.map((result) => {
             return (<Image src={result.photos[0].thumbnail_url}
-              key={result.style_id} thumbnail roundedCircle
+              key={result.style_id} roundedCircle thumbnail
               onClick={(e) => {
                 e.preventDefault();
                 updateCurrentStyle(result);
