@@ -53,19 +53,22 @@ function RatingsAndReviews() {
           <Col style={{background: 'lightpurple'}} border="primary" md={4}>
             {/* <Image thumbnail /> */}
             <h6>Rating Rounded to Nearest Whole Number:</h6>
-            <StarRatingComponent
-              name="rate1"
-              starCount={5}
-              value={rating}
-            />
+            <span>
+              <h4>{rating}</h4>
+              <StarRatingComponent
+                name="rate1"
+                starCount={5}
+                value={rating}
+              />
+            </span>
           </Col>
 
           {/* Reviews: */}
           <Col style={{background: 'lightblue'}} md={8}>
             {/* Reviews Heading with Dropdown: */}
             <h5>
-              {count} reviews, sorted by
-              <DropdownButton id="dropdown-basic-button" title="Sort On:">
+              {count} reviews
+              <DropdownButton id="dropdown-basic-button" title="Sort By:">
                 <Dropdown.Item href="#/action-1">Relevance</Dropdown.Item>
                 <Dropdown.Item href="#/action-2">Helpful</Dropdown.Item>
                 <Dropdown.Item href="#/action-3">Newest</Dropdown.Item>
