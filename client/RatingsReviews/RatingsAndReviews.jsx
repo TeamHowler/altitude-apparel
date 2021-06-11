@@ -15,7 +15,6 @@ function RatingsAndReviews() {
   const fetchAllReviews = () => {
     axios.get(`/reviews/${currentId}&count=${count}`)
         .then((response) => {
-          console.log('all reviews url =====', `/reviews/${currentId}&count=${count}`);
           updateReview(response.data.results);
         })
         .catch((err) => {
@@ -51,7 +50,7 @@ function RatingsAndReviews() {
   useEffect(() => {
     fetchAllReviews();
     fetchRating();
-  }, [count, reviews]);
+  }, [count]);
 
   if (reviews.length === 0) {
     return <center><div className="spinner-border" role="status">

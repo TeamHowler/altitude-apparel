@@ -1,5 +1,5 @@
 import React from 'react';
-import {Row, Col, Card, Container} from 'react-bootstrap/';
+import {Row, Col, Card, Container, Image} from 'react-bootstrap/';
 import StarRatingComponent from 'react-star-rating-component';
 
 const months = {
@@ -18,7 +18,6 @@ const months = {
 };
 
 function ReviewTiles({review}) {
-  console.log('review inside reviewTiles', review);
   return (
     <Container>
       <Row>
@@ -38,13 +37,16 @@ function ReviewTiles({review}) {
       </Row>
       <Row>
         <Col style={{background: 'lightpink'}}>
-          <Card.Body>
-            <Card.Title>{review.summary}</Card.Title>
-            <Card.Text>
-              {review.body}
-            </Card.Text>
-          </Card.Body>
-
+          <Card border="secondary">
+            <Card.Body>
+              <Card.Title>{review.summary}</Card.Title>
+              <Card.Text>
+                {review.body}
+              </Card.Text>
+              {review.photos.map((photo) =>
+                <Image key={photo['id']} src={photo['url']} thumbnail />)}
+            </Card.Body>
+          </Card>
         </Col>
       </Row>
     </Container>
