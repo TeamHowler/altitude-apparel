@@ -12,7 +12,8 @@ function App() {
   const [currentProduct, updateProduct] = useState([]);
   const [reviews, updateReview] = useState([]);
   const [styles, updateStyles] = useState([]);
-  const [currentStyle, updateCurrentStyle] = useState({});
+  const [currentStyle, updateCurrentStyle] = useState(undefined);
+  const [defaultStyle, updateDefault] = useState(true);
 
   const fetch = () => {
     axios.get(`/products/${currentId}`)
@@ -49,6 +50,8 @@ function App() {
       currentStyle,
       updateCurrentStyle,
       reviews,
+      defaultStyle,
+      updateDefault,
     }}>
       <Container>
         <Navbar bg="light" expand="lg">

@@ -1,12 +1,14 @@
-import React, {useContext} from 'react';
+import React, {useContext, useEffect} from 'react';
 import CarouselPhotos from './CarouselPhotos.jsx';
 import {ProductContext} from '../context.js';
 import {Carousel} from 'react-bootstrap';
 
-const CarouselComponent = () => {
-  const {currentStyle} = useContext(ProductContext);
+function CarouselComponent() {
+  const {currentStyle} =
+   useContext(ProductContext);
 
-  if (currentStyle.photos === undefined) {
+
+  if (currentStyle === undefined) {
     return <center><div className="spinner-border" role="status">
       <span className="sr-only">Loading...</span>
     </div></center>;
@@ -20,6 +22,7 @@ const CarouselComponent = () => {
             </Carousel.Item>
           );
         })}
+        {console.log('carousel, ', currentStyle.name)}
       </Carousel>
     );
   };
