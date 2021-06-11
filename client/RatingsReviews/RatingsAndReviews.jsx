@@ -7,9 +7,21 @@ import StarRatingComponent from 'react-star-rating-component';
 
 
 function RatingsAndReviews() {
-  const {reviews, currentId} = useContext(ProductContext);
+  const {currentId} = useContext(ProductContext);
+  const [reviews, updateReview] = useState([]);
   const [rating, updateRating] = useState(0);
   const [count, updateCount] = useState(0);
+
+  const fetchAllReviews = () => {
+    axios.get(`/reviews/${currentId}&count=${count}`)
+        .then((response) => {
+          console.log('all reviews url =====', `/reviews/${currentId}&count=${count}`);
+          updateReview(response.data.results);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+  };
 
   const fetchRating = () => {
     axios.get(`/reviews/meta/${currentId}`)
@@ -37,8 +49,9 @@ function RatingsAndReviews() {
   };
 
   useEffect(() => {
+    fetchAllReviews();
     fetchRating();
-  }, []);
+  }, [count, reviews]);
 
   if (reviews.length === 0) {
     return <center><div className="spinner-border" role="status">
