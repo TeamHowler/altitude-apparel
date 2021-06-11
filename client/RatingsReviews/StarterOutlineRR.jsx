@@ -9,7 +9,7 @@ function StarterOutlineRR({reviews}) {
   // console.log('reviews coming into starter outline', reviews);
 
   return (
-    <div>
+    <div id="ratings">
       <h4>Ratings & Reviews</h4>
       <Row >
         {/* Graphs: */}
