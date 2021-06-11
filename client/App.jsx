@@ -12,6 +12,9 @@ function App() {
   const [currentProduct, updateProduct] = useState([]);
   const [styles, updateStyles] = useState([]);
   const [currentStyle, updateCurrentStyle] = useState({});
+  const [reviews, updateReview] = useState([]);
+  const [rating, updateRating] = useState(0);
+  const [count, updateCount] = useState(0);
 
   const fetch = () => {
     axios.get(`/products/${currentId}`)
@@ -34,7 +37,12 @@ function App() {
       updateStyles,
       currentStyle,
       updateCurrentStyle,
-      // reviews,
+      reviews,
+      updateReview,
+      rating,
+      updateRating,
+      count,
+      updateCount,
       currentId,
     }}>
       <Container>
