@@ -1,4 +1,4 @@
-import React, {useContext, useState, useEffect} from 'react';
+import React, {useContext, useEffect} from 'react';
 import axios from 'axios';
 import {ProductContext} from '../context.js';
 import {Row, Col, DropdownButton, Dropdown, Button} from 'react-bootstrap/';
@@ -8,7 +8,8 @@ import StarRatingComponent from 'react-star-rating-component';
 
 function RatingsAndReviews() {
   const {currentId, reviews, rating, count, updateReview,
-    updateRating, updateCount} = useContext(ProductContext);
+    updateRating, updateCount, clickCount,
+    updateClickCount} = useContext(ProductContext);
 
   const fetchAllReviews = () => {
     axios.get(`/reviews/${currentId}&count=${count}`)
@@ -29,13 +30,15 @@ function RatingsAndReviews() {
           const threeStarSum = parseInt(rate['3']) * 3;
           const fourStarSum = parseInt(rate['4']) * 4;
           const fiveStarSum = parseInt(rate['5']) * 5;
-          const sum = oneStarSum + twoStarSum + threeStarSum + fourStarSum + fiveStarSum;
+          const sum = oneStarSum + twoStarSum +
+          threeStarSum + fourStarSum + fiveStarSum;
           const oneStarCt = parseInt(rate['1']);
           const twoStarCt = parseInt(rate['2']);
           const threeStarCt = parseInt(rate['3']);
           const fourStarCt = parseInt(rate['4']);
           const fiveStarCt = parseInt(rate['5']);
-          const totalRatings = oneStarCt + twoStarCt + threeStarCt + fourStarCt + fiveStarCt;
+          const totalRatings = oneStarCt + twoStarCt +
+          threeStarCt + fourStarCt + fiveStarCt;
           updateCount(totalRatings);
           const ave = Math.round(sum/totalRatings);
           updateRating(ave);
@@ -43,6 +46,10 @@ function RatingsAndReviews() {
         .catch((err) => {
           console.log(err);
         });
+  };
+
+  function handleMoreReviewsClick() {
+    updateClickCount((prevCount) => prevCount + 1);
   };
 
   useEffect(() => {
@@ -85,10 +92,12 @@ function RatingsAndReviews() {
               </DropdownButton>
             </h5>
             {/* Review tiles: */}
-            {reviews.map((review) =>
+            {reviews.slice(0, clickCount * 2).map((review) =>
               <ReviewTiles key={review.review_id} review={review} />)}
             {/* Review buttons: */}
-            <Button variant="outline-secondary">More Reviews</Button>{' '}
+            <Button
+              variant="outline-secondary"
+              onClick={handleMoreReviewsClick}>More Reviews</Button>{' '}
             <Button variant="outline-secondary">Add A Review</Button>{' '}
           </Col>
         </Row>
