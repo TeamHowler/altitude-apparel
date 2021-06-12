@@ -16,6 +16,7 @@ function App() {
   const [reviews, updateReview] = useState([]);
   const [rating, updateRating] = useState(0);
   const [count, updateCount] = useState(0);
+  const [clickCount, updateClickCount] = useState(1);
 
   const fetch = () => {
     axios.get(`/products/${currentId}`)
@@ -47,6 +48,8 @@ function App() {
       updateRating,
       count,
       updateCount,
+      clickCount,
+      updateClickCount,
       currentId,
     }}>
       <Container>
