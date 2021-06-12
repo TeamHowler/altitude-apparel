@@ -1,7 +1,7 @@
 /* eslint-disable guard-for-in */
 import React, {useContext} from 'react';
 import {ProductContext} from '../context.js';
-import {Dropdown, Row} from 'react-bootstrap';
+import {Dropdown} from 'react-bootstrap';
 
 function Size() {
   const {currentStyle} =
@@ -23,46 +23,43 @@ function Size() {
       }
     }
     return (
-      <Row >
-        <>
-          <style type="text/css">
-            {`
+      <>
+        <style type="text/css">
+          {`
               #customDrop {
-                background-color: transparent;
-                border-color: black;
+                background-color: #f3f7f0;
+                border-color: transparent;
                 color: black;
               }
             `}
-          </style>
-          <Dropdown >
-            <Dropdown.Toggle id="customDrop">
+        </style>
+        <Dropdown >
+          <Dropdown.Toggle id="customDrop">
                     Select A Size
-            </Dropdown.Toggle>
-            <Dropdown.Menu m={5}>
-              {skuArr.map((item) => {
-                return <Dropdown.Item key={item.sku}>{item.size}
-                </Dropdown.Item>;
-              })}
-              {console.log(skuArr)}
-              <Dropdown.Item></Dropdown.Item>
-            </Dropdown.Menu>
-          </Dropdown>
-          <Dropdown >
-            <Dropdown.Toggle id="customDrop">
+          </Dropdown.Toggle>
+          <Dropdown.Menu m={5}>
+            {skuArr.map((item) => {
+              return <Dropdown.Item key={item.sku}>{item.size}
+              </Dropdown.Item>;
+            })}
+            {console.log(skuArr)}
+            <Dropdown.Item></Dropdown.Item>
+          </Dropdown.Menu>
+        </Dropdown> <Dropdown >
+          <Dropdown.Toggle id="customDrop">
                         1
-            </Dropdown.Toggle>
-            <Dropdown.Menu>
-              {skuArr.map((item) => {
-                return <Dropdown.Item
-                  key={item.sku}>{item.quantity}
-                </Dropdown.Item>;
-              })}
-              {console.log(skuArr)}
-              <Dropdown.Item></Dropdown.Item>
-            </Dropdown.Menu>
-          </Dropdown>
-        </>
-      </Row>
+          </Dropdown.Toggle>
+          <Dropdown.Menu>
+            {skuArr.map((item) => {
+              return <Dropdown.Item
+                key={item.sku}>{item.quantity}
+              </Dropdown.Item>;
+            })}
+            {console.log(skuArr)}
+            <Dropdown.Item></Dropdown.Item>
+          </Dropdown.Menu>
+        </Dropdown>
+      </>
     );
   }
 }
