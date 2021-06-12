@@ -19,7 +19,10 @@ function App() {
   const [rating, updateRating] = useState(0);
   const [count, updateCount] = useState(0);
   const [clickCount, updateClickCount] = useState(1);
+<<<<<<< HEAD
   const [showModal, setModalShow] = useState(false);
+=======
+>>>>>>> 8dc56896038f8e69381ac328facd1e3eb78e4825
 
   const fetch = () => {
     axios.get(`/products/${currentId}`)

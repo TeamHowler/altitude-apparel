@@ -25,6 +25,7 @@ function RatingsAndReviews() {
     axios.get(`/reviews/meta/${currentId}`)
         .then((response) => {
           const rate = response.data.ratings;
+<<<<<<< HEAD
           const oneStarSum = parseInt(rate['1']);
           const twoStarSum = parseInt(rate['2']) * 2;
           const threeStarSum = parseInt(rate['3']) * 3;
@@ -41,6 +42,20 @@ function RatingsAndReviews() {
           threeStarCt + fourStarCt + fiveStarCt;
           updateCount(totalRatings);
           const ave = Math.round(sum/totalRatings);
+=======
+          const productRatings = Object.keys(rate);
+          let sumOfRatings = 0;
+          let numOfRatings = 0;
+          productRatings.forEach(function(value) {
+            if (value === '1' || value === '2' || value === '3' ||
+            value === '4' || value === '5') {
+              sumOfRatings += parseInt(rate[value]) * parseInt(value);
+              numOfRatings += parseInt(rate[value]);
+            }
+          });
+          const ave = Math.round(sumOfRatings/numOfRatings);
+          updateCount(numOfRatings);
+>>>>>>> 8dc56896038f8e69381ac328facd1e3eb78e4825
           updateRating(ave);
         })
         .catch((err) => {
@@ -58,13 +73,30 @@ function RatingsAndReviews() {
   }, [count]);
 
   if (reviews.length === 0) {
-    return <center><div className="spinner-border" role="status">
-      <span className="sr-only">Loading...</span>
-    </div></center>;
+    return (
+      <center>
+        <div className="spinner-border" role="status">
+          <span className="sr-only">Loading...</span>
+        </div>
+      </center>
+    );
   } else {
     return (
       <div id="ratings/reviews">
+<<<<<<< HEAD
         <h4>Ratings & Reviews</h4>
+=======
+        <style type="text/css">
+          {`
+            #roundedDivider {
+              border-top: 8px solid #bbb;
+              border-radius: 5px;
+            }
+          `}
+        </style>
+        <hr id="roundedDivider"/>
+        <h2>Ratings & Reviews</h2>
+>>>>>>> 8dc56896038f8e69381ac328facd1e3eb78e4825
         <Row >
           {/* Graphs: */}
           <Col style={{background: 'lightpurple'}} border="primary" md={4}>
