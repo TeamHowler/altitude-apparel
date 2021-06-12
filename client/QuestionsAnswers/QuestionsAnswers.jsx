@@ -22,9 +22,7 @@ function QuestionsAnswers() {
   const [firstAnswer, updateFirstAnswer] = useState('');
 
   useEffect(() => {
-    if (!currentProduct.id) {
-      return;
-    } else {
+    if (currentProduct.id) {
       axios.get(`/qa/questions/${currentProduct.id}`)
           .then((response) => {
             updateQuestions(response.data.results);
@@ -33,10 +31,10 @@ function QuestionsAnswers() {
             updateAnswers(response.data);
           });
 
-      axios.get(`/qa/questions/${currentProduct.id}/answers`)
-          .then((response) => {
-            updateAnswers(response.data);
-          });
+      // axios.get(`/qa/questions/${currentProduct.id}/answers`)
+      //     .then((response) => {
+      //       updateAnswers(response.data);
+      //     });
     }
   }, [currentProduct]);
 
