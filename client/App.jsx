@@ -17,6 +17,7 @@ function App() {
   const [rating, updateRating] = useState(0);
   const [count, updateCount] = useState(0);
   const [clickCount, updateClickCount] = useState(1);
+  const [modalShow, setModalShow] = useState(false);
 
   const fetch = () => {
     axios.get(`/products/${currentId}`)
@@ -50,6 +51,8 @@ function App() {
       updateCount,
       clickCount,
       updateClickCount,
+      modalShow,
+      setModalShow,
       currentId,
     }}>
       <Container>
