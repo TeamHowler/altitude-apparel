@@ -16,7 +16,7 @@ module.exports = {
     const id = req.params.product_id;
     api.sendAPIRequest(`/products/${id}`, 'GET', (err, result) => {
       if (err) {
-        console.log('err in app.get====', id);
+        console.log('err in app.get products.js line 19 ====', id);
         res.send(err);
       } else {
         res.send(result);
@@ -30,7 +30,7 @@ module.exports = {
     api.sendAPIRequest(`/products/${id}/styles/results/?style_id=${styleId}`,
         'GET', (err, result) => {
           if (err) {
-            console.log('err in app.get====', err);
+            console.log('err in app.get products.js line 33====', err);
             res.send(err);
           } else {
             res.send(result);

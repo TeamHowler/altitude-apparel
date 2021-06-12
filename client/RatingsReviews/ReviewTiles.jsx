@@ -32,11 +32,20 @@ function ReviewTiles({review}) {
         <Col>
           {review.reviewer_name}
           {'  |  '}
-          {months[review.date.slice(6, 7)] + ' ' + review.date.slice(8, 10) + ', ' + review.date.slice(0, 4)}
+          {months[review.date.slice(6, 7)] + ' ' +
+          review.date.slice(8, 10) + ', ' + review.date.slice(0, 4)}
         </Col>
       </Row>
       <Row>
-        <Col style={{background: 'lightpink'}}>
+        <style type="text/css">
+          {`
+            #reviewTilesScroll {
+              flex: 1 1 auto;
+              overflow-y: scroll;
+            }
+          `}
+        </style>
+        <Col id={'reviewTilesScroll'} style={{background: 'lightpink'}}>
           <Card border="secondary">
             <Card.Body>
               <Card.Title>{review.summary}</Card.Title>

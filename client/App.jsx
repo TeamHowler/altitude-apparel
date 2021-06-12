@@ -6,15 +6,20 @@ import {Nav, Navbar, NavDropdown, Container,
   FormControl, Button, Form} from 'react-bootstrap';
 import RatingsAndReviews from './RatingsReviews/RatingsAndReviews.jsx';
 import QuestionsAnswers from './QuestionsAnswers/QuestionsAnswers.jsx';
+import Expanded from './ProductOverview/Expanded.jsx';
 
 function App() {
+  // eslint-disable-next-line no-unused-vars
   const [currentId, setCurrentId] = useState(18078);
   const [currentProduct, updateProduct] = useState([]);
   const [styles, updateStyles] = useState([]);
-  const [currentStyle, updateCurrentStyle] = useState({});
+  const [currentStyle, updateCurrentStyle] = useState(undefined);
+  const [defaultStyle, updateDefault] = useState(true);
   const [reviews, updateReview] = useState([]);
   const [rating, updateRating] = useState(0);
   const [count, updateCount] = useState(0);
+  const [clickCount, updateClickCount] = useState(1);
+  const [showModal, setModalShow] = useState(false);
 
   const fetch = () => {
     axios.get(`/products/${currentId}`)
@@ -38,12 +43,19 @@ function App() {
       currentStyle,
       updateCurrentStyle,
       reviews,
+      defaultStyle,
+      updateDefault,
+      reviews,
       updateReview,
       rating,
       updateRating,
       count,
       updateCount,
+      clickCount,
+      updateClickCount,
       currentId,
+      showModal,
+      setModalShow,
     }}>
       <Container>
         <Navbar bg="light" expand="lg">
@@ -75,6 +87,7 @@ function App() {
         <ProductOverview />
         <QuestionsAnswers />
         <RatingsAndReviews />
+        <Expanded show={showModal}/>
       </Container>
     </ProductContext.Provider>
   );
