@@ -7,7 +7,8 @@ const CarouselPhotos = ({image}) => {
     return <h2>no image</h2>;
   } else {
     return (
-      <Image src={image.url} style={{height: '100%', width: '100%'}}/>
+      <Image src={image.url} style={{height: '100%', width: '100%',
+        objectFit: 'cover'}}/>
     );
   }
 };

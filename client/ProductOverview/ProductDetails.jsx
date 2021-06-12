@@ -44,7 +44,8 @@ function ProductDetails() {
       });
     }
     return (
-      <Container style={{background: '#f3f7f0', padding: '2rem'}}>
+      <Container style={{background: '#f3f7f0', padding: '2rem',
+        height: 'auto'}}>
         <Row>
           <Col style={{height: 'auto'}}>
             <CarouselComponent />
@@ -81,9 +82,7 @@ function ProductDetails() {
                   <h3>${currentProduct.default_price}</h3>
                 </div>
               </Row>
-              <Row style={{marginBottom: '50px'}}>
-                <Thumbnails />
-              </Row>
+              <Thumbnails />
               <Row style={{marginBottom: '50px'}}>
                 <Size />
               </Row>
