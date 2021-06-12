@@ -90,6 +90,7 @@ function RatingsAndReviews() {
                 name="rate1"
                 starCount={5}
                 value={rating}
+                emptyStarColor={'#778899'}
               />
             </span>
           </Col>

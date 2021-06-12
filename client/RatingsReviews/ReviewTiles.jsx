@@ -26,6 +26,7 @@ function ReviewTiles({review}) {
             name="rate1"
             starCount={5}
             value={review.rating}
+            emptyStarColor={'#778899'}
           />
         </Col>
         <Col></Col>
