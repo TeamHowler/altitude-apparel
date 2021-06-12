@@ -56,7 +56,7 @@ function RatingsAndReviews() {
     </div></center>;
   } else {
     return (
-      <div>
+      <div id="ratings/reviews">
         <h4>Ratings & Reviews</h4>
         <Row >
           {/* Graphs: */}

@@ -1,6 +1,4 @@
-import React, {useContext, useEffect} from 'react';
-import {ProductContext} from '../context.js';
-import axios from 'axios';
+import React from 'react';
 import ProductDetails from './ProductDetails.jsx';
 import {Container} from 'react-bootstrap';
 

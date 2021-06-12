@@ -1,14 +1,15 @@
-import React, {useContext, useState, useEffect} from 'react';
+import React, {useContext, useEffect} from 'react';
 import {ProductContext} from '../context.js';
-import {Container, Col, Row, Button, Overlay} from 'react-bootstrap';
+import {Container, Col, Row, Button} from 'react-bootstrap';
 import CarouselComponent from './CarouselComponent.jsx';
 import axios from 'axios';
 import Thumbnails from './Thumbnails.jsx';
 import Size from './Size.jsx';
+import StarRatingComponent from 'react-star-rating-component';
 
 function ProductDetails() {
   const {currentProduct, updateStyles,
-    styles, currentStyle, updateCurrentStyle, defaultStyle} =
+    styles, updateCurrentStyle, defaultStyle, rating} =
     useContext(ProductContext);
 
   const getStyles = () => {
@@ -54,7 +55,27 @@ function ProductDetails() {
             <Container>
               <Row style={{marginBottom: '50px'}}>
                 <div>
-                  <h9><a href="#ratings">Reviews</a></h9>
+                  <style>
+                    {`
+                      #productRating {
+                      text-decoration: underline;
+                      font-size: 15px;
+                      }
+                      a {
+                        color: black;
+                      }
+                    `}
+                  </style>
+                  <Row id="productRating">
+                    <StarRatingComponent
+                      name="rate1"
+                      starCount={5}
+                      value={rating}
+                      dataStep="0.25"
+                      mr={4}
+                    /><a href="#ratings/reviews">  See All Reviews</a>
+
+                  </Row>
                   <h3>{currentProduct.category}</h3>
                   <h1>{currentProduct.name}</h1>
                   <h3>${currentProduct.default_price}</h3>
@@ -70,7 +91,7 @@ function ProductDetails() {
                 <Button style={{background: '#f3f7f0', borderColor: 'black',
                   color: 'black'}}>
                 Add To Cart</Button>
-                {console.log('currentProduct, ', currentProduct)}
+                {console.log('currentProduct', currentProduct)}
               </Row>
             </Container>
           </Col>

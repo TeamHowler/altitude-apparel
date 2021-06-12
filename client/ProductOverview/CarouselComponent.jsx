@@ -19,7 +19,7 @@ function CarouselComponent() {
           return (
 
             <Carousel.Item style={{height: '30rem',
-              width: '25rem', backgroundSize: 'cover'}}
+              width: '30rem', backgroundSize: 'cover'}}
             key={image.url}>
               <CarouselPhotos image={image} key={image.url} />
 

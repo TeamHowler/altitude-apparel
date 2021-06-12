@@ -11,15 +11,11 @@ function App() {
   const [currentId, setCurrentId] = useState(18078);
   const [currentProduct, updateProduct] = useState([]);
   const [styles, updateStyles] = useState([]);
-<<<<<<< HEAD
   const [currentStyle, updateCurrentStyle] = useState(undefined);
   const [defaultStyle, updateDefault] = useState(true);
-=======
-  const [currentStyle, updateCurrentStyle] = useState({});
   const [reviews, updateReview] = useState([]);
   const [rating, updateRating] = useState(0);
   const [count, updateCount] = useState(0);
->>>>>>> 7417ac33dc7975c7b9cb0bd0f1829c6147199895
 
   const fetch = () => {
     axios.get(`/products/${currentId}`)
@@ -42,23 +38,16 @@ function App() {
       updateStyles,
       currentStyle,
       updateCurrentStyle,
-<<<<<<< HEAD
-<<<<<<< HEAD
       reviews,
       defaultStyle,
       updateDefault,
-=======
-      // reviews,
-=======
       reviews,
       updateReview,
       rating,
       updateRating,
       count,
       updateCount,
->>>>>>> 7417ac33dc7975c7b9cb0bd0f1829c6147199895
       currentId,
->>>>>>> 37063228889af3a2953d06c464149713af5ced2b
     }}>
       <Container>
         <Navbar bg="light" expand="lg">
