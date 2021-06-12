@@ -1,4 +1,3 @@
-
 import React, {useState, useEffect, useContext} from 'react';
 import {ProductContext} from '../context.js';
 import axios from 'axios';
@@ -18,49 +17,45 @@ function QuestionsAnswers() {
   const {currentProduct} = useContext(ProductContext);
   const [currentQuestions, updateQuestions] = useState([]);
   const [currentAnswers, updateAnswers] = useState([]);
-  const [firstQuestion, updateFirstQuestion] = useState('');
-  const [firstAnswer, updateFirstAnswer] = useState('');
+
+
+  function fetchQuestions() {
+
+  }
 
   useEffect(() => {
     if (currentProduct.id) {
       axios.get(`/qa/questions/${currentProduct.id}`)
           .then((response) => {
             updateQuestions(response.data.results);
-            console.log(response.data.results)
-            updateFirstQuestion(response.data.results[0].question_body)
-            updateAnswers(response.data);
+            console.log('QUESTIONS:::::', response.data.results);
+            updateFirstQuestion(response.data.results[0].question_body);
           });
 
-      // axios.get(`/qa/questions/${currentProduct.id}/answers`)
-      //     .then((response) => {
-      //       updateAnswers(response.data);
-      //     });
+      axios.get(`/qa/questions/${114310}/answers`)
+          .then((response) => {
+            updateAnswers(response.data);
+            console.log('ANSWERS:::::', response.data);
+          });
     }
   }, [currentProduct]);
 
-
-
-  let box1;
-  if ( firstQuestion ) {
-    box1 = <QABox showQ={firstQuestion} showA={firstAnswer}/>;
-  } else {
-    box1 = <QABox showQ={'did not resolve'} showA={firstAnswer} />;
+  if ( currentQuestions.length > 0 ) {
+    currentQuestions.map;
   }
 
-  // console.log(`question1`, question1)
 
   return (
     <section id="Questions and Answers">
       <h2>Questions and Answers</h2>
       <div className='qa-container'>
         <div>
-          {box1}
+          { currentQuestions.length > 0 ?
+             currentQuestions.map((question) => {
+               <QABox question="question" />;
+             }) :
+           console.log('hello')};
         </div>
-
-        <br></br>
-        <p style={paragraphStyle}>
-          by User1337, May 1, 2019  |  Helpful?  Yes (0)  |  Report
-        </p>
 
         <Row>
           <Col xs={6} md={4}>

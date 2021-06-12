@@ -7,11 +7,11 @@ const paragraphStyle = {
   marginLeft: 10,
 };
 
-function QABox({showQ, showA}) {
+function QABox({question}) {
   return (
     <>
-      <h4>Q: {showQ} </h4>
-      <h4>A: {showA}</h4>
+      <h4>Q: {question} </h4>
+      <h4>A: answer</h4>
     </>
   );
 }
