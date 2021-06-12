@@ -14,7 +14,7 @@ function Thumbnails() {
         </font>{currentStyle.name}</p>
         <Row className="d-flex flex-wrap"xs={5} m={5}>
           {styles.results.map((result) => {
-            return (<Image src={result.photos[0].thumbnail_url}
+            return (<Image src={result.photos[1].thumbnail_url}
               key={result.style_id}
               roundedCircle thumbnail
               onClick={(e) => {

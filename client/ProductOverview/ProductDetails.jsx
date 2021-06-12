@@ -9,7 +9,7 @@ import StarRatingComponent from 'react-star-rating-component';
 
 function ProductDetails() {
   const {currentProduct, updateStyles,
-    styles, updateCurrentStyle, defaultStyle, rating} =
+    styles, updateCurrentStyle, defaultStyle, rating, count} =
     useContext(ProductContext);
 
   const getStyles = () => {
@@ -74,8 +74,7 @@ function ProductDetails() {
                       value={rating}
                       dataStep="0.25"
                       mr={4}
-                    /><a href="#ratings/reviews">  See All Reviews</a>
-
+                    /><a href="#ratings/reviews">  See All {count} Reviews</a>
                   </Row>
                   <h3>{currentProduct.category}</h3>
                   <h1>{currentProduct.name}</h1>
