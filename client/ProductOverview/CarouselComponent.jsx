@@ -14,7 +14,6 @@ function CarouselComponent() {
     </div></center>;
   } else {
     return (
-<<<<<<< HEAD
       <>
         <Carousel controls={false} interval={null}>
           {currentStyle.photos.map((image) => {
@@ -28,23 +27,6 @@ function CarouselComponent() {
           {console.log('carousel, ', currentStyle)}
         </Carousel>
       </>
-=======
-      <Carousel interval={null}>
-        {currentStyle.photos.map((image) => {
-          return (
-
-            <Carousel.Item style={{height: '30rem',
-              width: '30rem', backgroundSize: 'cover'}}
-            key={image.url}>
-              <CarouselPhotos image={image} key={image.url} />
-
-            </Carousel.Item>
-          );
-        })}
-        {console.log('carousel, ', currentStyle)}
-      </Carousel>
-
->>>>>>> 8dc56896038f8e69381ac328facd1e3eb78e4825
     );
   };
 };

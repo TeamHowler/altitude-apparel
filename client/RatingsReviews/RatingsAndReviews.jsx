@@ -25,24 +25,6 @@ function RatingsAndReviews() {
     axios.get(`/reviews/meta/${currentId}`)
         .then((response) => {
           const rate = response.data.ratings;
-<<<<<<< HEAD
-          const oneStarSum = parseInt(rate['1']);
-          const twoStarSum = parseInt(rate['2']) * 2;
-          const threeStarSum = parseInt(rate['3']) * 3;
-          const fourStarSum = parseInt(rate['4']) * 4;
-          const fiveStarSum = parseInt(rate['5']) * 5;
-          const sum = oneStarSum + twoStarSum +
-          threeStarSum + fourStarSum + fiveStarSum;
-          const oneStarCt = parseInt(rate['1']);
-          const twoStarCt = parseInt(rate['2']);
-          const threeStarCt = parseInt(rate['3']);
-          const fourStarCt = parseInt(rate['4']);
-          const fiveStarCt = parseInt(rate['5']);
-          const totalRatings = oneStarCt + twoStarCt +
-          threeStarCt + fourStarCt + fiveStarCt;
-          updateCount(totalRatings);
-          const ave = Math.round(sum/totalRatings);
-=======
           const productRatings = Object.keys(rate);
           let sumOfRatings = 0;
           let numOfRatings = 0;
@@ -55,7 +37,6 @@ function RatingsAndReviews() {
           });
           const ave = Math.round(sumOfRatings/numOfRatings);
           updateCount(numOfRatings);
->>>>>>> 8dc56896038f8e69381ac328facd1e3eb78e4825
           updateRating(ave);
         })
         .catch((err) => {
@@ -83,9 +64,6 @@ function RatingsAndReviews() {
   } else {
     return (
       <div id="ratings/reviews">
-<<<<<<< HEAD
-        <h4>Ratings & Reviews</h4>
-=======
         <style type="text/css">
           {`
             #roundedDivider {
@@ -96,7 +74,6 @@ function RatingsAndReviews() {
         </style>
         <hr id="roundedDivider"/>
         <h2>Ratings & Reviews</h2>
->>>>>>> 8dc56896038f8e69381ac328facd1e3eb78e4825
         <Row >
           {/* Graphs: */}
           <Col style={{background: 'lightpurple'}} border="primary" md={4}>
