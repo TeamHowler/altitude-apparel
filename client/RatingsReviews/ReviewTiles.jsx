@@ -32,7 +32,8 @@ function ReviewTiles({review}) {
         <Col>
           {review.reviewer_name}
           {'  |  '}
-          {months[review.date.slice(6, 7)] + ' ' + review.date.slice(8, 10) + ', ' + review.date.slice(0, 4)}
+          {months[review.date.slice(6, 7)] + ' ' +
+          review.date.slice(8, 10) + ', ' + review.date.slice(0, 4)}
         </Col>
       </Row>
       <Row>
