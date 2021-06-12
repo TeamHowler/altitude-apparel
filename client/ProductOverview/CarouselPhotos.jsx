@@ -7,7 +7,7 @@ const CarouselPhotos = ({image}) => {
     return <h2>no image</h2>;
   } else {
     return (
-      <Image src={image.url} fluid/>
+      <Image src={image.url} style={{height: '100%', width: '100%'}}/>
     );
   }
 };

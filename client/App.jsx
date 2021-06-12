@@ -10,9 +10,13 @@ import QuestionsAnswers from './QuestionsAnswers/QuestionsAnswers.jsx';
 function App() {
   const [currentId, setCurrentId] = useState(18080);
   const [currentProduct, updateProduct] = useState([]);
-  const [reviews, updateReview] = useState([]);
   const [styles, updateStyles] = useState([]);
-  const [currentStyle, updateCurrentStyle] = useState({});
+  const [currentStyle, updateCurrentStyle] = useState(undefined);
+  const [defaultStyle, updateDefault] = useState(true);
+  const [reviews, updateReview] = useState([]);
+  const [rating, updateRating] = useState(0);
+  const [count, updateCount] = useState(0);
+  const [clickCount, updateClickCount] = useState(1);
 
   const fetch = () => {
     axios.get(`/products/${currentId}`)
@@ -24,20 +28,8 @@ function App() {
         });
   };
 
-  const fetchReviews = () => {
-    axios.get(`/reviews/${currentId}`)
-        .then((response) => {
-          updateReview(response.data.results);
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-  };
-
-
   useEffect(() => {
     fetch();
-    fetchReviews();
   }, []);
 
   return (
@@ -48,6 +40,16 @@ function App() {
       currentStyle,
       updateCurrentStyle,
       reviews,
+      defaultStyle,
+      updateDefault,
+      reviews,
+      updateReview,
+      rating,
+      updateRating,
+      count,
+      updateCount,
+      clickCount,
+      updateClickCount,
       currentId,
     }}>
       <Container>
