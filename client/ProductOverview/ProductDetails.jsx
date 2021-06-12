@@ -52,7 +52,7 @@ function ProductDetails() {
                 <h1>{currentProduct.name}</h1>
                 <p>{currentProduct.slogan}</p>
                 <h3>${currentProduct.default_price}</h3>
-                {console.log(currentProduct)}
+                {/* {console.log(currentProduct)} */}
               </div>
             </Row>
             <Row>

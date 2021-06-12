@@ -5,70 +5,42 @@ import {Row, Col, Image} from 'react-bootstrap';
 import QABox from './QABox.jsx';
 
 
-const paragraphStyle = {
-  display: 'inline',
-  fontSize: 'smaller',
-  color: 'grey',
-  marginLeft: 10,
-};
-
-
 function QuestionsAnswers() {
   const {currentProduct} = useContext(ProductContext);
   const [currentQuestions, updateQuestions] = useState([]);
   const [currentAnswers, updateAnswers] = useState([]);
 
-
   function fetchQuestions() {
+    axios.get(`/qa/questions/${currentProduct.id}`)
+        .then((result) => result.data.results).then(updateQuestions);
+  }
 
+  function fetchAnswers() {
+    axios.get(`/qa/questions/${114310}/answers`)
+        .then((result) => result.data.results).then(updateAnswers);
   }
 
   useEffect(() => {
     if (currentProduct.id) {
-      axios.get(`/qa/questions/${currentProduct.id}`)
-          .then((response) => {
-            updateQuestions(response.data.results);
-            console.log('QUESTIONS:::::', response.data.results);
-            updateFirstQuestion(response.data.results[0].question_body);
-          });
-
-      axios.get(`/qa/questions/${114310}/answers`)
-          .then((response) => {
-            updateAnswers(response.data);
-            console.log('ANSWERS:::::', response.data);
-          });
+      fetchQuestions();
+      fetchAnswers();
     }
   }, [currentProduct]);
 
-  if ( currentQuestions.length > 0 ) {
-    currentQuestions.map;
-  }
-
 
   return (
+
     <section id="Questions and Answers">
       <h2>Questions and Answers</h2>
+      {/* {console.log('answers', currentAnswers)}
+      {console.log('questions', currentQuestions)} */}
       <div className='qa-container'>
-        <div>
-          { currentQuestions.length > 0 ?
-             currentQuestions.map((question) => {
-               <QABox question="question" />;
-             }) :
-           console.log('hello')};
-        </div>
-
-        <Row>
-          <Col xs={6} md={4}>
-            <Image src="holder.js/171x180" rounded
-              style={{border: '2px solid grey'}} />
-          </Col>
-          <Col xs={6} md={4}>
-            <Image src="holder.js/171x180" roundedCircle />
-          </Col>
-          <Col xs={6} md={4}>
-            <Image src="holder.js/171x180" thumbnail />
-          </Col>
-        </Row>
+        {currentQuestions.map((question) =>
+          <QABox key={question.question_id}
+            question={question}
+            answers={currentAnswers}
+          />,
+        )}
       </div>
     </section>
   );
