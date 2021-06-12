@@ -11,7 +11,8 @@ function App() {
   const [currentId, setCurrentId] = useState(18078);
   const [currentProduct, updateProduct] = useState([]);
   const [styles, updateStyles] = useState([]);
-  const [currentStyle, updateCurrentStyle] = useState({});
+  const [currentStyle, updateCurrentStyle] = useState(undefined);
+  const [defaultStyle, updateDefault] = useState(true);
   const [reviews, updateReview] = useState([]);
   const [rating, updateRating] = useState(0);
   const [count, updateCount] = useState(0);
@@ -37,6 +38,9 @@ function App() {
       updateStyles,
       currentStyle,
       updateCurrentStyle,
+      reviews,
+      defaultStyle,
+      updateDefault,
       reviews,
       updateReview,
       rating,
