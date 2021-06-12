@@ -1,17 +1,21 @@
-import React, {useContext, useState, useEffect} from 'react';
+import React, {useContext, useEffect} from 'react';
 import {ProductContext} from '../context.js';
-import {Container, Carousel, Col, Row} from 'react-bootstrap';
-import CarouselPhotos from './CarouselPhotos.jsx';
+import {Container, Col, Row, Button} from 'react-bootstrap';
+import CarouselComponent from './CarouselComponent.jsx';
 import axios from 'axios';
+import Thumbnails from './Thumbnails.jsx';
+import Size from './Size.jsx';
+import StarRatingComponent from 'react-star-rating-component';
 
 function ProductDetails() {
-  const {currentProduct} = useContext(ProductContext);
-  const [currentStyle, updateStyle] = useState([]);
+  const {currentProduct, updateStyles,
+    styles, updateCurrentStyle, defaultStyle, rating} =
+    useContext(ProductContext);
 
   const getStyles = () => {
     axios.get(`/products/${currentProduct.id}/styles`)
         .then((response) => {
-          updateStyle(response.data);
+          updateStyles(response.data);
         })
         .catch((err) => {
           console.log(err);
@@ -27,41 +31,69 @@ function ProductDetails() {
     }
   }, [currentProduct]);
 
-  if (currentStyle.length === 0) {
+  if (styles.length === 0) {
     return <center><div className="spinner-border" role="status">
       <span className="sr-only">Loading...</span>
     </div></center>;
   } else {
+    if (defaultStyle) {
+      styles.results.forEach((result) => {
+        if (result['default?']) {
+          updateCurrentStyle(result);
+        }
+      });
+    }
     return (
       <Container style={{background: '#f3f7f0', padding: '2rem'}}>
         <Row>
           <Col style={{height: 'auto'}}>
-            <Carousel interval={null}>
-              {currentStyle.results[0].photos.map((image) => {
-                return (
-                  <Carousel.Item style={{height: '30rem'}} key={image.url}>
-                    <CarouselPhotos image={image} key={image.url} />
-                  </Carousel.Item>
-                );
-              })}
-            </Carousel>
+            <CarouselComponent />
+            <h3>{currentProduct.slogan}</h3>
+            <p>{currentProduct.description}</p>
           </Col>
           <Col>
-            <Row >
-              <div>
-                <h1>{currentProduct.name}</h1>
-                <p>{currentProduct.slogan}</p>
-                <h3>${currentProduct.default_price}</h3>
-                {console.log(currentProduct)}
-              </div>
-            </Row>
-            <Row>
-            </Row>
-            <Row>
-              <div>
-                {currentProduct.description}
-              </div>
-            </Row>
+            <Container>
+              <Row style={{marginBottom: '50px'}}>
+                <div>
+                  <style>
+                    {`
+                      #productRating {
+                      text-decoration: underline;
+                      font-size: 15px;
+                      }
+                      a {
+                        color: black;
+                      }
+                    `}
+                  </style>
+                  <Row id="productRating">
+                    <StarRatingComponent
+                      name="rate1"
+                      starCount={5}
+                      value={rating}
+                      dataStep="0.25"
+                      mr={4}
+                    /><a href="#ratings/reviews">  See All Reviews</a>
+
+                  </Row>
+                  <h3>{currentProduct.category}</h3>
+                  <h1>{currentProduct.name}</h1>
+                  <h3>${currentProduct.default_price}</h3>
+                </div>
+              </Row>
+              <Row style={{marginBottom: '50px'}}>
+                <Thumbnails />
+              </Row>
+              <Row style={{marginBottom: '50px'}}>
+                <Size />
+              </Row>
+              <Row style={{marginBottom: '50px'}}>
+                <Button style={{background: '#f3f7f0', borderColor: 'black',
+                  color: 'black'}}>
+                Add To Cart</Button>
+                {console.log('currentProduct', currentProduct)}
+              </Row>
+            </Container>
           </Col>
         </Row>
       </Container>
