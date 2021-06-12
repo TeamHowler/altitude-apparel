@@ -1,8 +1,9 @@
 import React, {useContext, useEffect, useState} from 'react';
 // import axios from 'axios';
 import {ProductContext} from '../context.js';
-import {Modal, Button} from 'react-bootstrap/';
+import {Modal, Button, InputGroup, Form} from 'react-bootstrap/';
 import StarRatingComponent from 'react-star-rating-component';
+import AddReviewModalForm from './AddReviewModalForm.jsx';
 
 function AddReviewModal() {
   const {modalShow, setModalShow, currentProduct} = useContext(ProductContext);
@@ -32,6 +33,9 @@ function AddReviewModal() {
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
+
+          {/* Select a star value */}
+          <h5>Select a star rating (required):</h5>
           <StarRatingComponent
             name="rate1"
             starCount={5}
@@ -39,6 +43,11 @@ function AddReviewModal() {
             onStarClick={handleNewReviewStarClick.bind(this)}
             emptyStarColor={'#778899'}
           />
+
+          {/* Add form info */}
+          <AddReviewModalForm />
+
+
           <h4>Centered Modal</h4>
           <p>
             Cras mattis consectetur purus sit amet fermentum. Cras justo odio,
