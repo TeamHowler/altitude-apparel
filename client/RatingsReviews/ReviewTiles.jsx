@@ -36,7 +36,15 @@ function ReviewTiles({review}) {
         </Col>
       </Row>
       <Row>
-        <Col style={{background: 'lightpink'}}>
+        <style type="text/css">
+          {`
+            #reviewTilesScroll {
+              flex: 1 1 auto;
+              overflow-y: scroll;
+            }
+          `}
+        </style>
+        <Col id={'reviewTilesScroll'} style={{background: 'lightpink'}}>
           <Card border="secondary">
             <Card.Body>
               <Card.Title>{review.summary}</Card.Title>

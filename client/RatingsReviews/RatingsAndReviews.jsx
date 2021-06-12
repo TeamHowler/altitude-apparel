@@ -81,8 +81,17 @@ function RatingsAndReviews() {
           </Col>
 
           {/* Reviews: */}
-          <Col style={{background: 'lightblue'}} md={8}>
+          <Col style={{background: 'lightblue'}} md={8} id="reviewTilesScroll">
             {/* Reviews Heading with Dropdown: */}
+            <style type="text/css">
+              {`
+                #reviewTilesScroll {
+                  display: flex;
+                  flex-direction: column;
+                  max-height: 800px;
+                }
+              `}
+            </style>
             <h5>
               {count} reviews
               <DropdownButton id="dropdown-basic-button" title="Sort By:">
