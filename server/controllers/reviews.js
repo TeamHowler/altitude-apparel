@@ -5,7 +5,7 @@ module.exports = {
     const id = req.params.product_id;
     api.sendAPIRequest(`/reviews/?product_id=${id}`, 'GET', (err, result) => {
       if (err) {
-        console.log('err in app.get====', err);
+        console.log('err in app.get review.js line 8====', err);
         res.send(err);
       } else {
         res.send(result);
@@ -18,7 +18,7 @@ module.exports = {
     api.sendAPIRequest(`/reviews/meta/?product_id=${id}`, 'GET',
         (err, result) => {
           if (err) {
-            console.log('err in app.get====', err);
+            console.log('err in app.get review.js line 21====', err);
             res.send(err);
           } else {
             res.send(result);
