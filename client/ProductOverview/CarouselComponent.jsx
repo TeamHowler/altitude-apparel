@@ -26,7 +26,7 @@ function CarouselComponent() {
             </Carousel.Item>
           );
         })}
-        {console.log('carousel, ', currentStyle)}
+        {/* {console.log('carousel, ', currentStyle)} */}
       </Carousel>
 
     );

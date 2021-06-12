@@ -13,7 +13,7 @@ function QABox({question, answers}) {
       <h4>Q: {question.question_body} </h4>
       {answers.map((answer) =>
         <h4>{answer.body}</h4>)}
-      <h4>A: {console.log(answers)}</h4>
+      {/* <h4>A: {console.log(answers)}</h4> */}
     </>
   );
 }

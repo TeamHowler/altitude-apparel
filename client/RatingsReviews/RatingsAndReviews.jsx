@@ -10,7 +10,7 @@ import StarRatingComponent from 'react-star-rating-component';
 function RatingsAndReviews() {
   const {currentId, reviews, rating, count, updateReview,
     updateRating, updateCount, clickCount,
-    updateClickCount, setModalShow} = useContext(ProductContext);
+    updateClickCount, modalShow, setModalShow} = useContext(ProductContext);
 
   const fetchAllReviews = () => {
     axios.get(`/reviews/${currentId}&count=${count}`)
@@ -49,10 +49,14 @@ function RatingsAndReviews() {
     updateClickCount((prevCount) => prevCount + 1);
   };
 
+  function handleAddReviewClick() {
+    setModalShow(true);
+  };
+
   useEffect(() => {
     fetchAllReviews();
     fetchRating();
-  }, [count, currentId, reviews]);
+  }, [count, modalShow]);
 
   if (reviews.length === 0) {
     return (
@@ -121,7 +125,7 @@ function RatingsAndReviews() {
             </Button>{' '}
             <Button
               variant="outline-secondary"
-              onClick={() => setModalShow(true)}>
+              onClick={handleAddReviewClick}>
                 Add A Review
             </Button>{' '}
             <AddReviewModal />

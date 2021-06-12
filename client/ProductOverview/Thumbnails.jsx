@@ -23,7 +23,7 @@ function Thumbnails() {
           })
           }
         </Row>
-        {console.log(currentStyle)}
+        {/* {console.log(currentStyle)} */}
       </Container>
     );
   }
