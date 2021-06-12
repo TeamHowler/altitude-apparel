@@ -4,7 +4,7 @@ import {ProductContext} from '../context.js';
 import {Modal, Button} from 'react-bootstrap/';
 
 function AddReviewModal() {
-  const {modalShow, setModalShow} = useContext(ProductContext);
+  const {modalShow, setModalShow, currentProduct} = useContext(ProductContext);
 
   function handleCloseModalClick() {
     setModalShow(false);
@@ -20,9 +20,9 @@ function AddReviewModal() {
         aria-labelledby="contained-modal-title-vcenter"
         centered
       >
-        <Modal.Header closeButton>
+        <Modal.Header>
           <Modal.Title id="contained-modal-title-vcenter">
-            Modal heading
+            Write Your Review About the {currentProduct.name}:
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
