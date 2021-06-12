@@ -1,6 +1,7 @@
 import React from 'react';
 import {Row, Col, Card, Container, Image} from 'react-bootstrap/';
 import StarRatingComponent from 'react-star-rating-component';
+import PropTypes from 'prop-types';
 
 const months = {
   0: 'January',
@@ -64,3 +65,7 @@ function ReviewTiles({review}) {
 }
 
 export default ReviewTiles;
+
+ReviewTiles.propTypes = {
+  review: PropTypes.object.isRequired,
+};

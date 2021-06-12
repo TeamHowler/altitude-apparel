@@ -1,7 +1,7 @@
-import React, {useContext, useEffect, useState} from 'react';
+import React, {useContext, useState} from 'react';
 // import axios from 'axios';
 import {ProductContext} from '../context.js';
-import {Modal, Button, InputGroup, Form} from 'react-bootstrap/';
+import {Modal, Button} from 'react-bootstrap/';
 import StarRatingComponent from 'react-star-rating-component';
 import AddReviewModalForm from './AddReviewModalForm.jsx';
 
@@ -51,8 +51,8 @@ function AddReviewModal() {
           <h4>Centered Modal</h4>
           <p>
             Cras mattis consectetur purus sit amet fermentum. Cras justo odio,
-            dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac
-            consectetur ac, vestibulum at eros.
+            dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta
+            ac consectetur ac, vestibulum at eros.
           </p>
         </Modal.Body>
         <Modal.Footer>
