@@ -1,20 +1,14 @@
-import React, {useContext, useState} from 'react';
+import React, {useContext} from 'react';
 // import axios from 'axios';
 import {ProductContext} from '../context.js';
-import {Modal, Button} from 'react-bootstrap/';
-import StarRatingComponent from 'react-star-rating-component';
+import {Modal} from 'react-bootstrap/';
 import AddReviewModalForm from './AddReviewModalForm.jsx';
 
 function AddReviewModal() {
   const {modalShow, setModalShow, currentProduct} = useContext(ProductContext);
-  const [newReviewRating, updateNewReviewRating] = useState(0);
 
   function handleCloseModalClick() {
     setModalShow(false);
-  };
-
-  function handleNewReviewStarClick(value) {
-    updateNewReviewRating(value);
   };
 
   if (modalShow === false) {
@@ -23,6 +17,7 @@ function AddReviewModal() {
     return (
       <Modal
         show={modalShow}
+        onHide={handleCloseModalClick}
         size="lg"
         aria-labelledby="contained-modal-title-vcenter"
         centered
@@ -33,30 +28,12 @@ function AddReviewModal() {
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
-
-          {/* Select a star value */}
-          <h5>Select a star rating (required):</h5>
-          <StarRatingComponent
-            name="rate1"
-            starCount={5}
-            value={newReviewRating}
-            onStarClick={handleNewReviewStarClick.bind(this)}
-            emptyStarColor={'#778899'}
-          />
-
+          <h6>All fields with an * are required</h6>
           {/* Add form info */}
           <AddReviewModalForm />
-
-
-          <h4>Centered Modal</h4>
-          <p>
-            Cras mattis consectetur purus sit amet fermentum. Cras justo odio,
-            dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta
-            ac consectetur ac, vestibulum at eros.
-          </p>
         </Modal.Body>
         <Modal.Footer>
-          <Button onClick={handleCloseModalClick}>Close</Button>
+          <h2>Thanks for your review!</h2>
         </Modal.Footer>
       </Modal>
     );
