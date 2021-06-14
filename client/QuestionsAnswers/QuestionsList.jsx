@@ -2,13 +2,8 @@ import React from 'react';
 import Answers from './Answers.jsx';
 import {Row, Col, Image, FormControl} from 'react-bootstrap';
 import {ProductContext} from '../context.js';
+import {qHelpfulStyle, ulStyle} from './qastyle.jsx';
 
-const qHelpfulStyle = {
-  display: 'inline',
-  fontSize: 12,
-  color: 'grey',
-  marginLeft: 10,
-};
 
 function QuestionsList({question}) {
   {console.log('QuestionsList', question);}
@@ -27,7 +22,7 @@ function QuestionsList({question}) {
         </Col>
       </Row>
 
-      <ul style={{listStyleType: "none", margin: 0, padding: 0, display: 'inline'}}> A:
+      <ul style={ulStyle}> A:
         {answers.map((answer) =>
           <Answers key={answer.id}
             answer={answer}
