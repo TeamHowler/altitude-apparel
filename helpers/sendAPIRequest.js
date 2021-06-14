@@ -1,8 +1,9 @@
 const axios = require('axios');
 const config = require('../config.js');
 
-const sendAPIRequest = (addtlUrlPath, reqMethod, callback) => {
+const sendAPIRequest = (addtlUrlPath, reqMethod, callback, reqBody) => {
 // console.log('args in api req helper====', addtlUrlPath, reqMethod, callback);
+console.log('data inside sendAPI req', reqBody);
   const options = {
     method: reqMethod,
     // url: 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-bld/products',
@@ -11,6 +12,7 @@ const sendAPIRequest = (addtlUrlPath, reqMethod, callback) => {
       'User-Agent': 'request',
       'Authorization': `${config.TOKEN}`,
     },
+    data: reqBody,
   };
   // console.log('options in helper=====', options);
   axios(options)
