@@ -6,6 +6,7 @@ import StarRatingComponent from 'react-star-rating-component';
 
 function AddReviewModalForm() {
   const {currentId, setModalShow} = useContext(ProductContext);
+  const [newReviewRating, updateNewReviewRating] = useState(0);
   const [newReview, updateNewReview] =
     useState({
       'product_id': currentId,
@@ -19,7 +20,6 @@ function AddReviewModalForm() {
       'helpfulness': null,
       'photos': [],
     });
-  const [newReviewRating, updateNewReviewRating] = useState(0);
   const [validated, setValidated] = useState(false);
 
   function handleCloseModalClick() {
@@ -31,23 +31,26 @@ function AddReviewModalForm() {
   };
 
   function handleReviewSubmit(event) {
-    event.preventDefault();
-    event.target.className += " was-validated";
-    // multiple property validation could go here
-    if (event.target.checkValidity()) {
-      console.log("dispatch an action");
-    }
-    // console.log('INSIDE OF FORM SUBMISSION!!!');
-    // const form = event.currentTarget;
-    // if (form.checkValidity() === false) {
-    //   event.preventDefault();
-    //   event.stopPropagation();
+    // event.preventDefault();
+    // event.target.className += " was-validated";
+    // // multiple property validation could go here
+    // if (event.target.checkValidity()) {
+    //   console.log("dispatch an action");
     // }
-    // console.log('new review after form submit====', newReview);
-    // setValidated(true);
+    console.log('INSIDE OF FORM SUBMISSION!!!');
+    const form = event.currentTarget;
+    if (form.checkValidity() === false) {
+      event.preventDefault();
+      event.stopPropagation();
+    }
+    console.log('new review after form submit====', newReview);
+    updateNewReview({...newReview, rating: newReviewRating});
+    setValidated(true);
   };
 
   function changeHandler(event) {
+    console.log('event name===', event.target.name);
+    console.log('event value====', event.target.value);
     updateNewReview({...newReview, [event.target.name]: event.target.value});
   };
 
@@ -74,7 +77,7 @@ function AddReviewModalForm() {
           onStarClick={handleNewReviewStarClick.bind(this)}
           emptyStarColor={'#778899'}
         />
-        <Form.Control required onChange={changeHandler} placeholder={starExplanation} disabled />
+        <Form.Control required placeholder={starExplanation} disabled />
         <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
       </Form.Group>
 
@@ -107,7 +110,7 @@ function AddReviewModalForm() {
           required
           onChange={changeHandler}
         />
-        <Form.Control.Feedback as="invalid">
+        <Form.Control.Feedback textarea="invalid">
           Nickname is required - with a max of 60 characters.
         </Form.Control.Feedback>
       </Form.Group>
@@ -136,7 +139,7 @@ function AddReviewModalForm() {
           required
           onChange={changeHandler}
         />
-        <Form.Control.Feedback as="invalid">
+        <Form.Control.Feedback textarea="invalid">
           Review Body is required - with a min of 50 & max of 1000 characters.
         </Form.Control.Feedback>
       </Form.Group>
