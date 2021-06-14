@@ -1,6 +1,7 @@
 import React from 'react';
 import Answers from './Answers.jsx';
 import {Row, Col, Image, FormControl} from 'react-bootstrap';
+import {ProductContext} from '../context.js';
 
 const qHelpfulStyle = {
   display: 'inline',
@@ -9,8 +10,8 @@ const qHelpfulStyle = {
   marginLeft: 10,
 };
 
-function QABox({question}) {
-  {console.log('QABOX', question);}
+function QuestionsList({question}) {
+  {console.log('QuestionsList', question);}
   const answers = Object.values(question.answers);
   const firstAnswer = answers[0];
   return (
@@ -39,4 +40,4 @@ function QABox({question}) {
   );
 }
 
-export default QABox;
+export default QuestionsList;

@@ -2,7 +2,8 @@ import React, {useState, useEffect, useContext} from 'react';
 import {ProductContext} from '../context.js';
 import axios from 'axios';
 import {Row, Col, Image, FormControl} from 'react-bootstrap';
-import QABox from './QABox.jsx';
+import QuestionsList from './QuestionsList.jsx';
+import QASearchBox from './QASearchBox.jsx';
 
 
 function QuestionsAnswers() {
@@ -30,9 +31,7 @@ function QuestionsAnswers() {
 
     <section id="Questions and Answers">
       <h2>Questions and Answers</h2>
-      <FormControl
-        type='search'
-        placeholder='Type your question or keyword'/>
+      <QASearchBox />
       <div className='qa-container'>
         {currentQuestions.map((question) =>
           <QABox key={question.question_id}
