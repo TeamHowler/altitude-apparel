@@ -31,9 +31,8 @@ function QuestionsAnswers() {
     <section id="Questions and Answers">
       <h2>Questions and Answers</h2>
       <FormControl
-      type='search'
-      placeholder='search'/>
-      {/* {console.log('questions', currentQuestions)} */}
+        type='search'
+        placeholder='Type your question or keyword'/>
       <div className='qa-container'>
         {currentQuestions.map((question) =>
           <QABox key={question.question_id}
@@ -41,6 +40,7 @@ function QuestionsAnswers() {
           />,
         )}
       </div>
+
     </section>
   );
 };

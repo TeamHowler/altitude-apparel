@@ -4,20 +4,23 @@ const paragraphStyle = {
   display: 'inline',
   fontSize: 12,
   color: 'grey',
-  marginLeft: 10,
+  marginLeft: 30,
+  marginBottom: 10,
+  marginTop: 10
 };
 
 function Answers({answer}) {
   return (
-    <>
+    <li>
       {console.log('from answer comp...', answer)}
-      <h4>A: {answer.body}</h4>
+      <p style={{marginLeft: 20, marginBottom: 5}}>{answer.body}</p>
       <p style={paragraphStyle}>
-        by {answer.answerer_name}, {moment(answer.date).format('MMMM Do YYYY')}
-        | Helpful? Yes ({answer.helpfulness})
-        | Report
+        {`by ${answer.answerer_name},
+        ${moment(answer.date).format('MMMM Do YYYY')}
+        | Helpful? Yes (${answer.helpfulness})
+        | Report`}
       </p>
-    </>
+    </li>
   );
 }
 
