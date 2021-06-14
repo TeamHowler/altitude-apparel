@@ -34,7 +34,7 @@ function QuestionsAnswers() {
       <QASearchBox />
       <div className='qa-container'>
         {currentQuestions.map((question) =>
-          <QABox key={question.question_id}
+          <QuestionsList key={question.question_id}
             question={question}
           />,
         )}
