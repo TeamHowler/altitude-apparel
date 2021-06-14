@@ -1,7 +1,10 @@
+/* eslint-disable max-len */
+/* eslint-disable react/jsx-no-comment-textnodes */
+/* eslint-disable react/prop-types */
 import React from 'react';
 import Answers from './Answers.jsx';
 
-const paragraphStyle = {
+const qHelpfulStyle = {
   display: 'inline',
   fontSize: 12,
   color: 'grey',
@@ -15,12 +18,12 @@ function QABox({question}) {
   return (
     <>
       <h4>Q: {question.question_body}
-        <span style={paragraphStyle}>Helpful? Yes ({question.question_helpfulness})</span>
+        <span style={qHelpfulStyle}>Helpful? Yes ({question.question_helpfulness})</span>
       </h4>
 
       {answers.map((answer) =>
         <Answers key={answer.id}
-          answer={answer.body}
+          answer={answer}
         />,
       )}
     </>
