@@ -14,21 +14,19 @@ function CarouselComponent() {
     </div></center>;
   } else {
     return (
-      <Carousel interval={null}>
-        {currentStyle.photos.map((image) => {
-          return (
-
-            <Carousel.Item style={{height: '30rem',
-              width: '30rem', backgroundSize: 'cover'}}
-            key={image.url}>
-              <CarouselPhotos image={image} key={image.url} />
-
-            </Carousel.Item>
-          );
-        })}
-        {console.log('carousel, ', currentStyle)}
-      </Carousel>
-
+      <>
+        <Carousel controls={false} interval={null}>
+          {currentStyle.photos.map((image) => {
+            return (
+              <Carousel.Item style={{objectFit: 'cover',
+                alignContent: 'center'}} key={image.url}>
+                <CarouselPhotos image={image} key={image.url} />
+              </Carousel.Item>
+            );
+          })}
+          {console.log('carousel, ', currentStyle)}
+        </Carousel>
+      </>
     );
   };
 };
