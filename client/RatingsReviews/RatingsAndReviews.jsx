@@ -10,7 +10,8 @@ import StarRatingComponent from 'react-star-rating-component';
 function RatingsAndReviews() {
   const {currentId, reviews, rating, count, updateReview,
     updateRating, updateCount, clickCount,
-    updateClickCount, modalShow, setModalShow} = useContext(ProductContext);
+    updateClickCount, modalShow, setModalShow,
+    meta, setMeta} = useContext(ProductContext);
 
   const fetchAllReviews = () => {
     axios.get(`/reviews/${currentId}&count=${count}`)
@@ -25,6 +26,7 @@ function RatingsAndReviews() {
   const fetchRating = () => {
     axios.get(`/reviews/meta/${currentId}`)
         .then((response) => {
+          setMeta(response.data);
           const rate = response.data.ratings;
           const productRatings = Object.keys(rate);
           let sumOfRatings = 0;

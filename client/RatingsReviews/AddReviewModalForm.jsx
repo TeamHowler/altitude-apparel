@@ -5,22 +5,23 @@ import {Button, Form} from 'react-bootstrap/';
 import StarRatingComponent from 'react-star-rating-component';
 
 function AddReviewModalForm() {
-  const {currentId, setModalShow} = useContext(ProductContext);
+  const {currentId, setModalShow, meta} = useContext(ProductContext);
   const [newReviewRating, updateNewReviewRating] = useState(0);
   const [newReview, updateNewReview] =
     useState({
       'product_id': currentId,
       'rating': null,
       'summary': null,
-      'recommend': null,
-      'response': null,
+      'name': null,
       'body': null,
-      'date': null,
-      'reviewer_name': null,
-      'helpfulness': null,
+      'recommend': null,
+      'email': null,
       'photos': [],
+      'characteristics': {"<product specific characteristic id's>": "NUM rating 1-5"}
     });
   const [validated, setValidated] = useState(false);
+
+  console.log('meta in add review modal', meta);
 
   function handleCloseModalClick() {
     setModalShow(false);
@@ -85,6 +86,7 @@ function AddReviewModalForm() {
       <Form.Group controlId="formBasicEmail">
         <Form.Label>* Your Email (limit of 60 characters) </Form.Label>
         <Form.Control
+          name="email"
           type="email"
           placeholder="Example: jackson11@email.com"
           maxLength="60"
@@ -104,7 +106,7 @@ function AddReviewModalForm() {
           * What is your nickname? (limit of 60 characters)
         </Form.Label>
         <Form.Control
-          name="reviewer_name"
+          name="name"
           as="textarea"
           maxLength="60"
           required
@@ -155,9 +157,9 @@ function AddReviewModalForm() {
         <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
       </Form.Group>
 
-      <Form.Group controlId="formBasicCheckbox">
+      {/* <Form.Group controlId="formBasicCheckbox">
         <Form.Check type="checkbox" label="Check me out" />
-      </Form.Group>
+      </Form.Group> */}
 
       <Button
         variant="primary"
