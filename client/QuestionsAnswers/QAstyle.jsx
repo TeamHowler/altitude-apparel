@@ -8,7 +8,7 @@ const qHelpfulStyle = {
 const ulStyle = {
   listStyleType: 'none',
   margin: 0,
-  padding: 0,
+  paddingLeft: 0,
   display: 'inline',
 };
 
@@ -21,8 +21,16 @@ const paragraphStyle = {
   marginTop: 10,
 };
 
+const answerStyle = {
+  marginLeft: 20,
+  marginBottom: 10,
+  marginTop: 5,
+};
+
+
 module.exports = {
   ulStyle: ulStyle,
   qHelpfulStyle: qHelpfulStyle,
   paragraphStyle: paragraphStyle,
+  answerStyle: answerStyle,
 };

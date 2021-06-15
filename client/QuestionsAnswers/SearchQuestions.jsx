@@ -1,7 +1,7 @@
 import React from 'react';
 import {FormControl} from 'react-bootstrap';
 
-function QASearchBox() {
+function SearchQuestions() {
   return (
     <>
       <FormControl
@@ -11,4 +11,4 @@ function QASearchBox() {
   );
 }
 
-export default QASearchBox;
+export default SearchQuestions;

@@ -1,37 +1,34 @@
 import React from 'react';
-import Answers from './Answers.jsx';
-import {Row, Col, Image, FormControl} from 'react-bootstrap';
-import {ProductContext} from '../context.js';
-import {qHelpfulStyle, ulStyle} from './QAstyle.jsx';
+import PropTypes from 'prop-types';
+import Question from './Question.jsx';
+import {ulStyle} from './QAstyle.jsx';
 
-
-function QuestionsList({question}) {
-  const answers = Object.values(question.answers);
-  const firstAnswer = answers[0];
+function QuestionsList({questions}) {
   return (
-    <>
-      <Row style={{marginTop: 30}}>
-        <Col>
-          <h5>Q: {question.question_body}</h5>
-        </Col>
-        <Col>
-          <span style={qHelpfulStyle}>
-            Helpful? Yes
-            ({question.question_helpfulness})</span>
-        </Col>
-      </Row>
+    <ul style={ulStyle}>
+      {questions.map((question) =>
+        <Question
+          key={question.question_id}
+          question={question}
+        />,
+      )}
+    </ul>
+  );
+}
 
-      <ul style={ulStyle}> A:
+QuestionsList.propTypes = {
+  questions: PropTypes.array,
+};
+
+export default QuestionsList;
+
+
+// const answers = Object.values(question.answers);
+// const firstAnswer = answers[0];
+{/* <ul style={ulStyle}> A:
         {answers.map((answer) =>
           <Answers key={answer.id}
             answer={answer}
           />,
         )}
-      </ul>
-
-    </>
-
-  );
-}
-
-export default QuestionsList;
+      </ul> */}

@@ -1,11 +1,12 @@
 import React from 'react';
 import moment from 'moment';
-import {paragraphStyle} from './QAstyle.jsx';
+import {paragraphStyle, answerStyle} from './QAstyle.jsx';
+import PropTypes from 'prop-types';
 
-function Answers({answer}) {
+function Answer({answer}) {
   return (
     <li>
-      <p style={{marginLeft: 20, marginBottom: 5}}>{answer.body}</p>
+      <p style={answerStyle}>{answer.body}</p>
       <p style={paragraphStyle}>
         {`by ${answer.answerer_name},
         ${moment(answer.date).format('MMMM Do YYYY')}
@@ -16,4 +17,7 @@ function Answers({answer}) {
   );
 }
 
-export default Answers;
+Answer.propTypes = {
+  answer: PropTypes.object,
+};
+export default Answer;
