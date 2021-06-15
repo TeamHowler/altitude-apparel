@@ -3,24 +3,57 @@ import CarouselPhotos from './CarouselPhotos.jsx';
 import {ProductContext} from '../context.js';
 import {Carousel} from 'react-bootstrap';
 
-const CarouselComponent = () => {
-  const {currentStyle} = useContext(ProductContext);
+function CarouselComponent() {
+  const {currentStyle} =
+   useContext(ProductContext);
 
-  if (currentStyle.photos === undefined) {
+
+  if (currentStyle === undefined) {
     return <center><div className="spinner-border" role="status">
       <span className="sr-only">Loading...</span>
     </div></center>;
   } else {
     return (
+<<<<<<< HEAD
       <Carousel interval={null}>
         {currentStyle.photos.map((image) => {
           return (
-            <Carousel.Item style={{height: '30rem'}} key={image.url}>
+
+            <Carousel.Item style={{height: '30rem',
+              width: '30rem', backgroundSize: 'cover'}}
+            key={image.url}>
               <CarouselPhotos image={image} key={image.url} />
+
             </Carousel.Item>
           );
         })}
+        {/* {console.log('carousel, ', currentStyle)} */}
       </Carousel>
+=======
+      <>
+        <style>
+          {`
+          .carousel-control-next-icon {
+            background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='black' viewBox='0 0 8 8'%3E%3Cpath d='M2.75 0l-1.5 1.5 2.5 2.5-2.5 2.5 1.5 1.5 4-4-4-4z'/%3E%3C/svg%3E");
+        }
+>>>>>>> c6627b1923e3a1f39d673dbaeaa15433abf3d0a1
+
+        .carousel-control-prev-icon {
+            background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='black' viewBox='0 0 8 8'%3E%3Cpath d='M5.25 0l-4 4 4 4 1.5-1.5-2.5-2.5 2.5-2.5-1.5-1.5z'/%3E%3C/svg%3E");
+        }
+          `}
+        </style>
+        <Carousel showThumbs={true} interval={null} style={{width: '100%'}}>
+          {currentStyle.photos.map((image) => {
+            return (
+              <Carousel.Item style={{textAlign: 'center'}}
+                key={image.url}>
+                <CarouselPhotos image={image} key={image.url} />
+              </Carousel.Item>
+            );
+          })}
+        </Carousel>
+      </>
     );
   };
 };
