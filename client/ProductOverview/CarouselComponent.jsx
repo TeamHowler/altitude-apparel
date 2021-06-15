@@ -15,16 +15,15 @@ function CarouselComponent() {
   } else {
     return (
       <>
-        <Carousel controls={false} interval={null}>
+        <Carousel interval={null}>
           {currentStyle.photos.map((image) => {
             return (
-              <Carousel.Item style={{objectFit: 'cover',
-                alignContent: 'center'}} key={image.url}>
+              <Carousel.Item style={{objectFit: 'cover'}}
+                key={image.url}>
                 <CarouselPhotos image={image} key={image.url} />
               </Carousel.Item>
             );
           })}
-          {console.log('carousel, ', currentStyle)}
         </Carousel>
       </>
     );

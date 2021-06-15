@@ -12,7 +12,7 @@ const qHelpfulStyle = {
 };
 
 function QABox({question}) {
-  {console.log('QABOX', question)}
+  // {console.log('QABOX', question)}
   const answers = Object.values(question.answers);
   const firstAnswer = answers[0];
   return (

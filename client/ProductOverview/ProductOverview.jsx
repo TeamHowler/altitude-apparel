@@ -50,8 +50,8 @@ function ProductOverview() {
               <Card.Body>
                 <CarouselComponent />
                 <Card.ImgOverlay style={{textAlign: 'right',
-                  marginRight: '4rem'}}>
-                  <span style={{color: 'green'}} onClick={(e) => {
+                  margin: '1rem', zIndex: '100', height: '1rem'}}>
+                  <span style={{color: 'grey'}} onClick={(e) => {
                     e.preventDefault();
                     setModalShow(true);
                   }}><i className="fas fa-expand fa-2x"></i></span>

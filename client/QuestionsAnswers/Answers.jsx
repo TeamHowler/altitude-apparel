@@ -10,7 +10,7 @@ const paragraphStyle = {
 function Answers({answer}) {
   return (
     <>
-      {console.log('from answer comp...', answer)}
+      {/* {console.log('from answer comp...', answer)} */}
       <h4>A: {answer.body}</h4>
       <p style={paragraphStyle}>
         by {answer.answerer_name}, {moment(answer.date).format('MMMM Do YYYY')}

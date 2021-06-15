@@ -1,5 +1,5 @@
-import React, {useContext} from 'react';
-import {Card, Button} from 'react-bootstrap';
+import React, {useContext, useState} from 'react';
+import {Card, Row, Col} from 'react-bootstrap';
 import {ProductContext} from '../context.js';
 import Thumbnails from './Thumbnails.jsx';
 import Size from './Size.jsx';
@@ -8,6 +8,13 @@ import StarRatingComponent from 'react-star-rating-component';
 function ProductInfo() {
   const {rating, currentProduct, currentStyle, count} =
   useContext(ProductContext);
+  const [isFav, updateFav] = useState(false);
+  let heart = '';
+  if (isFav) {
+    heart = <i className="fas fa-heart"></i>;
+  } else {
+    heart = <i className="far fa-heart"></i>;
+  }
 
   if (currentStyle === undefined) {
     return (
@@ -15,6 +22,7 @@ function ProductInfo() {
     );
   } else {
     return (
+
       <Card style={{height: '30rem'}}>
         <Card.Body>
           <span>
@@ -51,10 +59,21 @@ function ProductInfo() {
             <Thumbnails />
             <Size />
           </span>
-          <Button style={{background: '#f3f7f0', borderColor: 'transparent',
-            color: 'black'}}>
-                  Add To Cart</Button>
-
+          <Row>
+            <Col>
+              <button style={{background: '#f3f7f0', borderColor: 'transparent',
+                color: 'black', height: '2rem'}}>
+                 Add To Cart</button>
+            </Col>
+            <Col>
+              <button style={{background: 'transparent',
+                borderColor: 'transparent',
+                color: 'black', height: '2rem'}} onClick={(e) => {
+                e.preventDefault();
+            isFav ? updateFav(false) : updateFav(true);
+              }}>{heart}</button>
+            </Col>
+          </Row>
         </Card.Body>
       </Card>
     );
