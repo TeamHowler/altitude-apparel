@@ -19,6 +19,18 @@ function App() {
   const [clickCount, updateClickCount] = useState(1);
   const [modalShow, setModalShow] = useState(false);
   const [meta, setMeta] = useState([]);
+  const [newReview, updateNewReview] =
+    useState({
+      'product_id': currentId,
+      'rating': null,
+      'summary': null,
+      'name': null,
+      'body': null,
+      'recommend': null,
+      'email': null,
+      'photos': [],
+      'characteristics': {},
+    });
 
   const fetch = () => {
     axios.get(`/products/${currentId}`)
@@ -56,6 +68,8 @@ function App() {
       setModalShow,
       meta,
       setMeta,
+      newReview,
+      updateNewReview,
       currentId,
     }}>
       <Container>

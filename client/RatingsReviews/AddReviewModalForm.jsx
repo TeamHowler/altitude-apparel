@@ -3,25 +3,14 @@ import React, {useState, useContext} from 'react';
 import {ProductContext} from '../context.js';
 import {Button, Form} from 'react-bootstrap/';
 import StarRatingComponent from 'react-star-rating-component';
+import RadioButtons from './RadioButtons.jsx';
 
 function AddReviewModalForm() {
-  const {currentId, setModalShow, meta} = useContext(ProductContext);
+  const {currentId, setModalShow, meta,
+    newReview, updateNewReview} = useContext(ProductContext);
   const [newReviewRating, updateNewReviewRating] = useState(0);
-  const [newReview, updateNewReview] =
-    useState({
-      'product_id': currentId,
-      'rating': null,
-      'summary': null,
-      'name': null,
-      'body': null,
-      'recommend': null,
-      'email': null,
-      'photos': [],
-      'characteristics': {"<product specific characteristic id's>": "NUM rating 1-5"}
-    });
-  const [validated, setValidated] = useState(false);
 
-  console.log('meta in add review modal', meta);
+  const [validated, setValidated] = useState(false);
 
   function handleCloseModalClick() {
     setModalShow(false);
@@ -156,6 +145,15 @@ function AddReviewModalForm() {
         />
         <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
       </Form.Group>
+
+      {/* Rate the characteristics */}
+      <Form.Group controlId="characteristicsRadios">
+        {console.log('meta characteristics====', Object.keys(meta['characteristics']))}
+        {Object.keys(meta['characteristics']).map((characteristic) => (
+          <RadioButtons key={characteristic} characteristic={characteristic} />
+        ))}
+      </Form.Group>
+
 
       {/* <Form.Group controlId="formBasicCheckbox">
         <Form.Check type="checkbox" label="Check me out" />
