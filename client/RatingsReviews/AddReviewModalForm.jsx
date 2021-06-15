@@ -6,14 +6,14 @@ import StarRatingComponent from 'react-star-rating-component';
 import RadioButtons from './RadioButtons.jsx';
 
 function AddReviewModalForm() {
-  const {setModalShow, meta,
+  const {setReviewModalShow, meta,
     newReview, updateNewReview} = useContext(ProductContext);
   const [newReviewRating, updateNewReviewRating] = useState(0);
 
   const [validated, setValidated] = useState(false);
 
   function handleCloseModalClick() {
-    setModalShow(false);
+    setReviewModalShow(false);
   };
 
   function handleNewReviewStarClick(value) {

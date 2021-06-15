@@ -10,7 +10,7 @@ import StarRatingComponent from 'react-star-rating-component';
 function RatingsAndReviews() {
   const {currentId, reviews, rating, count, updateReview,
     updateRating, updateCount, clickCount,
-    updateClickCount, modalShow, setModalShow,
+    updateClickCount, modalShow, setReviewModalShow,
     setMeta} = useContext(ProductContext);
 
   const fetchAllReviews = () => {
@@ -52,7 +52,7 @@ function RatingsAndReviews() {
   };
 
   function handleAddReviewClick() {
-    setModalShow(true);
+    setReviewModalShow(true);
   };
 
   useEffect(() => {
