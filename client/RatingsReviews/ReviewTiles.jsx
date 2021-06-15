@@ -47,7 +47,7 @@ function ReviewTiles({review}) {
             }
           `}
         </style>
-        <Col id={'reviewTilesScroll'} style={{background: 'lightpink'}}>
+        <Col id={'reviewTilesScroll'} >
           <Card border="secondary">
             <Card.Body>
               <Card.Title>{review.summary}</Card.Title>

@@ -6,7 +6,7 @@ import StarRatingComponent from 'react-star-rating-component';
 import RadioButtons from './RadioButtons.jsx';
 
 function AddReviewModalForm() {
-  const {currentId, setModalShow, meta,
+  const {setModalShow, meta,
     newReview, updateNewReview} = useContext(ProductContext);
   const [newReviewRating, updateNewReviewRating] = useState(0);
 
@@ -21,13 +21,6 @@ function AddReviewModalForm() {
   };
 
   function handleReviewSubmit(event) {
-    // event.preventDefault();
-    // event.target.className += " was-validated";
-    // // multiple property validation could go here
-    // if (event.target.checkValidity()) {
-    //   console.log("dispatch an action");
-    // }
-    // console.log('INSIDE OF FORM SUBMISSION!!!');
     const form = event.currentTarget;
     if (form.checkValidity() === false) {
       event.preventDefault();
@@ -46,8 +39,9 @@ function AddReviewModalForm() {
     // create shallow copy of photo arr storage
     const newPhotos = newReview.photos.slice();
     // add new photo to shallow copy storage
-    newPhotos[parseInt(event.target.name)] =
-      URL.createObjectURL(event.target.files[0]);
+    newPhotos.push(event.target.value);
+    // newPhotos[parseInt(event.target.name)] =
+    // URL.createObjectURL(event.target.files[0]);
     // merge this new copy with current state's photos arr
     updateNewReview({...newReview, 'photos': newPhotos});
   };
@@ -59,9 +53,6 @@ function AddReviewModalForm() {
   function recommendChangeHandler(event) {
     updateNewReview({...newReview,
       [event.target.name]: event.target.value === 'True'});
-    const bool = event.target.value === 'True';
-    console.log('typeof recommend value====',
-        typeof bool);
   };
 
   function starChangeHandler(event) {
@@ -83,7 +74,8 @@ function AddReviewModalForm() {
   }, [newReviewRating]);
 
   return (
-    <Form className="needs-validation" noValidate validated={validated} onSubmit={handleReviewSubmit}>
+    <Form className="needs-validation"
+      noValidate validated={validated} onSubmit={handleReviewSubmit}>
       {/* Select a star value */}
       <Form.Group controlId="formStarValue" >
         <Form.Label>* Overall Rating:</Form.Label>
@@ -149,7 +141,8 @@ function AddReviewModalForm() {
 
       {/* Review body textbox */}
       <Form.Group controlId="exampleForm.ControlTextarea1">
-        <Form.Label>* Review Body (min 50 characters, limit of 1,000 characters)</Form.Label>
+        <Form.Label>* Review Body
+          (min 50 characters, limit of 1,000 characters)</Form.Label>
         <Form.Control
           name="body"
           as="textarea"
@@ -165,6 +158,69 @@ function AddReviewModalForm() {
       </Form.Group>
 
       {/* Upload photos */}
+      <h6>Upload your photo URL's below:</h6>
+      <Form.Group>
+        {/* <Form.File
+          name="0"
+          id="exampleFormControlFile1"
+          label="Upload your photo"
+          onChange={photosChangeHandler}
+        />
+        <Form.Control
+          type="file"
+          name="0"
+          id="exampleFormControlFile1"
+          label="Upload your photo"
+          onChange={photosChangeHandler} />
+        <Image src={newReview['photos'][0]}
+          thumbnail width={171} height={180}/> */}
+
+        <Form.Control
+          type="url"
+          name="1"
+          placeholder="Include url to your photo here!"
+          onChange={photosChangeHandler}
+        />
+        <Image src={newReview['photos'][0]}
+          thumbnail width={171} height={180}/>
+
+        <Form.Control
+          type="url"
+          name="2"
+          placeholder="Include url to your photo here!"
+          onChange={photosChangeHandler}
+        />
+        <Image src={newReview['photos'][1]}
+          thumbnail width={171} height={180}/>
+
+        <Form.Control
+          type="url"
+          name="3"
+          placeholder="Include url to your photo here!"
+          onChange={photosChangeHandler}
+        />
+        <Image src={newReview['photos'][2]}
+          thumbnail width={171} height={180}/>
+
+        <Form.Control
+          type="url"
+          name="4"
+          placeholder="Include url to your photo here!"
+          onChange={photosChangeHandler}
+        />
+        <Image src={newReview['photos'][3]}
+          thumbnail width={171} height={180}/>
+
+        <Form.Control
+          type="url"
+          name="5"
+          placeholder="Include url to your photo here!"
+          onChange={photosChangeHandler}
+        />
+        <Image src={newReview['photos'][4]}
+          thumbnail width={171} height={180}/>
+
+      </Form.Group>
 
       {/* Rate the characteristics */}
       <Form.Group controlId="characteristicsRadios">
@@ -188,10 +244,6 @@ function AddReviewModalForm() {
         </ Form>
       </Form.Group>
 
-
-      {/* <Form.Group controlId="formBasicCheckbox">
-        <Form.Check type="checkbox" label="Check me out" />
-      </Form.Group> */}
 
       <Button
         variant="primary"

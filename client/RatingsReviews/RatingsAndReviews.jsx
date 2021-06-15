@@ -11,7 +11,7 @@ function RatingsAndReviews() {
   const {currentId, reviews, rating, count, updateReview,
     updateRating, updateCount, clickCount,
     updateClickCount, modalShow, setModalShow,
-    meta, setMeta} = useContext(ProductContext);
+    setMeta} = useContext(ProductContext);
 
   const fetchAllReviews = () => {
     axios.get(`/reviews/${currentId}&count=${count}`)
@@ -83,7 +83,7 @@ function RatingsAndReviews() {
         <h2>Ratings & Reviews</h2>
         <Row >
           {/* Graphs: */}
-          <Col style={{background: 'lightpurple'}} border="primary" md={4}>
+          <Col border="primary" md={4}>
             {/* <Image thumbnail /> */}
             <h6>Rating Rounded to Nearest Whole Number:</h6>
             <span>
