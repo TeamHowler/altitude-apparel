@@ -12,25 +12,28 @@ const ulStyle = {
   display: 'inline',
 };
 
-const paragraphStyle = {
+const qaMetaStyle = {
   display: 'inline',
   fontSize: 12,
   color: 'grey',
-  marginLeft: 30,
-  marginBottom: 10,
-  marginTop: 10,
+  marginLeft: 20,
+};
+
+const qaStyle = {
+  fontWeight: 'bold',
+  paddingLeft: 20,
+  marginTop: 0,
 };
 
 const answerStyle = {
-  marginLeft: 20,
-  marginBottom: 10,
-  marginTop: 5,
+  marginBottom: 20,
 };
 
 
 module.exports = {
   ulStyle: ulStyle,
   qHelpfulStyle: qHelpfulStyle,
-  paragraphStyle: paragraphStyle,
+  qaMetaStyle: qaMetaStyle,
+  qaStyle: qaStyle,
   answerStyle: answerStyle,
 };
