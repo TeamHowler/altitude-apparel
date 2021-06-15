@@ -22,10 +22,15 @@ function QABox({question}) {
       </h4>
 
       {answers.map((answer) =>
+<<<<<<< HEAD
+        <h4>{answer.body}</h4>)}
+      {/* <h4>A: {console.log(answers)}</h4> */}
+=======
         <Answers key={answer.id}
           answer={answer}
         />,
       )}
+>>>>>>> c6627b1923e3a1f39d673dbaeaa15433abf3d0a1
     </>
   );
 }

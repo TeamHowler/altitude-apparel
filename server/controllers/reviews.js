@@ -26,7 +26,18 @@ module.exports = {
         });
   },
 
-// post: function (req, res) {}
-// a function which handles posting a message to the database
+  postReview: function(req, res) {
+    console.log('req body server side====', req.body);
+    console.log('req server side====', req);
+    api.sendAPIRequest(`/reviews/`, 'POST',
+        (err, result) => {
+          if (err) {
+            console.log('err in app.post reviews.js=====', err);
+            res.send(err);
+          } else {
+            res.send(result);
+          }
+        }, req.body);
+  },
 };
 
