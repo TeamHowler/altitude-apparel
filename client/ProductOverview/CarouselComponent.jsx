@@ -14,21 +14,29 @@ function CarouselComponent() {
     </div></center>;
   } else {
     return (
-      <Carousel interval={null}>
-        {currentStyle.photos.map((image) => {
-          return (
+      <>
+        <style>
+          {`
+          .carousel-control-next-icon {
+            background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='black' viewBox='0 0 8 8'%3E%3Cpath d='M2.75 0l-1.5 1.5 2.5 2.5-2.5 2.5 1.5 1.5 4-4-4-4z'/%3E%3C/svg%3E");
+        }
 
-            <Carousel.Item style={{height: '30rem',
-              width: '30rem', backgroundSize: 'cover'}}
-            key={image.url}>
-              <CarouselPhotos image={image} key={image.url} />
-
-            </Carousel.Item>
-          );
-        })}
-        {console.log('carousel, ', currentStyle)}
-      </Carousel>
-
+        .carousel-control-prev-icon {
+            background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='black' viewBox='0 0 8 8'%3E%3Cpath d='M5.25 0l-4 4 4 4 1.5-1.5-2.5-2.5 2.5-2.5-1.5-1.5z'/%3E%3C/svg%3E");
+        }
+          `}
+        </style>
+        <Carousel showThumbs={true} interval={null} style={{width: '100%'}}>
+          {currentStyle.photos.map((image) => {
+            return (
+              <Carousel.Item style={{textAlign: 'center'}}
+                key={image.url}>
+                <CarouselPhotos image={image} key={image.url} />
+              </Carousel.Item>
+            );
+          })}
+        </Carousel>
+      </>
     );
   };
 };

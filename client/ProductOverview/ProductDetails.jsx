@@ -91,7 +91,7 @@ function ProductDetails() {
                 <Button style={{background: '#f3f7f0', borderColor: 'black',
                   color: 'black'}}>
                 Add To Cart</Button>
-                {console.log('currentProduct', currentProduct)}
+                {/* {console.log('currentProduct', currentProduct)} */}
               </Row>
             </Container>
           </Col>

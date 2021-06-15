@@ -6,9 +6,11 @@ import {Nav, Navbar, NavDropdown, Container,
   FormControl, Button, Form} from 'react-bootstrap';
 import RatingsAndReviews from './RatingsReviews/RatingsAndReviews.jsx';
 import QuestionsAnswers from './QuestionsAnswers/QuestionsAnswers.jsx';
+import Expanded from './ProductOverview/Expanded.jsx';
 
 function App() {
-  const [currentId, setCurrentId] = useState(18080);
+  // eslint-disable-next-line no-unused-vars
+  const [currentId, setCurrentId] = useState(18078);
   const [currentProduct, updateProduct] = useState([]);
   const [styles, updateStyles] = useState([]);
   const [currentStyle, updateCurrentStyle] = useState(undefined);
@@ -17,6 +19,24 @@ function App() {
   const [rating, updateRating] = useState(0);
   const [count, updateCount] = useState(0);
   const [clickCount, updateClickCount] = useState(1);
+  const [modalShow, setReviewModalShow] = useState(false);
+  const [meta, setMeta] = useState([]);
+  const [newReview, updateNewReview] =
+    useState({
+      'product_id': currentId,
+      'rating': null,
+      'summary': '',
+      'name': '',
+      'body': '',
+      'recommend': null,
+      'email': null,
+      'photos': [],
+      'characteristics': {},
+    });
+  const [showModal, setModalShow] = useState(false);
+  const [currentSize, updateSize] = useState('');
+  const [currentQuant, updateQuant] = useState(0);
+  const [cart, addToCart] = useState({});
 
   const fetch = () => {
     axios.get(`/products/${currentId}`)
@@ -50,7 +70,21 @@ function App() {
       updateCount,
       clickCount,
       updateClickCount,
+      modalShow,
+      setReviewModalShow,
+      meta,
+      setMeta,
+      newReview,
+      updateNewReview,
       currentId,
+      showModal,
+      setModalShow,
+      currentSize,
+      updateSize,
+      currentQuant,
+      updateQuant,
+      cart,
+      addToCart,
     }}>
       <Container>
         <Navbar bg="light" expand="lg">
@@ -77,11 +111,17 @@ function App() {
                 className="mr-sm-2" />
               <Button variant="outline-success">Search</Button>
             </Form>
+            <i className="fas fa-shopping-cart fa-2x"
+              onClick={(e) => {
+                e.preventDefault();
+                alert(cart);
+              }}></i>
           </Navbar.Collapse>
         </Navbar>
         <ProductOverview />
         <QuestionsAnswers />
         <RatingsAndReviews />
+        <Expanded show={showModal}/>
       </Container>
     </ProductContext.Provider>
   );

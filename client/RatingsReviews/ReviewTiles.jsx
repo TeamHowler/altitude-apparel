@@ -1,6 +1,7 @@
 import React from 'react';
 import {Row, Col, Card, Container, Image} from 'react-bootstrap/';
 import StarRatingComponent from 'react-star-rating-component';
+import PropTypes from 'prop-types';
 
 const months = {
   0: 'January',
@@ -26,6 +27,7 @@ function ReviewTiles({review}) {
             name="rate1"
             starCount={5}
             value={review.rating}
+            emptyStarColor={'#778899'}
           />
         </Col>
         <Col></Col>
@@ -45,7 +47,7 @@ function ReviewTiles({review}) {
             }
           `}
         </style>
-        <Col id={'reviewTilesScroll'} style={{background: 'lightpink'}}>
+        <Col id={'reviewTilesScroll'} >
           <Card border="secondary">
             <Card.Body>
               <Card.Title>{review.summary}</Card.Title>
@@ -63,3 +65,7 @@ function ReviewTiles({review}) {
 }
 
 export default ReviewTiles;
+
+ReviewTiles.propTypes = {
+  review: PropTypes.object.isRequired,
+};

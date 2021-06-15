@@ -3,13 +3,15 @@ import axios from 'axios';
 import {ProductContext} from '../context.js';
 import {Row, Col, DropdownButton, Dropdown, Button} from 'react-bootstrap/';
 import ReviewTiles from './ReviewTiles.jsx';
+import AddReviewModal from './AddReviewModal.jsx';
 import StarRatingComponent from 'react-star-rating-component';
 
 
 function RatingsAndReviews() {
   const {currentId, reviews, rating, count, updateReview,
     updateRating, updateCount, clickCount,
-    updateClickCount} = useContext(ProductContext);
+    updateClickCount, modalShow, setReviewModalShow,
+    setMeta} = useContext(ProductContext);
 
   const fetchAllReviews = () => {
     axios.get(`/reviews/${currentId}&count=${count}`)
@@ -24,23 +26,20 @@ function RatingsAndReviews() {
   const fetchRating = () => {
     axios.get(`/reviews/meta/${currentId}`)
         .then((response) => {
+          setMeta(response.data);
           const rate = response.data.ratings;
-          const oneStarSum = parseInt(rate['1']);
-          const twoStarSum = parseInt(rate['2']) * 2;
-          const threeStarSum = parseInt(rate['3']) * 3;
-          const fourStarSum = parseInt(rate['4']) * 4;
-          const fiveStarSum = parseInt(rate['5']) * 5;
-          const sum = oneStarSum + twoStarSum +
-          threeStarSum + fourStarSum + fiveStarSum;
-          const oneStarCt = parseInt(rate['1']);
-          const twoStarCt = parseInt(rate['2']);
-          const threeStarCt = parseInt(rate['3']);
-          const fourStarCt = parseInt(rate['4']);
-          const fiveStarCt = parseInt(rate['5']);
-          const totalRatings = oneStarCt + twoStarCt +
-          threeStarCt + fourStarCt + fiveStarCt;
-          updateCount(totalRatings);
-          const ave = Math.round(sum/totalRatings);
+          const productRatings = Object.keys(rate);
+          let sumOfRatings = 0;
+          let numOfRatings = 0;
+          productRatings.forEach(function(value) {
+            if (value === '1' || value === '2' || value === '3' ||
+            value === '4' || value === '5') {
+              sumOfRatings += parseInt(rate[value]) * parseInt(value);
+              numOfRatings += parseInt(rate[value]);
+            }
+          });
+          const ave = Math.round(sumOfRatings/numOfRatings);
+          updateCount(numOfRatings);
           updateRating(ave);
         })
         .catch((err) => {
@@ -52,22 +51,39 @@ function RatingsAndReviews() {
     updateClickCount((prevCount) => prevCount + 1);
   };
 
+  function handleAddReviewClick() {
+    setReviewModalShow(true);
+  };
+
   useEffect(() => {
     fetchAllReviews();
     fetchRating();
-  }, [count]);
+  }, [count, modalShow]);
 
   if (reviews.length === 0) {
-    return <center><div className="spinner-border" role="status">
-      <span className="sr-only">Loading...</span>
-    </div></center>;
+    return (
+      <center>
+        <div className="spinner-border" role="status">
+          <span className="sr-only">Loading...</span>
+        </div>
+      </center>
+    );
   } else {
     return (
       <div id="ratings/reviews">
-        <h4>Ratings & Reviews</h4>
+        <style type="text/css">
+          {`
+            #roundedDivider {
+              border-top: 8px solid #bbb;
+              border-radius: 5px;
+            }
+          `}
+        </style>
+        <hr id="roundedDivider"/>
+        <h2>Ratings & Reviews</h2>
         <Row >
           {/* Graphs: */}
-          <Col style={{background: 'lightpurple'}} border="primary" md={4}>
+          <Col border="primary" md={4}>
             {/* <Image thumbnail /> */}
             <h6>Rating Rounded to Nearest Whole Number:</h6>
             <span>
@@ -76,6 +92,7 @@ function RatingsAndReviews() {
                 name="rate1"
                 starCount={5}
                 value={rating}
+                emptyStarColor={'#778899'}
               />
             </span>
           </Col>
@@ -106,8 +123,15 @@ function RatingsAndReviews() {
             {/* Review buttons: */}
             <Button
               variant="outline-secondary"
-              onClick={handleMoreReviewsClick}>More Reviews</Button>{' '}
-            <Button variant="outline-secondary">Add A Review</Button>{' '}
+              onClick={handleMoreReviewsClick}>
+                More Reviews
+            </Button>{' '}
+            <Button
+              variant="outline-secondary"
+              onClick={handleAddReviewClick}>
+                Add A Review
+            </Button>{' '}
+            <AddReviewModal />
           </Col>
         </Row>
       </div>
