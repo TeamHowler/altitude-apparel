@@ -22,7 +22,6 @@ function Expanded(props) {
           <CarouselComponent />
         </Container>
       </Modal.Body>
-      {console.log(showModal)}
     </Modal>
   );
 }

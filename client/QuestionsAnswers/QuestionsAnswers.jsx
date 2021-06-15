@@ -1,19 +1,18 @@
 import React, {useState, useEffect, useContext} from 'react';
 import {ProductContext} from '../context.js';
 import axios from 'axios';
-import {Row, Col, Image, FormControl} from 'react-bootstrap';
-import QABox from './QABox.jsx';
+import SearchQuestions from './SearchQuestions.jsx';
+import QuestionsList from './QuestionsList.jsx';
 
 
 function QuestionsAnswers() {
   const {currentProduct} = useContext(ProductContext);
-  const [currentQuestions, updateQuestions] = useState([]);
+  const [questions, setQuestions] = useState([]);
 
   function fetchQuestions() {
     axios.get(`/qa/questions/${currentProduct.id}`)
-        .then((result) => result.data.results).then(updateQuestions);
+        .then((result) => result.data.results).then(setQuestions);
   }
-
   // function fetchAnswers() {
   //   axios.get(`/qa/questions/${114310}/answers`)
   //       .then((result) => result.data.results).then(updateAnswers);
@@ -25,22 +24,11 @@ function QuestionsAnswers() {
     }
   }, [currentProduct]);
 
-
   return (
-
-    <section id="Questions and Answers">
+    <section id="QuestionsAndAnswers">
       <h2>Questions and Answers</h2>
-      <FormControl
-        type='search'
-        placeholder='Type your question or keyword'/>
-      <div className='qa-container'>
-        {currentQuestions.map((question) =>
-          <QABox key={question.question_id}
-            question={question}
-          />,
-        )}
-      </div>
-
+      <SearchQuestions />
+      <QuestionsList questions={questions}/>
     </section>
   );
 };
