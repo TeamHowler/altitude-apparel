@@ -6,12 +6,10 @@ function Question({question}) {
   return (
     <li>
       Q: {question.question_body}
-
-      <div>A: </div>
-      <AnswerList
+			<div>A: <AnswerList
         answers={Object.values(question.answers)}
         style={{display: 'inline'}}
-      />
+      /></div>
 
     </li>
   );
