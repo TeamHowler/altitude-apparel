@@ -14,7 +14,7 @@ function QuestionsAnswers() {
     axios.get(`/qa/questions/${currentProduct.id}`)
         .then((result) => result.data.results).then(updateQuestions);
   }
-
+  // begin refactor to more modular components now
   // function fetchAnswers() {
   //   axios.get(`/qa/questions/${114310}/answers`)
   //       .then((result) => result.data.results).then(updateAnswers);
@@ -26,9 +26,7 @@ function QuestionsAnswers() {
     }
   }, [currentProduct]);
 
-
   return (
-
     <section id="Questions and Answers">
       <h2>Questions and Answers</h2>
       <QASearchBox />
@@ -39,7 +37,6 @@ function QuestionsAnswers() {
           />,
         )}
       </div>
-
     </section>
   );
 };

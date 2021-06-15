@@ -12,7 +12,17 @@ const ulStyle = {
   display: 'inline',
 };
 
+const paragraphStyle = {
+  display: 'inline',
+  fontSize: 12,
+  color: 'grey',
+  marginLeft: 30,
+  marginBottom: 10,
+  marginTop: 10,
+};
+
 module.exports = {
   ulStyle: ulStyle,
   qHelpfulStyle: qHelpfulStyle,
+  paragraphStyle: paragraphStyle,
 };
