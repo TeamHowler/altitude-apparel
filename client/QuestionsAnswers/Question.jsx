@@ -1,27 +1,30 @@
 /* eslint-disable no-tabs */
 import React from 'react';
-import {Container, Row, Col} from 'react-bootstrap';
+import {Row, Col, Container} from 'react-bootstrap';
 import PropTypes from 'prop-types';
-import {qaStyle} from './QAstyle.jsx';
+import {Qfont, QAfont, qaMetaStyle} from './QAstyle.jsx';
 import AnswerList from './AnswerList.jsx';
 
 function Question({question}) {
   const answers = Object.values(question.answers);
+  const helpfulCount = question.question_helpfulness;
+  console.log(question);
   return (
-    <li>
+    <Container>
       <Row>
-        <Col sm={.5}><span style={{fontWeight: 'bold'}}>Q:</span></Col>
-        <Col xl={24}><p style={qaStyle}>{question.question_body}</p></Col>
+        <Col sm={.5}><span style={QAfont}>Q:</span></Col>
+        <Col lg={6}><p style={Qfont}>{question.question_body}</p></Col>
+        <Col m={6}><p style={qaMetaStyle}>{helpfulCount}</p></Col>
       </Row>
 
       <Row>
-        <Col sm={.5}><span style={{fontWeight: 'bold'}}>A:</span></Col>
+        <Col sm={.5}><span style={QAfont}>A:</span></Col>
         <Col xl={24}><AnswerList
           answers={answers}
           style={{display: 'inline'}}
         /></Col>
       </Row>
-    </li>
+    </Container>
   );
 }
 

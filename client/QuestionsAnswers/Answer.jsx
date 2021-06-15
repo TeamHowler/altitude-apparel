@@ -1,19 +1,23 @@
 import React from 'react';
 import moment from 'moment';
-import {qaMetaStyle, qaStyle, answerStyle} from './QAstyle.jsx';
+import {Row, Col, Container} from 'react-bootstrap';
+import {Afont, qaMetaStyle, answerStyle} from './QAstyle.jsx';
 import PropTypes from 'prop-types';
 
 function Answer({answer}) {
   return (
-    <li style={answerStyle}>
-      <p style={qaStyle}>{answer.body}</p>
-      <p style={qaMetaStyle}>
-        {`by ${answer.answerer_name},
+    <Container>
+      <Row>
+        <Col style={Afont}>{answer.body}</Col>
+      </Row>
+      <Row>
+        <Col>{`by ${answer.answerer_name},
         ${moment(answer.date).format('MMMM Do YYYY')}
         | Helpful? Yes (${answer.helpfulness})
         | Report`}
-      </p>
-    </li>
+				</Col>
+      </Row>
+    </Container>
   );
 }
 

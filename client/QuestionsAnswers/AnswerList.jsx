@@ -5,14 +5,14 @@ import {ulStyle} from './QAstyle.jsx';
 
 function AnswerList({answers}) {
   return (
-    <ul style={ulStyle}>
+    <div style={ulStyle}>
       {answers.map((answer) =>
         <Answer
           key={answer.id}
           answer={answer}
         />,
       )}
-    </ul>
+    </div>
   );
 }
 

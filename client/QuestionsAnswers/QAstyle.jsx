@@ -8,21 +8,33 @@ const qHelpfulStyle = {
 const ulStyle = {
   listStyleType: 'none',
   margin: 0,
-  paddingLeft: 0,
   display: 'inline',
 };
 
 const qaMetaStyle = {
   display: 'inline',
-  fontSize: 12,
+  fontSize: 10,
   color: 'grey',
   marginLeft: 20,
 };
 
 const qaStyle = {
-  fontWeight: 'bold',
-  paddingLeft: 20,
   marginTop: 0,
+};
+
+const QAfont = {
+  fontWeight: 'bold',
+  fontSize: 16,
+};
+
+const Afont = {
+  fontSize: 15,
+  marginTop: 0,
+};
+
+const Qfont = {
+  fontSize: 16,
+  fontWeight: 'bold',
 };
 
 const answerStyle = {
@@ -36,4 +48,7 @@ module.exports = {
   qaMetaStyle: qaMetaStyle,
   qaStyle: qaStyle,
   answerStyle: answerStyle,
+  QAfont: QAfont,
+  Afont: Afont,
+  Qfont: Qfont,
 };
