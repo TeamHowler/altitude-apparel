@@ -1,7 +1,7 @@
 import React from 'react';
 import moment from 'moment';
 import {Row, Col, Container} from 'react-bootstrap';
-import {Afont, qaMetaStyle, answerStyle} from './QAstyle.jsx';
+import {Afont, qaMetaStyle, answerStyle, QAfont} from './QAstyle.jsx';
 import PropTypes from 'prop-types';
 
 function Answer({answer}) {
@@ -11,11 +11,10 @@ function Answer({answer}) {
         <Col style={Afont}>{answer.body}</Col>
       </Row>
       <Row>
-        <Col>{`by ${answer.answerer_name},
+        <Col style={qaMetaStyle}>{`by ${answer.answerer_name},
         ${moment(answer.date).format('MMMM Do YYYY')}
         | Helpful? Yes (${answer.helpfulness})
-        | Report`}
-				</Col>
+        | Report`}</Col>
       </Row>
     </Container>
   );
