@@ -15,7 +15,6 @@ const qaMetaStyle = {
   display: 'inline',
   fontSize: 10,
   color: 'grey',
-  marginLeft: 20,
 };
 
 const qaStyle = {
