@@ -15,7 +15,7 @@ function Question({question}) {
     <Container>
       <Row>
         <Col sm={.5} style={QAfont}>Q:</Col>
-        <Col lg={6} style={Qfont}>{question.question_body}</Col>
+        <Col m={4} style={Qfont}>{question.question_body}</Col>
         <Col m={6} style={qaMetaStyle}>{helpfulCount}</Col>
       </Row>
 

@@ -9,6 +9,7 @@ function QuestionsAnswers() {
   const {currentProduct} = useContext(ProductContext);
   const [questions, setQuestions] = useState([]);
 
+
   function fetchQuestions() {
     axios.get(`/qa/questions/${currentProduct.id}`)
         .then((result) => result.data.results).then(setQuestions);
@@ -26,9 +27,10 @@ function QuestionsAnswers() {
 
   return (
     <section id="QuestionsAndAnswers">
-      <h2>Questions and Answers</h2>
+      <h3>Questions and Answers</h3>
       <SearchQuestions />
       <QuestionsList questions={questions}/>
+
     </section>
   );
 };

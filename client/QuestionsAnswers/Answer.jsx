@@ -8,7 +8,7 @@ function Answer({answer}) {
   return (
     <Container>
       <Row>
-        <Col lg={12} style={Afont}>{answer.body}</Col>
+        <Col style={Afont}>{answer.body}</Col>
       </Row>
       <Row>
         <Col style={qaMetaStyle}>{`by ${answer.answerer_name},
