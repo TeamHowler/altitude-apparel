@@ -1,5 +1,5 @@
 import React, {useState, useContext, useEffect} from 'react';
-// import axios from 'axios';
+import axios from 'axios';
 import {ProductContext} from '../context.js';
 import {Button, Form, Image} from 'react-bootstrap/';
 import StarRatingComponent from 'react-star-rating-component';
@@ -27,12 +27,18 @@ function AddReviewModalForm() {
     // if (event.target.checkValidity()) {
     //   console.log("dispatch an action");
     // }
-    console.log('INSIDE OF FORM SUBMISSION!!!');
+    // console.log('INSIDE OF FORM SUBMISSION!!!');
     const form = event.currentTarget;
     if (form.checkValidity() === false) {
       event.preventDefault();
       event.stopPropagation();
+    } else {
+      axios.post('/reviews/', newReview)
+          .then((response) => {
+            console.log('response from review post!', response);
+          });
     }
+
     setValidated(true);
   };
 
@@ -40,14 +46,22 @@ function AddReviewModalForm() {
     // create shallow copy of photo arr storage
     const newPhotos = newReview.photos.slice();
     // add new photo to shallow copy storage
-    newPhotos[parseInt(event.target.name)] = URL.createObjectURL(event.target.files[0]);
-    // newPhotos.push();
+    newPhotos[parseInt(event.target.name)] =
+      URL.createObjectURL(event.target.files[0]);
     // merge this new copy with current state's photos arr
     updateNewReview({...newReview, 'photos': newPhotos});
   };
 
   function changeHandler(event) {
     updateNewReview({...newReview, [event.target.name]: event.target.value});
+  };
+
+  function recommendChangeHandler(event) {
+    updateNewReview({...newReview,
+      [event.target.name]: event.target.value === 'True'});
+    const bool = event.target.value === 'True';
+    console.log('typeof recommend value====',
+        typeof bool);
   };
 
   function starChangeHandler(event) {
@@ -94,6 +108,7 @@ function AddReviewModalForm() {
           placeholder="Example: jackson11@email.com"
           maxLength="60"
           required
+          onChange={changeHandler}
         />
         <Form.Control.Feedback type="invalid">
           Please include your email address.
@@ -134,7 +149,7 @@ function AddReviewModalForm() {
 
       {/* Review body textbox */}
       <Form.Group controlId="exampleForm.ControlTextarea1">
-        <Form.Label>* Review Body (limit of 1,000 characters)</Form.Label>
+        <Form.Label>* Review Body (min 50 characters, limit of 1,000 characters)</Form.Label>
         <Form.Control
           name="body"
           as="textarea"
@@ -150,14 +165,55 @@ function AddReviewModalForm() {
       </Form.Group>
 
       {/* Upload photos */}
-      <h6>Upload your photos:</h6>
+
+      {/* Rate the characteristics */}
+      <Form.Group controlId="characteristicsRadios">
+        {Object.keys(meta['characteristics']).map((characteristic) => (
+          <RadioButtons key={characteristic} characteristic={characteristic} />
+        ))}
+      </Form.Group>
+
+      {/* Recommend the product? */}
+      <Form.Group required >
+        <h6>* Would you recommend this product?</h6>
+        <Form required >
+          <Form.Check
+            inline label="True"
+            name='recommend'
+            type='radio' onChange={recommendChangeHandler} value='True' />
+          <Form.Check
+            inline label="False"
+            name='recommend'
+            type='radio' onChange={recommendChangeHandler} value='False' />
+        </ Form>
+      </Form.Group>
+
+
+      {/* <Form.Group controlId="formBasicCheckbox">
+        <Form.Check type="checkbox" label="Check me out" />
+      </Form.Group> */}
+
+      <Button
+        variant="primary"
+        type="submit"
+        // onClick={handleCloseModalClick}
+      >
+           Submit review!
+      </Button>
+    </Form>
+  );
+}
+
+export default AddReviewModalForm;
+{/*
+<h6>Upload your photos:</h6>
       <Form.Group>
-        {/* <Form.File
+        <Form.File
           name="0"
           id="exampleFormControlFile1"
           label="Upload your photo"
           onChange={photosChangeHandler}
-        /> */}
+        />
         <Form.Control
           type="file"
           name="0"
@@ -198,31 +254,6 @@ function AddReviewModalForm() {
           onChange={photosChangeHandler} />
         <Image src={newReview['photos'][4]} thumbnail width={171} height={180}/>
 
-        {/* <Form.Control name="photos" onChange={photosChangeHandler} /> */}
+        <Form.Control name="photos" onChange={photosChangeHandler} />
 
-      </Form.Group>
-
-      {/* Rate the characteristics */}
-      <Form.Group controlId="characteristicsRadios">
-        {Object.keys(meta['characteristics']).map((characteristic) => (
-          <RadioButtons key={characteristic} characteristic={characteristic} />
-        ))}
-      </Form.Group>
-
-
-      {/* <Form.Group controlId="formBasicCheckbox">
-        <Form.Check type="checkbox" label="Check me out" />
-      </Form.Group> */}
-
-      <Button
-        variant="primary"
-        type="submit"
-        // onClick={handleCloseModalClick}
-      >
-           Submit review!
-      </Button>
-    </Form>
-  );
-}
-
-export default AddReviewModalForm;
+</Form.Group> */}

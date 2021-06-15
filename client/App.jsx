@@ -23,12 +23,12 @@ function App() {
     useState({
       'product_id': currentId,
       'rating': null,
-      'summary': null,
-      'name': null,
-      'body': null,
+      'summary': '',
+      'name': '',
+      'body': '',
       'recommend': null,
       'email': null,
-      'photos': Array(5).fill(null),
+      'photos': [],
       'characteristics': {},
     });
 

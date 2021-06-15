@@ -9,7 +9,7 @@ function RadioButtons({characteristic}) {
     // create shallow copy of obj storage
     const newCharacteristics = {...newReview.characteristics};
     // re-assign new copy's values to form fields
-    newCharacteristics[event.target.name] = event.target.value;
+    newCharacteristics[event.target.name] = parseInt(event.target.value);
     // merge this new copy with current state's characteristics obj
     updateNewReview({...newReview,
       'characteristics': newCharacteristics});

@@ -27,7 +27,8 @@ module.exports = {
   },
 
   postReview: function(req, res) {
-    // console.log('req params====', req.body);
+    console.log('req body server side====', req.body);
+    console.log('req server side====', req);
     api.sendAPIRequest(`/reviews/`, 'POST',
         (err, result) => {
           if (err) {
