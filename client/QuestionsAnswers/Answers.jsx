@@ -12,7 +12,6 @@ const paragraphStyle = {
 function Answers({answer}) {
   return (
     <li>
-      {console.log('from answer comp...', answer)}
       <p style={{marginLeft: 20, marginBottom: 5}}>{answer.body}</p>
       <p style={paragraphStyle}>
         {`by ${answer.answerer_name},

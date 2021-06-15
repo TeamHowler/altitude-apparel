@@ -42,7 +42,6 @@ function Size() {
               return <Dropdown.Item key={item.sku}>{item.size}
               </Dropdown.Item>;
             })}
-            {console.log(skuArr)}
             <Dropdown.Item></Dropdown.Item>
           </Dropdown.Menu>
         </Dropdown> <Dropdown >
@@ -55,7 +54,6 @@ function Size() {
                 key={item.sku}>{item.quantity}
               </Dropdown.Item>;
             })}
-            {console.log(skuArr)}
             <Dropdown.Item></Dropdown.Item>
           </Dropdown.Menu>
         </Dropdown>

@@ -2,11 +2,10 @@ import React from 'react';
 import Answers from './Answers.jsx';
 import {Row, Col, Image, FormControl} from 'react-bootstrap';
 import {ProductContext} from '../context.js';
-import {qHelpfulStyle, ulStyle} from './qastyle.jsx';
+import {qHelpfulStyle, ulStyle} from './QAstyle.jsx';
 
 
 function QuestionsList({question}) {
-  {console.log('QuestionsList', question);}
   const answers = Object.values(question.answers);
   const firstAnswer = answers[0];
   return (
