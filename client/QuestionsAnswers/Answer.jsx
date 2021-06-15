@@ -14,8 +14,7 @@ function Answer({answer}) {
         <Col style={qaMetaStyle}>{`by ${answer.answerer_name},
         ${moment(answer.date).format('MMMM Do YYYY')}
         | Helpful? Yes (${answer.helpfulness})
-        | Report`}
-        </Col>
+        | Report`}</Col>
       </Row>
     </Container>
   );
