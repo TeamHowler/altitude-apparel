@@ -1,11 +1,12 @@
 /* eslint-disable guard-for-in */
-import React, {useContext} from 'react';
+import React, {useContext, useState} from 'react';
 import {ProductContext} from '../context.js';
-import {Dropdown} from 'react-bootstrap';
+import {Col, Row} from 'react-bootstrap';
 
 function Size() {
-  const {currentStyle} =
+  const {currentStyle, currentSize, updateSize, currentQuant, updateQuant} =
      useContext(ProductContext);
+  const [size, updateTempSize] = useState('');
   const skuArr = [];
 
   if (currentStyle === undefined) {
@@ -19,45 +20,53 @@ function Size() {
         newObj.sku = keys;
         newObj.size = currentStyle.skus[keys].size;
         newObj.quantity = currentStyle.skus[keys].quantity;
-        skuArr.push(newObj);
+        if (skuArr.indexOf(newObj.size) < 0) {
+          skuArr.push(newObj);
+        };
       }
+      console.log(currentStyle.skus);
+      console.log(skuArr);
     }
     return (
-      <>
-        <style type="text/css">
-          {`
+      <Row className='mb-3'>
+        <Col>
+          <style type="text/css">
+            {`
               #customDrop {
                 background-color: #f3f7f0;
                 border-color: transparent;
                 color: black;
               }
             `}
-        </style>
-        <Dropdown >
-          <Dropdown.Toggle id="customDrop">
-                    Select A Size
-          </Dropdown.Toggle>
-          <Dropdown.Menu m={5}>
+          </style>
+          <select name='size' id='customDrop' style={{height: '2rem'}}
+            onChange={(e) => {
+              console.log(e.target.key);
+            }}>
+            <option>Select A Size</option>
             {skuArr.map((item) => {
-              return <Dropdown.Item key={item.sku}>{item.size}
-              </Dropdown.Item>;
+              return <option
+                key={item.sku}>{item.size}
+              </option>;
             })}
-            <Dropdown.Item></Dropdown.Item>
-          </Dropdown.Menu>
-        </Dropdown> <Dropdown >
-          <Dropdown.Toggle id="customDrop">
-                        1
-          </Dropdown.Toggle>
-          <Dropdown.Menu>
-            {skuArr.map((item) => {
-              return <Dropdown.Item
-                key={item.sku}>{item.quantity}
-              </Dropdown.Item>;
-            })}
-            <Dropdown.Item></Dropdown.Item>
-          </Dropdown.Menu>
-        </Dropdown>
-      </>
+          </select>
+
+        </Col>
+        <Col>
+          <select id='customDrop' style={{height: '2rem'}}>
+            <option>1</option>
+            <option>2</option>
+            <option>3</option>
+            <option>4</option>
+            <option>5</option>
+            <option>6</option>
+            <option>7</option>
+            <option>8</option>
+            <option>9</option>
+            <option>10</option>
+          </select>
+        </Col>
+      </Row>
     );
   }
 }

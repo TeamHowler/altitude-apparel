@@ -10,16 +10,17 @@ function Thumbnails() {
   } else {
     return (
       <Container>
-        {/* <p>Style: {currentStyle.name}</p> */}
-        <Row xs={6}>
+        <Row>
+          {/* <p>Style: {currentStyle.name}</p> */}
           {styles.results.map((result) => {
-            return (<Image src={result.photos[0].thumbnail_url}
-              key={result.style_id} roundedCircle thumbnail
+            return (<img src={result.photos[0].thumbnail_url}
+              key={result.style_id}
               onClick={(e) => {
                 e.preventDefault();
                 updateCurrentStyle(result);
                 updateDefault(false);
-              }}/>);
+              }} style={{borderRadius: '50%', height: '4rem',
+                width: '4rem', margin: '5px'}}/>);
           })
           }
         </Row>

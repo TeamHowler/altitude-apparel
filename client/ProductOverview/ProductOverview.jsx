@@ -45,13 +45,13 @@ function ProductOverview() {
     return (
       <Container style={{background: '#f3f7f0', padding: '2rem'}}>
         <Row className="mb-3">
-          <Col style={{height: 'auto'}}>
-            <Card style={{height: '30rem'}}>
+          <Col style={{height: 'auto', width: '50%'}}>
+            <Card style={{height: '30rem', width: '100%'}}>
               <Card.Body>
                 <CarouselComponent />
                 <Card.ImgOverlay style={{textAlign: 'right',
-                  marginRight: '4rem'}}>
-                  <span style={{color: 'green'}} onClick={(e) => {
+                  margin: '1rem', zIndex: '100', height: '1rem'}}>
+                  <span style={{color: 'grey'}} onClick={(e) => {
                     e.preventDefault();
                     setModalShow(true);
                   }}><i className="fas fa-expand fa-2x"></i></span>
