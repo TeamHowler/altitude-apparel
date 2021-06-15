@@ -41,7 +41,7 @@ function Size() {
           </style>
           <select name='size' id='customDrop' style={{height: '2rem'}}
             onChange={(e) => {
-              console.log(e.target.index);
+              console.log(e.target.key);
             }}>
             <option>Select A Size</option>
             {skuArr.map((item) => {
@@ -65,7 +65,6 @@ function Size() {
             <option>9</option>
             <option>10</option>
           </select>
-
         </Col>
       </Row>
     );

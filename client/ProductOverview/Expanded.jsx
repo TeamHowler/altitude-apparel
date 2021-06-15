@@ -18,7 +18,7 @@ function Expanded(props) {
       }}>
       </Modal.Header>
       <Modal.Body>
-        <Container style={{height: '45rem', width: '45rem'}}>
+        <Container style={{height: '45rem', width: 'auto'}}>
           <CarouselComponent />
         </Container>
       </Modal.Body>
