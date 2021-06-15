@@ -28,7 +28,7 @@ function App() {
       'body': null,
       'recommend': null,
       'email': null,
-      'photos': [],
+      'photos': Array(5).fill(null),
       'characteristics': {},
     });
 

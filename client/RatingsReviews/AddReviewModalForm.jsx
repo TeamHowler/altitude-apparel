@@ -1,7 +1,7 @@
-import React, {useState, useContext} from 'react';
+import React, {useState, useContext, useEffect} from 'react';
 // import axios from 'axios';
 import {ProductContext} from '../context.js';
-import {Button, Form} from 'react-bootstrap/';
+import {Button, Form, Image} from 'react-bootstrap/';
 import StarRatingComponent from 'react-star-rating-component';
 import RadioButtons from './RadioButtons.jsx';
 
@@ -33,15 +33,25 @@ function AddReviewModalForm() {
       event.preventDefault();
       event.stopPropagation();
     }
-    console.log('new review after form submit====', newReview);
-    updateNewReview({...newReview, rating: newReviewRating});
     setValidated(true);
   };
 
+  function photosChangeHandler(event) {
+    // create shallow copy of photo arr storage
+    const newPhotos = newReview.photos.slice();
+    // add new photo to shallow copy storage
+    newPhotos[parseInt(event.target.name)] = URL.createObjectURL(event.target.files[0]);
+    // newPhotos.push();
+    // merge this new copy with current state's photos arr
+    updateNewReview({...newReview, 'photos': newPhotos});
+  };
+
   function changeHandler(event) {
-    console.log('event name===', event.target.name);
-    console.log('event value====', event.target.value);
     updateNewReview({...newReview, [event.target.name]: event.target.value});
+  };
+
+  function starChangeHandler(event) {
+    updateNewReview({...newReview, 'rating': newReviewRating});
   };
 
   const starValues = {
@@ -53,6 +63,10 @@ function AddReviewModalForm() {
   };
 
   const starExplanation = starValues[JSON.stringify(newReviewRating)];
+
+  useEffect(() => {
+    starChangeHandler();
+  }, [newReviewRating]);
 
   return (
     <Form className="needs-validation" noValidate validated={validated} onSubmit={handleReviewSubmit}>
@@ -136,19 +150,60 @@ function AddReviewModalForm() {
       </Form.Group>
 
       {/* Upload photos */}
+      <h6>Upload your photos:</h6>
       <Form.Group>
-        <Form.File
-          name="photos"
+        {/* <Form.File
+          name="0"
           id="exampleFormControlFile1"
-          label="Upload your photos"
-          onChange={(event) => (newReview.photos.push(event.target.data))}
-        />
-        <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+          label="Upload your photo"
+          onChange={photosChangeHandler}
+        /> */}
+        <Form.Control
+          type="file"
+          name="0"
+          id="exampleFormControlFile1"
+          label="Upload your photo"
+          onChange={photosChangeHandler} />
+        <Image src={newReview['photos'][0]} thumbnail width={171} height={180}/>
+
+        <Form.Control
+          type="file"
+          name="1"
+          id="exampleFormControlFile1"
+          label="Upload your photo"
+          onChange={photosChangeHandler} />
+        <Image src={newReview['photos'][1]} thumbnail width={171} height={180}/>
+
+        <Form.Control
+          type="file"
+          name="2"
+          id="exampleFormControlFile1"
+          label="Upload your photo"
+          onChange={photosChangeHandler} />
+        <Image src={newReview['photos'][2]} thumbnail width={171} height={180}/>
+
+        <Form.Control
+          type="file"
+          name="3"
+          id="exampleFormControlFile1"
+          label="Upload your photo"
+          onChange={photosChangeHandler} />
+        <Image src={newReview['photos'][3]} thumbnail width={171} height={180}/>
+
+        <Form.Control
+          type="file"
+          name="4"
+          id="exampleFormControlFile1"
+          label="Upload your photo"
+          onChange={photosChangeHandler} />
+        <Image src={newReview['photos'][4]} thumbnail width={171} height={180}/>
+
+        {/* <Form.Control name="photos" onChange={photosChangeHandler} /> */}
+
       </Form.Group>
 
       {/* Rate the characteristics */}
       <Form.Group controlId="characteristicsRadios">
-        {console.log('meta characteristics====', Object.keys(meta['characteristics']))}
         {Object.keys(meta['characteristics']).map((characteristic) => (
           <RadioButtons key={characteristic} characteristic={characteristic} />
         ))}
