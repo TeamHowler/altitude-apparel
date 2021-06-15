@@ -6,6 +6,10 @@ import {QAfont, ulStyle} from './QAstyle.jsx';
 import {Route} from 'react-router';
 
 function AnswerList({answers}) {
+  // sort answers by most helpful
+  answers = answers.sort(
+      ({helpfulness: a},
+          {helpfulness: b}) => b-a);
   return (
     <div>
       <Row>
