@@ -39,36 +39,6 @@ function Size() {
               }
             `}
           </style>
-<<<<<<< HEAD
-          <Dropdown >
-            <Dropdown.Toggle id="customDrop">
-                    Select A Size
-            </Dropdown.Toggle>
-            <Dropdown.Menu m={5}>
-              {skuArr.map((item) => {
-                return <Dropdown.Item key={item.sku}>{item.size}
-                </Dropdown.Item>;
-              })}
-              {/* {console.log(skuArr)} */}
-              <Dropdown.Item></Dropdown.Item>
-            </Dropdown.Menu>
-          </Dropdown>
-          <Dropdown >
-            <Dropdown.Toggle id="customDrop">
-                        1
-            </Dropdown.Toggle>
-            <Dropdown.Menu>
-              {skuArr.map((item) => {
-                return <Dropdown.Item
-                  key={item.sku}>{item.quantity}
-                </Dropdown.Item>;
-              })}
-              {/* {console.log(skuArr)} */}
-              <Dropdown.Item></Dropdown.Item>
-            </Dropdown.Menu>
-          </Dropdown>
-        </>
-=======
           <select name='size' id='customDrop' style={{height: '2rem'}}
             onChange={(e) => {
               console.log(e.target.key);
@@ -96,7 +66,6 @@ function Size() {
             <option>10</option>
           </select>
         </Col>
->>>>>>> c6627b1923e3a1f39d673dbaeaa15433abf3d0a1
       </Row>
     );
   }
