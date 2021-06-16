@@ -22,6 +22,11 @@ const qaStyle = {
   marginTop: 0,
 };
 
+const qaSection = {
+  backgroundColor: '#F3F7EF',
+  padding: 5,
+};
+
 const QAfont = {
   fontWeight: 'bold',
   fontSize: 16,
@@ -51,4 +56,5 @@ module.exports = {
   QAfont: QAfont,
   Afont: Afont,
   Qfont: Qfont,
+  qaSection: qaSection,
 };
