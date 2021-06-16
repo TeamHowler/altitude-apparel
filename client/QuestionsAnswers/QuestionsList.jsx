@@ -1,25 +1,35 @@
-import React from 'react';
+import React, {useState} from 'react';
 import PropTypes from 'prop-types';
 import Question from './Question.jsx';
-import {Container} from 'react-bootstrap';
+import {Container, Button} from 'react-bootstrap';
 import {ulStyle} from './QAstyle.jsx';
 
 function QuestionsList({questions}) {
-  // sort questions by most helpful
-  questions = questions.sort(
+  const sortedQuestions = questions.sort(
       ({question_helpfulness: a},
           {question_helpfulness: b}) => b-a);
+  const firstTwoQuestions = sortedQuestions.slice(0, 2);
+  const [moreQuestions, setMoreQuestions] = useState(false);
+  let renderQs;
 
-  const firstTwoQuestions = questions.slice(0, 2);
+  if (moreQuestions) {
+    renderQs = sortedQuestions;
+  } else {
+    renderQs = firstTwoQuestions;
+  }
 
   return (
     <Container style={ulStyle}>
-      {questions.map((question) =>
+      {renderQs.map((question) =>
         <Question
           key={question.question_id}
           question={question}
         />,
       )}
+
+      <Button onClick={() => setMoreQuestions(!moreQuestions)}
+        variant="outline-secondary">Load More Questions</Button>{' '}
+      <Button variant="outline-secondary">Add a Question</Button>
     </Container>
   );
 }
