@@ -8,4 +8,6 @@ reviewRouter.get('/:product_id', reviews.getAll);
 
 reviewRouter.get('/meta/:product_id', reviews.getMeta);
 
+reviewRouter.post('/', reviews.postReview);
+
 module.exports = reviewRouter;

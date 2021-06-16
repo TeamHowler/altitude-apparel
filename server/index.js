@@ -12,7 +12,7 @@ app.use(bodyParser.json());
 
 // Set up our routes
 app.use('/products', productRouter);
-app.use('/reviews/', reviewRouter);
+app.use('/reviews', reviewRouter);
 app.use('/qa/questions/', questionRouter);
 
 
