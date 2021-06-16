@@ -24,8 +24,6 @@ function Size() {
           skuArr.push(newObj);
         };
       }
-      console.log(currentStyle.skus);
-      console.log(skuArr);
     }
     return (
       <Row className='mb-3'>
