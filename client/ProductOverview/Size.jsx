@@ -23,9 +23,7 @@ function Size() {
         if (skuArr.indexOf(newObj.size) < 0) {
           skuArr.push(newObj);
         };
-      }
-      console.log(currentStyle.skus);
-      console.log(skuArr);
+      };
     }
     return (
       <Row className='mb-3'>
@@ -36,34 +34,29 @@ function Size() {
                 background-color: #f3f7f0;
                 border-color: transparent;
                 color: black;
+                height: 2rem
               }
             `}
           </style>
-          <select name='size' id='customDrop' style={{height: '2rem'}}
+          <select name='size' id='customDrop'
             onChange={(e) => {
-              console.log(e.target.key);
+              const sizeItem = document.getElementById('sizeItem');
+              updateSize(Number(sizeItem.getAttribute('sku')));
             }}>
             <option>Select A Size</option>
             {skuArr.map((item) => {
-              return <option
+              return <option id={item.sku} sku={item.sku}
                 key={item.sku}>{item.size}
+                {console.log(item.sku)}
               </option>;
             })}
           </select>
-
         </Col>
         <Col>
-          <select id='customDrop' style={{height: '2rem'}}>
-            <option>1</option>
-            <option>2</option>
-            <option>3</option>
-            <option>4</option>
-            <option>5</option>
-            <option>6</option>
-            <option>7</option>
-            <option>8</option>
-            <option>9</option>
-            <option>10</option>
+          <select id="customDrop">
+            {currentSize ? <option>
+              {currentStyle.skus[currentSize].quantity}</option> :
+           <option>select a size</option>}
           </select>
         </Col>
       </Row>

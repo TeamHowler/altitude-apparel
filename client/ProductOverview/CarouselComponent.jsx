@@ -26,7 +26,7 @@ function CarouselComponent() {
       }
         `}
         </style>
-        <Carousel showThumbs={true} interval={null} style={{width: '100%'}}>
+        <Carousel interval={null} style={{width: '100%'}}>
           {currentStyle.photos.map((image) => {
             return (
               <Carousel.Item style={{textAlign: 'center'}}

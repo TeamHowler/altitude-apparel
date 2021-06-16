@@ -45,8 +45,8 @@ function ProductOverview() {
     return (
       <Container style={{background: '#f3f7f0', padding: '2rem'}}>
         <Row className="mb-3">
-          <Col style={{height: 'auto', width: '50%'}}>
-            <Card style={{height: '30rem', width: '100%'}}>
+          <Col style={{height: 'auto', width: '100%'}}>
+            <Card style={{height: '30rem', width: '25rem'}}>
               <Card.Body>
                 <CarouselComponent />
                 <Card.ImgOverlay style={{textAlign: 'right',
@@ -59,7 +59,7 @@ function ProductOverview() {
               </Card.Body>
             </Card>
           </Col>
-          <Col>
+          <Col style={{height: 'auto', width: '100%'}}>
             <ProductInfo />
           </Col>
         </Row>
