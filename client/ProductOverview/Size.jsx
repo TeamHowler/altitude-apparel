@@ -27,6 +27,7 @@ function Size() {
     }
     return (
       <Row className='mb-3'>
+        {console.log('hello')}
         <Col>
           <style type="text/css">
             {`
@@ -45,7 +46,7 @@ function Size() {
             }}>
             <option>Select A Size</option>
             {skuArr.map((item) => {
-              return <option id={item.sku} sku={item.sku}
+              return <option id='sizeItem' sku={item.sku}
                 key={item.sku}>{item.size}
                 {console.log(item.sku)}
               </option>;
