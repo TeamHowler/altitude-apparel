@@ -3,6 +3,8 @@ import {ProductContext} from '../context.js';
 import axios from 'axios';
 import SearchQuestions from './SearchQuestions.jsx';
 import QuestionsList from './QuestionsList.jsx';
+import {qaSection} from './QAstyle.jsx';
+import {Container} from 'react-bootstrap';
 
 
 function QuestionsAnswers() {
@@ -26,11 +28,12 @@ function QuestionsAnswers() {
   }, [currentProduct]);
 
   return (
-    <section id="QuestionsAndAnswers">
-      <h3>Questions and Answers</h3>
-      <SearchQuestions />
-      <QuestionsList questions={questions}/>
-
+    <section id="QuestionsAndAnswers" style={qaSection}>
+      <Container>
+        <h3>Questions and Answers</h3>
+        <SearchQuestions />
+        <QuestionsList questions={questions}/>
+      </Container>
     </section>
   );
 };
