@@ -23,7 +23,7 @@ function ProductInfo() {
   } else {
     return (
 
-      <Card style={{height: '30rem'}}>
+      <Card style={{height: '30rem', width: '25rem'}}>
         <Card.Body>
           <Col>
             <Row style={{height: '1rem', marginBottom: '10px'}}>

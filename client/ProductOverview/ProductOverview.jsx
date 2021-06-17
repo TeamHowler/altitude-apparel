@@ -4,6 +4,7 @@ import {Container, Col, Row, Card} from 'react-bootstrap';
 import CarouselComponent from './CarouselComponent.jsx';
 import axios from 'axios';
 import ProductInfo from './ProductInfo.jsx';
+import CarouselOverlay from './CarouselOverlay.jsx';
 
 
 function ProductOverview() {
@@ -38,6 +39,7 @@ function ProductOverview() {
     if (defaultStyle) {
       styles.results.forEach((result) => {
         if (result['default?']) {
+          console.log(result);
           updateCurrentStyle(result);
         }
       });
@@ -45,10 +47,9 @@ function ProductOverview() {
     return (
       <Container style={{background: '#f3f7f0', padding: '2rem'}}>
         <Row className="mb-3">
-          <Col style={{height: 'auto', width: '50%'}}>
-            <Card style={{height: '30rem', width: '100%'}}>
+          <Col style={{height: 'auto', width: '25rem'}}>
+            <Card style={{height: '30rem', width: '25rem', overflow: 'hidden'}}>
               <Card.Body>
-                <CarouselComponent />
                 <Card.ImgOverlay style={{textAlign: 'right',
                   margin: '1rem', zIndex: '100', height: '1rem'}}>
                   <span style={{color: 'grey'}} onClick={(e) => {
@@ -56,14 +57,16 @@ function ProductOverview() {
                     setModalShow(true);
                   }}><i className="fas fa-expand fa-2x"></i></span>
                 </Card.ImgOverlay>
+                <CarouselComponent />
+                <CarouselOverlay />
               </Card.Body>
             </Card>
           </Col>
-          <Col>
+          <Col style={{height: 'auto', width: '25rem'}}>
             <ProductInfo />
           </Col>
         </Row>
-        <Card style={{height: '10rem', width: '100%'}}><Card.Body>
+        <Card style={{height: '10rem'}}><Card.Body>
           <h3>{currentProduct.slogan}</h3>
           <p>{currentProduct.description}</p>
         </Card.Body></Card>

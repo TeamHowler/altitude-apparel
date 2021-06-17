@@ -98,7 +98,7 @@ function RatingsAndReviews() {
           </Col>
 
           {/* Reviews: */}
-          <Col style={{background: 'lightblue'}} md={8} id="reviewTilesScroll">
+          <Col style={{background: '#f3f7f0'}} md={8} id="reviewTilesScroll">
             {/* Reviews Heading with Dropdown: */}
             <style type="text/css">
               {`
