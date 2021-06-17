@@ -46,6 +46,10 @@ const answerStyle = {
   marginBottom: 20,
 };
 
+const mL23 = {
+  marginLeft: 23,
+};
+
 const pL17 = {
   paddingLeft: 17,
 };
@@ -66,6 +70,7 @@ module.exports = {
   Afont: Afont,
   Qfont: Qfont,
   qaSection: qaSection,
+  mL23: mL23,
   pL17: pL17,
   blackUnderline: blackUnderline,
 };

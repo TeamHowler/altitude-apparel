@@ -1,19 +1,32 @@
 import React, {useState} from 'react';
 import PropTypes from 'prop-types';
 import Answer from './Answer.jsx';
-import {Row, Col, Container, Button} from 'react-bootstrap';
-import {pL17, QAfont, ulStyle, blackUnderline} from './QAstyle.jsx';
+import {Row, Col, Button} from 'react-bootstrap';
+import {mL23, QAfont, blackUnderline} from './QAstyle.jsx';
 
 function AnswerList({answers}) {
   const sortedAnswers = answers.sort(
       ({helpfulness: a},
           {helpfulness: b}) => b-a);
   const firstTwoAnswers = sortedAnswers.slice(0, 2);
-  const [moreAnswers, setMoreAnswers] = useState(false);
+  const [moreAnswers, loadMoreAnswers] = useState(false);
   let currentAnswers;
 
   moreAnswers ? currentAnswers = sortedAnswers :
   currentAnswers = firstTwoAnswers;
+
+  const renderButton = () => {
+    if ( sortedAnswers.length > 2 ) {
+      return <Button
+        className="shadow-none"
+        variant="link"
+        style={blackUnderline}
+        onClick={() =>
+          loadMoreAnswers(!moreAnswers)}>
+            Load more answers</Button>;
+    }
+  };
+
   return (
     <div>
       <Row>
@@ -27,17 +40,8 @@ function AnswerList({answers}) {
           )}</Col>
       </Row>
       <Row>
-        <Col style={pL17} sm={.5}>
-
-        </Col>
-        <Col lg={24}>
-          <Button
-            variant="link"
-            style={blackUnderline}
-            onClick={() =>
-              setMoreAnswers(!moreAnswers)}>
-            Load more answers</Button>
-        </Col>
+        <Col style={mL23} sm={.5}> </Col>
+        <Col lg={24}>{renderButton()}</Col>
       </Row>
 
     </div>

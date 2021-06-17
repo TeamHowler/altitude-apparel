@@ -1,8 +1,8 @@
 import React, {useState} from 'react';
 import PropTypes from 'prop-types';
 import Question from './Question.jsx';
-import {Container, Button, Row} from 'react-bootstrap';
-import {ulStyle, pL17} from './QAstyle.jsx';
+import {Container, Button, Row, Col} from 'react-bootstrap';
+import {ulStyle, mL23, pL17} from './QAstyle.jsx';
 
 function QuestionsList({questions}) {
   const sortedQuestions = questions.sort(
@@ -15,6 +15,8 @@ function QuestionsList({questions}) {
   moreQuestions ? currentQuestions = sortedQuestions :
   currentQuestions = firstTwoQuestions;
 
+
+
   return (
     <Container style={ulStyle}>
       {currentQuestions.map((question) =>
@@ -24,9 +26,16 @@ function QuestionsList({questions}) {
         />,
       )}
       <Row style={pL17}>
-        <Button style={pL17}onClick={() => setMoreQuestions(!moreQuestions)}
-          variant="outline-dark">Load More Questions</Button>{' '}
-        <Button variant="outline-dark">Add a Question</Button>
+        <Button
+          style={mL23}
+          className="shadow-none"
+          onClick={() => setMoreQuestions(!moreQuestions)}
+          variant="outline-dark">Load More Questions</Button>
+        <Button
+          style={mL23}
+          className="shadow-none"
+          variant="outline-dark">
+          Add a Question</Button>
       </Row>
 
     </Container>
