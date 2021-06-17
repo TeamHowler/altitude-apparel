@@ -1,7 +1,7 @@
 const axios = require('axios');
 const config = require('../config.js');
 
-const sendAPIRequest = (addtlUrlPath, reqMethod, callback) => {
+const sendAPIRequest = (addtlUrlPath, reqMethod, callback, reqBody) => {
 // console.log('args in api req helper====', addtlUrlPath, reqMethod, callback);
   const options = {
     method: reqMethod,
@@ -11,6 +11,7 @@ const sendAPIRequest = (addtlUrlPath, reqMethod, callback) => {
       'User-Agent': 'request',
       'Authorization': `${config.TOKEN}`,
     },
+    data: reqBody,
   };
   // console.log('options in helper=====', options);
   axios(options)

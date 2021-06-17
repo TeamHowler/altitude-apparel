@@ -22,6 +22,11 @@ const qaStyle = {
   marginTop: 0,
 };
 
+const qaSection = {
+  backgroundColor: '#F3F7EF',
+  padding: 5,
+};
+
 const QAfont = {
   fontWeight: 'bold',
   fontSize: 16,
@@ -41,6 +46,19 @@ const answerStyle = {
   marginBottom: 20,
 };
 
+const mL23 = {
+  marginLeft: 23,
+};
+
+const pL17 = {
+  paddingLeft: 17,
+};
+
+const blackUnderline = {
+  color: 'black',
+  textDecorationLine: 'underline',
+};
+
 
 module.exports = {
   ulStyle: ulStyle,
@@ -51,4 +69,8 @@ module.exports = {
   QAfont: QAfont,
   Afont: Afont,
   Qfont: Qfont,
+  qaSection: qaSection,
+  mL23: mL23,
+  pL17: pL17,
+  blackUnderline: blackUnderline,
 };

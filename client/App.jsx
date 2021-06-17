@@ -19,6 +19,20 @@ function App() {
   const [rating, updateRating] = useState(0);
   const [count, updateCount] = useState(0);
   const [clickCount, updateClickCount] = useState(1);
+  const [modalShow, setReviewModalShow] = useState(false);
+  const [meta, setMeta] = useState([]);
+  const [newReview, updateNewReview] =
+    useState({
+      'product_id': currentId,
+      'rating': null,
+      'summary': '',
+      'name': '',
+      'body': '',
+      'recommend': null,
+      'email': null,
+      'photos': [],
+      'characteristics': {},
+    });
   const [showModal, setModalShow] = useState(false);
   const [currentSize, updateSize] = useState('');
   const [currentQuant, updateQuant] = useState(0);
@@ -57,6 +71,12 @@ function App() {
       updateCount,
       clickCount,
       updateClickCount,
+      modalShow,
+      setReviewModalShow,
+      meta,
+      setMeta,
+      newReview,
+      updateNewReview,
       currentId,
       showModal,
       setModalShow,
