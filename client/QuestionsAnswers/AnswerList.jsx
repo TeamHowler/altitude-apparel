@@ -4,16 +4,16 @@ import Answer from './Answer.jsx';
 import {Row, Col, Button} from 'react-bootstrap';
 import {mL23, QAfont, blackUnderline} from './QAstyle.jsx';
 
-function AnswerList({answers}) {
-  const sortedAnswers = answers.sort(
+function AnswerList({answerList}) {
+  const sortedAnswers = answerList.sort(
       ({helpfulness: a},
           {helpfulness: b}) => b-a);
   const firstTwoAnswers = sortedAnswers.slice(0, 2);
   const [moreAnswers, loadMoreAnswers] = useState(false);
-  let currentAnswers;
+  let answers;
 
-  moreAnswers ? currentAnswers = sortedAnswers :
-  currentAnswers = firstTwoAnswers;
+  moreAnswers ? answers = sortedAnswers :
+  answers = firstTwoAnswers;
 
   const renderButton = () => {
     if ( sortedAnswers.length > 2 ) {
@@ -32,7 +32,7 @@ function AnswerList({answers}) {
       <Row>
         <Col sm={.5} style={QAfont}>A: </Col>
         <Col lg={24}>
-          {currentAnswers.map((answer) =>
+          {answers.map((answer) =>
             <Answer
               key={answer.id}
               answer={answer}

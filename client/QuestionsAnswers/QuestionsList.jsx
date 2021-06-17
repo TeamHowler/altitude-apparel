@@ -4,22 +4,22 @@ import Question from './Question.jsx';
 import {Container, Button, Row, Col} from 'react-bootstrap';
 import {ulStyle, mL23, pL17} from './QAstyle.jsx';
 
-function QuestionsList({questions}) {
-  const sortedQuestions = questions.sort(
+function QuestionsList({questionList}) {
+  const sortedQuestions = questionList.sort(
       ({question_helpfulness: a},
           {question_helpfulness: b}) => b-a);
   const firstTwoQuestions = sortedQuestions.slice(0, 2);
   const [moreQuestions, setMoreQuestions] = useState(false);
-  let currentQuestions;
+  let questions;
 
-  moreQuestions ? currentQuestions = sortedQuestions :
-  currentQuestions = firstTwoQuestions;
+  moreQuestions ? questions = sortedQuestions :
+  questions = firstTwoQuestions;
 
 
 
   return (
     <Container style={ulStyle}>
-      {currentQuestions.map((question) =>
+      {questions.map((question) =>
         <Question
           key={question.question_id}
           question={question}
@@ -43,7 +43,7 @@ function QuestionsList({questions}) {
 }
 
 QuestionsList.propTypes = {
-  questions: PropTypes.array,
+  questionList: PropTypes.array,
 };
 
 export default QuestionsList;
