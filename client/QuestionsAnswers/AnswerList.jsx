@@ -1,8 +1,8 @@
 import React, {useState} from 'react';
 import PropTypes from 'prop-types';
 import Answer from './Answer.jsx';
-import {Row, Col, Container, Button} from 'react-bootstrap';
-import {pL17, QAfont, ulStyle, blackUnderline} from './QAstyle.jsx';
+import {Row, Col, Button} from 'react-bootstrap';
+import {mL23, QAfont, blackUnderline} from './QAstyle.jsx';
 
 function AnswerList({answers}) {
   const sortedAnswers = answers.sort(
@@ -18,6 +18,7 @@ function AnswerList({answers}) {
   const renderButton = () => {
     if ( sortedAnswers.length > 2 ) {
       return <Button
+        className="shadow-none"
         variant="link"
         style={blackUnderline}
         onClick={() =>
@@ -39,7 +40,7 @@ function AnswerList({answers}) {
           )}</Col>
       </Row>
       <Row>
-        <Col style={pL17} sm={.5}> </Col>
+        <Col style={mL23} sm={.5}> </Col>
         <Col lg={24}>{renderButton()}</Col>
       </Row>
 
