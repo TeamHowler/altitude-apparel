@@ -4,8 +4,7 @@ import {ProductContext} from '../context.js';
 import {Carousel} from 'react-bootstrap';
 
 function CarouselComponent() {
-  const {currentStyle} =
-   useContext(ProductContext);
+  const {currentStyle} = useContext(ProductContext);
 
 
   if (currentStyle === undefined) {
