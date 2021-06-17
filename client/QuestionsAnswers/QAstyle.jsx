@@ -46,6 +46,15 @@ const answerStyle = {
   marginBottom: 20,
 };
 
+const pL17 = {
+  paddingLeft: 17,
+};
+
+const blackUnderline = {
+  color: 'black',
+  textDecorationLine: 'underline',
+};
+
 
 module.exports = {
   ulStyle: ulStyle,
@@ -57,4 +66,6 @@ module.exports = {
   Afont: Afont,
   Qfont: Qfont,
   qaSection: qaSection,
+  pL17: pL17,
+  blackUnderline: blackUnderline,
 };
