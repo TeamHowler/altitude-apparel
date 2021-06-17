@@ -4,14 +4,6 @@ const app = require('../../server/server.js');
 const url = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-bld';
 const config = require('../../config.js');
 
-// import {
-//   getAll,
-//   getOne,
-//   getPictures,
-//   getStyles,
-//   getRelated,
-// } from '../../server/controllers/products.js';
-
 jest.mock('axios');
 const request = supertest(app);
 
