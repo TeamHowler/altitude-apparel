@@ -11,6 +11,6 @@ router.get('/:product_id', products.getOne);
 
 router.get('/:product_id/styles', products.getStyles);
 
-router.get('/:product_id/styles/results/:style_id', products.getPictures);
+// router.get('/:product_id/styles/results/:style_id', products.getPictures);
 
 module.exports = router;

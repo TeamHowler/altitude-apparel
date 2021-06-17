@@ -6,7 +6,7 @@ module.exports = {
     api.sendAPIRequest(`/qa/questions/?product_id=${id}`, 'GET',
         (err, result) => {
           if (err) {
-            console.log('err in app.get questions.js line 9====', err);
+            // console.log('err in app.get questions.js line 9====', err);
             res.send(err);
           } else {
             res.send(result);
@@ -19,7 +19,7 @@ module.exports = {
     api.sendAPIRequest(`/qa/questions/${questionId}/answers/?count=10`,
         'GET', (err, result) => {
           if (err) {
-            console.log('err in app.get questions.js line 22====', err);
+            // console.log('err in app.get questions.js line 22====', err);
             res.send(err);
           } else {
             res.send(result);
@@ -27,6 +27,4 @@ module.exports = {
         });
   },
 
-// post: function (req, res) {}
-// a function which handles posting a message to the database
 };
