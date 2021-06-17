@@ -9,11 +9,23 @@ function AnswerList({answers}) {
       ({helpfulness: a},
           {helpfulness: b}) => b-a);
   const firstTwoAnswers = sortedAnswers.slice(0, 2);
-  const [moreAnswers, setMoreAnswers] = useState(false);
+  const [moreAnswers, loadMoreAnswers] = useState(false);
   let currentAnswers;
 
   moreAnswers ? currentAnswers = sortedAnswers :
   currentAnswers = firstTwoAnswers;
+
+  const renderButton = () => {
+    if ( sortedAnswers.length > 2 ) {
+      return <Button
+        variant="link"
+        style={blackUnderline}
+        onClick={() =>
+          loadMoreAnswers(!moreAnswers)}>
+            Load more answers</Button>;
+    }
+  };
+
   return (
     <div>
       <Row>
@@ -27,17 +39,8 @@ function AnswerList({answers}) {
           )}</Col>
       </Row>
       <Row>
-        <Col style={pL17} sm={.5}>
-
-        </Col>
-        <Col lg={24}>
-          <Button
-            variant="link"
-            style={blackUnderline}
-            onClick={() =>
-              setMoreAnswers(!moreAnswers)}>
-            Load more answers</Button>
-        </Col>
+        <Col style={pL17} sm={.5}> </Col>
+        <Col lg={24}>{renderButton()}</Col>
       </Row>
 
     </div>
