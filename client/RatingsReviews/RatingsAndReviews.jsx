@@ -70,7 +70,7 @@ function RatingsAndReviews() {
     );
   } else {
     return (
-      <div id="ratings/reviews">
+      <div id="ratings/reviews" style={{background: '#f3f7f0'}}>
         <style type="text/css">
           {`
             #roundedDivider {

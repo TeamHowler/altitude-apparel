@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1623966921305" clover="3.2.0">
-  <project timestamp="1623966921305" name="All files">
+<coverage generated="1623971893778" clover="3.2.0">
+  <project timestamp="1623971893778" name="All files">
     <metrics statements="111" coveredstatements="102" conditionals="16" coveredconditionals="8" methods="31" coveredmethods="30" elements="158" coveredelements="140" complexity="0" loc="111" ncloc="111" packages="8" files="12" classes="12"/>
     <package name="altitude-apparel">
       <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
