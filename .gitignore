@@ -1,4 +1,5 @@
 config.js
 node_modules
 public/bundle.js
-/coverage
+/coverage/lcov-report/*
+coverage/lcov-report/index.html

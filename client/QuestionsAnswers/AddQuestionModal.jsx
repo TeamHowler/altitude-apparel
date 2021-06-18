@@ -26,17 +26,16 @@ function AddQuestionModal() {
         keyboard={false}
       >
         <Modal.Header closeButton>
-          <Modal.Title>Modal title</Modal.Title>
+          <Modal.Title>Add a Question</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-					I will not close if you click outside me. Dont even try to press
-					escape key.
+					future content for  add question modal
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>
-						Close
+						Cancel
           </Button>
-          <Button variant="primary">Understood</Button>
+          <Button variant="primary" onClick={handleClose}>Submit</Button>
         </Modal.Footer>
       </Modal>
     </>
