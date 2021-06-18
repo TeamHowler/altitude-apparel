@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import Question from './Question.jsx';
 import {Container, Button, Row, Col} from 'react-bootstrap';
 import {ulStyle, mL23, pL17} from './QAstyle.jsx';
+import AddQuestionModal from './AddQuestionModal.jsx';
 
 function QuestionsList({questionList}) {
   const sortedQuestions = questionList.sort(
@@ -10,11 +11,12 @@ function QuestionsList({questionList}) {
           {question_helpfulness: b}) => b-a);
   const firstTwoQuestions = sortedQuestions.slice(0, 2);
   const [moreQuestions, setMoreQuestions] = useState(false);
+
+
   let questions;
 
   moreQuestions ? questions = sortedQuestions :
   questions = firstTwoQuestions;
-
 
 
   return (
@@ -29,13 +31,9 @@ function QuestionsList({questionList}) {
         <Button
           style={mL23}
           className="shadow-none"
-          onClick={() => setMoreQuestions(!moreQuestions)}
+          onClick={(e) => setMoreQuestions(!moreQuestions)}
           variant="outline-dark">Load More Questions</Button>
-        <Button
-          style={mL23}
-          className="shadow-none"
-          variant="outline-dark">
-          Add a Question</Button>
+        <AddQuestionModal />
       </Row>
 
     </Container>

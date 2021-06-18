@@ -49,7 +49,7 @@ function AnswerList({answerList}) {
 }
 
 AnswerList.propTypes = {
-  answers: PropTypes.array,
+  answerList: PropTypes.array,
 };
 
 export default AnswerList;

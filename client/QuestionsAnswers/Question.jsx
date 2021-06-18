@@ -1,3 +1,4 @@
+/* eslint-disable no-tabs */
 import React from 'react';
 import axios from 'axios';
 import {Row, Col, Container} from 'react-bootstrap';
@@ -12,14 +13,11 @@ function Question({question}) {
 	 | Add Answer`;
 
 
-  function fetchAnswers() {
-    axios.get(`/qa/questions/${question.question_id}/answers`)
-        .then((result) => result.data.results)
-        // .then(updateAnswers);
-  }
-
-  const testAns = fetchAnswers()
-  console.log('testANS:::::', testAns)
+  // function fetchAnswers() {
+  //   axios.get(`/qa/questions/${question.question_id}/answers`)
+  //       .then((result) => result.data.results);
+  //   // .then(updateAnswers);
+  // }
 
   return (
     <Container>
