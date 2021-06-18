@@ -1,5 +1,6 @@
 /* eslint-disable no-tabs */
 import React from 'react';
+import axios from 'axios';
 import {Row, Col, Container} from 'react-bootstrap';
 import PropTypes from 'prop-types';
 import {Qfont, QAfont, qaMetaStyle} from './QAstyle.jsx';
@@ -11,6 +12,13 @@ function Question({question}) {
 		 Yes (${question.question_helpfulness})
 	 | Add Answer`;
 
+
+  // function fetchAnswers() {
+  //   axios.get(`/qa/questions/${question.question_id}/answers`)
+  //       .then((result) => result.data.results);
+  //   // .then(updateAnswers);
+  // }
+
   return (
     <Container>
       <Row>
@@ -19,7 +27,7 @@ function Question({question}) {
         <Col m={6} style={qaMetaStyle}>{helpfulCount}</Col>
       </Row>
 
-      <AnswerList answers={answers}/>
+      <AnswerList answerList={answers}/>
     </Container>
   );
 }
