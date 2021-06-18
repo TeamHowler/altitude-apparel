@@ -12,7 +12,7 @@ function RatingsAndReviews() {
   const {currentId, reviews, rating, count, updateReview,
     updateRating, updateCount, clickCount,
     updateClickCount, modalShow, setReviewModalShow,
-    setMeta, reviewsByStars, updateReviewsByStars} = useContext(ProductContext);
+    setMeta, reviewsByStars, updateReviewsByStars, sortingByStars, updateSortingByStars} = useContext(ProductContext);
 
   const fetchAllReviews = () => {
     axios.get(`/reviews/${currentId}&count=${count}`)
@@ -26,27 +26,29 @@ function RatingsAndReviews() {
 
 
   const fetchRating = () => {
-    axios.get(`/reviews/meta/${currentId}`)
-        .then((response) => {
-          setMeta(response.data);
-          const rate = response.data.ratings;
-          const productRatings = Object.keys(rate);
-          let sumOfRatings = 0;
-          let numOfRatings = 0;
-          productRatings.forEach(function(value) {
-            if (value === '1' || value === '2' || value === '3' ||
-            value === '4' || value === '5') {
-              sumOfRatings += parseInt(rate[value]) * parseInt(value);
-              numOfRatings += parseInt(rate[value]);
-            }
+    if (!sortingByStars) {
+      axios.get(`/reviews/meta/${currentId}`)
+          .then((response) => {
+            setMeta(response.data);
+            const rate = response.data.ratings;
+            const productRatings = Object.keys(rate);
+            let sumOfRatings = 0;
+            let numOfRatings = 0;
+            productRatings.forEach(function(value) {
+              if (value === '1' || value === '2' || value === '3' ||
+              value === '4' || value === '5') {
+                sumOfRatings += parseInt(rate[value]) * parseInt(value);
+                numOfRatings += parseInt(rate[value]);
+              }
+            });
+            const ave = Math.round(sumOfRatings/numOfRatings);
+            updateCount(numOfRatings);
+            updateRating(ave);
+          })
+          .catch((err) => {
+            console.log(err);
           });
-          const ave = Math.round(sumOfRatings/numOfRatings);
-          updateCount(numOfRatings);
-          updateRating(ave);
-        })
-        .catch((err) => {
-          console.log(err);
-        });
+    }
   };
 
   function handleMoreReviewsClick() {
@@ -60,7 +62,7 @@ function RatingsAndReviews() {
   useEffect(() => {
     fetchAllReviews();
     fetchRating();
-  }, [count]);
+  }, [count, sortingByStars]);
 
   if (reviews.length === 0) {
     return (
@@ -78,6 +80,7 @@ function RatingsAndReviews() {
             #roundedDivider {
               border-top: 8px solid #bbb;
               border-radius: 5px;
+              background: '#f3f7f0';
             }
           `}
         </style>
