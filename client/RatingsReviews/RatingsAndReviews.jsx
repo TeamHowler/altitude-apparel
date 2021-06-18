@@ -5,13 +5,14 @@ import {Row, Col, DropdownButton, Dropdown, Button} from 'react-bootstrap/';
 import ReviewTiles from './ReviewTiles.jsx';
 import AddReviewModal from './AddReviewModal.jsx';
 import StarRatingComponent from 'react-star-rating-component';
+import StarBars from './StarBars.jsx';
 
 
 function RatingsAndReviews() {
   const {currentId, reviews, rating, count, updateReview,
     updateRating, updateCount, clickCount,
     updateClickCount, modalShow, setReviewModalShow,
-    setMeta} = useContext(ProductContext);
+    setMeta, reviewsByStars, updateReviewsByStars} = useContext(ProductContext);
 
   const fetchAllReviews = () => {
     axios.get(`/reviews/${currentId}&count=${count}`)
@@ -22,6 +23,7 @@ function RatingsAndReviews() {
           console.log(err);
         });
   };
+
 
   const fetchRating = () => {
     axios.get(`/reviews/meta/${currentId}`)
@@ -58,7 +60,7 @@ function RatingsAndReviews() {
   useEffect(() => {
     fetchAllReviews();
     fetchRating();
-  }, [count, modalShow]);
+  }, [count]);
 
   if (reviews.length === 0) {
     return (
@@ -80,7 +82,7 @@ function RatingsAndReviews() {
           `}
         </style>
         <hr id="roundedDivider"/>
-        <h2>Ratings & Reviews</h2>
+        <h2>  Ratings & Reviews</h2>
         <Row >
           {/* Graphs: */}
           <Col border="primary" md={4}>
@@ -95,6 +97,10 @@ function RatingsAndReviews() {
                 emptyStarColor={'#778899'}
               />
             </span>
+
+            {/* Star Bars */}
+            <StarBars />
+
           </Col>
 
           {/* Reviews: */}
