@@ -1,5 +1,4 @@
 import React from 'react';
-import {Image} from 'react-bootstrap';
 
 
 const CarouselPhotos = ({image}) => {
@@ -7,7 +6,9 @@ const CarouselPhotos = ({image}) => {
     return <h2>no image</h2>;
   } else {
     return (
-      <Image src={image.url} style={{height: '100%', width: 'auto'}}/>
+      <div>
+        <img src={image.url} style={{height: '100%', width: 'auto'}}/>
+      </div>
     );
   }
 };
