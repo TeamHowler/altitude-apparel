@@ -3,7 +3,7 @@ import {Button} from 'react-bootstrap';
 import {grey10} from './QAstyle.jsx';
 import PropTypes from 'prop-types';
 
-function IncrimentQuestionHelpfulness({helpfulCount}) {
+function QuestionHelpfulness({helpfulCount}) {
   const [count, setCount] = useState(helpfulCount);
   const [disable, setDisable] = useState(false);
 
@@ -26,8 +26,8 @@ function IncrimentQuestionHelpfulness({helpfulCount}) {
 }
 
 
-IncrimentQuestionHelpfulness.propTypes = {
+QuestionHelpfulness.propTypes = {
   helpfulCount: PropTypes.number,
 };
 
-export default IncrimentQuestionHelpfulness;
+export default QuestionHelpfulness;
