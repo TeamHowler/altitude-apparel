@@ -15,40 +15,40 @@ function RatingsAndReviews() {
     setMeta, reviewsByStars, updateReviewsByStars, sortingByStars, updateSortingByStars} = useContext(ProductContext);
 
   const fetchAllReviews = () => {
-    axios.get(`/reviews/${currentId}&count=${count}`)
-        .then((response) => {
-          updateReview(response.data.results);
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-  };
-
-
-  const fetchRating = () => {
     if (!sortingByStars) {
-      axios.get(`/reviews/meta/${currentId}`)
+      axios.get(`/reviews/${currentId}&count=${count}`)
           .then((response) => {
-            setMeta(response.data);
-            const rate = response.data.ratings;
-            const productRatings = Object.keys(rate);
-            let sumOfRatings = 0;
-            let numOfRatings = 0;
-            productRatings.forEach(function(value) {
-              if (value === '1' || value === '2' || value === '3' ||
-              value === '4' || value === '5') {
-                sumOfRatings += parseInt(rate[value]) * parseInt(value);
-                numOfRatings += parseInt(rate[value]);
-              }
-            });
-            const ave = Math.round(sumOfRatings/numOfRatings);
-            updateCount(numOfRatings);
-            updateRating(ave);
+            updateReview(response.data.results);
           })
           .catch((err) => {
             console.log(err);
           });
     }
+  };
+
+
+  const fetchRating = () => {
+    axios.get(`/reviews/meta/${currentId}`)
+        .then((response) => {
+          setMeta(response.data);
+          const rate = response.data.ratings;
+          const productRatings = Object.keys(rate);
+          let sumOfRatings = 0;
+          let numOfRatings = 0;
+          productRatings.forEach(function(value) {
+            if (value === '1' || value === '2' || value === '3' ||
+              value === '4' || value === '5') {
+              sumOfRatings += parseInt(rate[value]) * parseInt(value);
+              numOfRatings += parseInt(rate[value]);
+            }
+          });
+          const ave = Math.round(sumOfRatings/numOfRatings);
+          updateCount(numOfRatings);
+          updateRating(ave);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
   };
 
   function handleMoreReviewsClick() {

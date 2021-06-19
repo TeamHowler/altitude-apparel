@@ -35,7 +35,7 @@ function CarouselComponent() {
               </Carousel.Item>
             );
           })}
-          {console.log(photos)}
+          {/* {console.log(photos)} */}
         </Carousel>
       </>
     );

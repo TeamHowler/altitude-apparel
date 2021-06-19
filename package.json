@@ -30,7 +30,8 @@
     "react-responsive-carousel": "^3.2.18",
     "react-router-dom": "^5.2.0",
     "react-scroll": "^1.8.2",
-    "react-star-rating-component": "^1.4.1"
+    "react-star-rating-component": "^1.4.1",
+    "underscore": "^1.13.1"
   },
   "devDependencies": {
     "@babel/core": "^7.11.6",
