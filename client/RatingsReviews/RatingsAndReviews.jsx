@@ -111,23 +111,23 @@ function RatingsAndReviews() {
             </style>
             <h5>
               {count} reviews
-              <DropdownButton id="dropdown-basic-button" title="Sort By:">
+              {/* <DropdownButton id="dropdown-basic-button" title="Sort By:">
                 <Dropdown.Item href="#/action-1">Relevance</Dropdown.Item>
                 <Dropdown.Item href="#/action-2">Helpful</Dropdown.Item>
                 <Dropdown.Item href="#/action-3">Newest</Dropdown.Item>
-              </DropdownButton>
+              </DropdownButton> */}
             </h5>
             {/* Review tiles: */}
             {reviews.slice(0, clickCount * 2).map((review) =>
               <ReviewTiles key={review.review_id} review={review} />)}
             {/* Review buttons: */}
             <Button
-              variant="outline-secondary"
+              variant="secondary"
               onClick={handleMoreReviewsClick}>
                 More Reviews
             </Button>{' '}
             <Button
-              variant="outline-secondary"
+              variant="secondary"
               onClick={handleAddReviewClick}>
                 Add A Review
             </Button>{' '}
