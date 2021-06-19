@@ -38,6 +38,7 @@ function App() {
   const [currentQuant, updateQuant] = useState(0);
   const [cart, addToCart] = useState({});
   const [photos, setPhotos] = useState([]);
+  const [active, updateActive] = useState(0);
 
   const fetch = () => {
     axios.get(`/products/${currentId}`)
@@ -88,6 +89,8 @@ function App() {
       addToCart,
       photos,
       setPhotos,
+      active,
+      updateActive,
     }}>
       <Container>
         <Navbar bg="light" expand="lg">
