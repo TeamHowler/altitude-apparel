@@ -1,16 +1,15 @@
-/* eslint-disable no-tabs */
 import React from 'react';
-import axios from 'axios';
+// import axios from 'axios';
 import {Row, Col, Container} from 'react-bootstrap';
 import PropTypes from 'prop-types';
 import {Qfont, QAfont, qaMetaStyle} from './QAstyle.jsx';
 import AnswerList from './AnswerList.jsx';
+import AddAnswerModal from './AddAnswerModal.jsx';
+import QuestionHelpfulness from './QuestionHelpfulness.jsx';
 
 function Question({question}) {
   const answers = Object.values(question.answers);
-  const helpfulCount = `Helpful?
-		 Yes (${question.question_helpfulness})
-	 | Add Answer`;
+  const helpfulCount = question.question_helpfulness;
 
 
   // function fetchAnswers() {
@@ -24,7 +23,10 @@ function Question({question}) {
       <Row>
         <Col sm={.5} style={QAfont}>Q:</Col>
         <Col m={4} style={Qfont}>{question.question_body}</Col>
-        <Col m={6} style={qaMetaStyle}>{helpfulCount}</Col>
+        <Col m={6} style={qaMetaStyle}>
+          <QuestionHelpfulness helpfulCount={helpfulCount}/>|
+          <AddAnswerModal />
+        </Col>
       </Row>
 
       <AnswerList answerList={answers}/>

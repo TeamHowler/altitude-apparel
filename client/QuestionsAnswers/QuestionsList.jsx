@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import PropTypes from 'prop-types';
 import Question from './Question.jsx';
-import {Container, Button, Row, Col} from 'react-bootstrap';
+import {Container, Button, Row} from 'react-bootstrap';
 import {ulStyle, mL23, pL17} from './QAstyle.jsx';
 import AddQuestionModal from './AddQuestionModal.jsx';
 
@@ -11,7 +11,6 @@ function QuestionsList({questionList}) {
           {question_helpfulness: b}) => b-a);
   const firstTwoQuestions = sortedQuestions.slice(0, 2);
   const [moreQuestions, setMoreQuestions] = useState(false);
-
 
   let questions;
 

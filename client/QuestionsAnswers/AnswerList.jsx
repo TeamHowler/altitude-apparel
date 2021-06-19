@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import PropTypes from 'prop-types';
 import Answer from './Answer.jsx';
 import {Row, Col, Button} from 'react-bootstrap';
-import {mL23, QAfont, blackUnderline} from './QAstyle.jsx';
+import {mL23, QAfont, black12} from './QAstyle.jsx';
 
 function AnswerList({answerList}) {
   const sortedAnswers = answerList.sort(
@@ -20,10 +20,10 @@ function AnswerList({answerList}) {
       return <Button
         className="shadow-none"
         variant="link"
-        style={blackUnderline}
+        style={black12}
         onClick={() =>
           loadMoreAnswers(!moreAnswers)}>
-            Load more answers</Button>;
+            LOAD MORE ANSWERS</Button>;
     }
   };
 

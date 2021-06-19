@@ -1,10 +1,3 @@
-const qHelpfulStyle = {
-  display: 'inline',
-  fontSize: 12,
-  color: 'grey',
-  marginLeft: 10,
-};
-
 const ulStyle = {
   listStyleType: 'none',
   margin: 0,
@@ -42,10 +35,6 @@ const Qfont = {
   fontWeight: 'bold',
 };
 
-const answerStyle = {
-  marginBottom: 20,
-};
-
 const mL23 = {
   marginLeft: 23,
 };
@@ -54,23 +43,33 @@ const pL17 = {
   paddingLeft: 17,
 };
 
-const blackUnderline = {
+const black12 = {
   color: 'black',
-  textDecorationLine: 'underline',
+  fontSize: 12,
+};
+
+const black14 = {
+  color: 'black',
+  fontSize: 14,
+};
+
+const grey10 = {
+  fontSize: 10,
+  color: 'grey',
 };
 
 
 module.exports = {
   ulStyle: ulStyle,
-  qHelpfulStyle: qHelpfulStyle,
   qaMetaStyle: qaMetaStyle,
   qaStyle: qaStyle,
-  answerStyle: answerStyle,
   QAfont: QAfont,
   Afont: Afont,
   Qfont: Qfont,
   qaSection: qaSection,
   mL23: mL23,
   pL17: pL17,
-  blackUnderline: blackUnderline,
+  black12: black12,
+  black14: black14,
+  grey10: grey10,
 };
