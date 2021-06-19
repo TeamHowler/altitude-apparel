@@ -38,6 +38,10 @@ function App() {
   const [currentQuant, updateQuant] = useState(0);
   const [cart, addToCart] = useState({});
   const [photos, setPhotos] = useState([]);
+  const [reviewsByStars, updateReviewsByStars] = useState([[], [], [], [], []]);
+  const [starBarToggle, updatestarBarToggle] = useState([false, false, false, false, false]);
+  const [sortingByStars, updateSortingByStars] = useState(false);
+  const [reviewsCuedToDisplay, updateReviewsCuedToDisplay] = useState(0);
 
   const fetch = () => {
     axios.get(`/products/${currentId}`)
@@ -88,6 +92,14 @@ function App() {
       addToCart,
       photos,
       setPhotos,
+      reviewsByStars,
+      updateReviewsByStars,
+      sortingByStars,
+      updateSortingByStars,
+      starBarToggle,
+      updatestarBarToggle,
+      reviewsCuedToDisplay,
+      updateReviewsCuedToDisplay,
     }}>
       <Container>
         <Navbar bg="light" expand="lg">

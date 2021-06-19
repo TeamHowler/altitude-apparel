@@ -39,7 +39,7 @@ function ProductOverview() {
     if (defaultStyle) {
       styles.results.forEach((result) => {
         if (result['default?']) {
-          ; updateCurrentStyle(result);
+          updateCurrentStyle(result);
         }
       });
     }
