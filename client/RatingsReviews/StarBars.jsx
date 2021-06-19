@@ -1,14 +1,15 @@
 import React, {useContext, useEffect} from 'react';
 import {ProductContext} from '../context.js';
-import {Card, ListGroup, ProgressBar, Button} from 'react-bootstrap/';
-import {every} from 'underscore';
+import {Card, ProgressBar, Button} from 'react-bootstrap/';
+import {every, flatten} from 'underscore';
 
 function StarBars() {
-  const {reviewsByStars, updateReviewsByStars, reviews, updateReview, count, sortingByStars,
-    updateSortingByStars, starBarToggle, updatestarBarToggle} = useContext(ProductContext);
+  const {reviewsByStars, updateReviewsByStars,
+    reviews, updateReview, count, updateReviewsCuedToDisplay,
+    updateSortingByStars, starBarToggle, updatestarBarToggle} =
+    useContext(ProductContext);
 
   const sortStarReviews = () => {
-    // reset storage to be arr of 5 empty arr's
     updateReviewsByStars([[], [], [], [], []]);
 
     const starStorage = [[], [], [], [], []];
@@ -32,54 +33,42 @@ function StarBars() {
   const handleSelectStar = (event) => {
     event.preventDefault();
     const selectedStarIndex = parseInt(event.target.value);
-    console.log('selected star index', selectedStarIndex);
-    // if all star bar toggles are false - then this is the first click 'on'
     if (every(starBarToggle, function(starToggle) {
       return starToggle === false;
     })) {
-      // reassign review contents to be this star's reviews
-      const fiveStar = reviewsByStars[selectedStarIndex];
-      updateReview(fiveStar);
-      // ensure sortingByStars is true
       updateSortingByStars(true);
-      // change bool val of starBarToggle for this star ranking
-      starBarToggle[selectedStarIndex] = !starBarToggle[selectedStarIndex];
+      const starBarCopy = starBarToggle.slice();
+      starBarCopy[selectedStarIndex] = !starBarToggle[selectedStarIndex];
+      updatestarBarToggle(starBarCopy);
     } else {
-      // change bool val of starBarToggle for this star ranking
-      starBarToggle[selectedStarIndex] = !starBarToggle[selectedStarIndex];
-      // if starBarToggle bool is true:
-      if (starBarToggle[selectedStarIndex]) {
-        // concat selected starbar toggle's reviewsByStars at same index to the reviews storage
-        const concatStarVals = reviews.concat(reviewsByStars[selectedStarIndex]);
-        console.log('reviews of addtl star', reviewsByStars[selectedStarIndex]);
-        console.log('reviews before adding another star', reviews);
-        console.log('concatted selected star reviews with empty (?) reviews', concatStarVals);
-        // update reviews to be these newly concatted reviews
-        updateReview(concatStarVals);
-        // else if starBarToggle became false:
-      } else {
-        // empty reviews storage
-        updateReview([]);
-        // iterate through starBarToggle values - if ALL values are false
-        if (every(starBarToggle, function(starToggle) {
-          return starToggle === false;
-        })) {
-          // change sortingByStars to be false
-          updateSortingByStars(false);
-        // else, if even one is true
-        } else {
-          let concatStarValues;
-          // iterate through starBarToggle, if true - concat associated reviewsByStars arr to reviews storage
-          starBarToggle.forEach(function(starSort, index) {
-            if (starSort) {
-              concatStarValues = reviews.concat(reviewsByStars[index]);
-              updateReview(concatStarValues);
-            }
-          });
-        }
-      };
+      const starBarCopyAddtlClick = starBarToggle.slice();
+      starBarCopyAddtlClick[selectedStarIndex] =
+        !starBarToggle[selectedStarIndex];
+      updatestarBarToggle(starBarCopyAddtlClick);
     }
   };
+
+  const displayStarReviews = () => {
+    if (every(starBarToggle, function(starToggle) {
+      return starToggle === false;
+    })) {
+      updateSortingByStars(false);
+      updateReviewsCuedToDisplay(flatten(reviewsByStars).length);
+    } else {
+      let concatStarValues = [];
+      starBarToggle.forEach(function(starSort, index) {
+        if (starSort) {
+          concatStarValues = concatStarValues.concat(reviewsByStars[index]);
+        }
+      });
+      updateReview(concatStarValues);
+      updateReviewsCuedToDisplay(concatStarValues.length);
+    }
+  };
+
+  useEffect(() => {
+    displayStarReviews();
+  }, [starBarToggle]);
 
   useEffect(() => {
     sortStarReviews();
@@ -88,47 +77,26 @@ function StarBars() {
   return (
     <Card >
       <Card.Header>Click To Sort By Star Ratings:</Card.Header>
-      <Button value="4" onClick={handleSelectStar} variant="secondary">
-        5 stars <ProgressBar striped variant="info" now={fiveStarPercentage * 100} />
+      <Button value="4" onClick={handleSelectStar} variant="link">
+        5 stars
+        <ProgressBar striped variant="info" now={fiveStarPercentage * 100} />
       </Button>
-      <Button value="3" onClick={handleSelectStar} variant="secondary">
+      <Button value="3" onClick={handleSelectStar} variant="link">
         4 stars
         <ProgressBar striped variant="info" now={fourStarPercentage * 100} />
       </Button>
-      <Button value="2" onClick={handleSelectStar} variant="secondary">
+      <Button value="2" onClick={handleSelectStar} variant="link">
         3 stars
         <ProgressBar striped variant="info" now={threeStarPercentage * 100} />
       </Button>
-      <Button value="1" onClick={handleSelectStar} variant="secondary">
+      <Button value="1" onClick={handleSelectStar} variant="link">
         2 stars
         <ProgressBar striped variant="info" now={twoStarPercentage * 100} />
       </Button>
-      <Button value="0" onClick={handleSelectStar} variant="secondary">
+      <Button value="0" onClick={handleSelectStar} variant="link">
         1 stars
         <ProgressBar striped variant="info" now={oneStarPercentage * 100} />
       </Button>
-      {/* <ListGroup variant="flush">
-        <ListGroup.Item action value="4" onClick={handleSelectStar}>
-          5 stars
-          <ProgressBar striped variant="info" now={fiveStarPercentage * 100} />
-        </ListGroup.Item>
-        <ListGroup.Item value="3" onClick={handleSelectStar}>
-          4 stars
-          <ProgressBar striped variant="info" now={fourStarPercentage * 100} />
-        </ListGroup.Item>
-        <ListGroup.Item value="2" onClick={handleSelectStar}>
-          3 stars
-          <ProgressBar striped variant="info" now={threeStarPercentage * 100} />
-        </ListGroup.Item>
-        <ListGroup.Item value="1" onClick={handleSelectStar}>
-          2 stars
-          <ProgressBar striped variant="info" now={twoStarPercentage * 100} />
-        </ListGroup.Item>
-        <ListGroup.Item value="0" onClick={handleSelectStar}>
-          1 stars
-          <ProgressBar striped variant="info" now={oneStarPercentage * 100} />
-        </ListGroup.Item>
-      </ListGroup> */}
     </Card>
   );
 }

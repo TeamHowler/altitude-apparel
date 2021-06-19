@@ -10,8 +10,8 @@ import StarBars from './StarBars.jsx';
 
 function RatingsAndReviews() {
   const {currentId, reviews, rating, count, updateReview,
-    updateRating, updateCount, clickCount,
-    updateClickCount, modalShow, setReviewModalShow,
+    updateRating, updateCount, clickCount, reviewsCuedToDisplay,
+    updateReviewsCuedToDisplay, updateClickCount, modalShow, setReviewModalShow,
     setMeta, reviewsByStars, updateReviewsByStars, sortingByStars, updateSortingByStars} = useContext(ProductContext);
 
   const fetchAllReviews = () => {
@@ -19,6 +19,7 @@ function RatingsAndReviews() {
       axios.get(`/reviews/${currentId}&count=${count}`)
           .then((response) => {
             updateReview(response.data.results);
+            updateReviewsCuedToDisplay(response.data.results.length);
           })
           .catch((err) => {
             console.log(err);
@@ -119,7 +120,7 @@ function RatingsAndReviews() {
               `}
             </style>
             <h5>
-              {count} reviews
+              {reviewsCuedToDisplay} reviews
               <DropdownButton id="dropdown-basic-button" title="Sort By:">
                 <Dropdown.Item href="#/action-1">Relevance</Dropdown.Item>
                 <Dropdown.Item href="#/action-2">Helpful</Dropdown.Item>
