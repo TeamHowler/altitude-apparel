@@ -39,8 +39,7 @@ function ProductOverview() {
     if (defaultStyle) {
       styles.results.forEach((result) => {
         if (result['default?']) {
-          console.log(result);
-          updateCurrentStyle(result);
+          ; updateCurrentStyle(result);
         }
       });
     }

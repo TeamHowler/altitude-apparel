@@ -1,9 +1,9 @@
 import React, {useState} from 'react';
 import {Button, Modal} from 'react-bootstrap';
-import {mL23} from './QAstyle.jsx';
+import {grey10} from './QAstyle.jsx';
 
 
-function AddQuestionModal() {
+function AddAnswerModal() {
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
@@ -12,10 +12,10 @@ function AddQuestionModal() {
   return (
     <>
       <Button
-        style={mL23}
+        style={grey10}
         className="shadow-none"
-        variant="outline-dark"
-        onClick={handleShow}>Add a Question
+        variant="link"
+        onClick={handleShow}>Add Answer
       </Button>
 
       <Modal
@@ -28,7 +28,7 @@ function AddQuestionModal() {
           <Modal.Title>Add a Question</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          future content for  add question modal
+          future content for  add answer modal
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>
@@ -41,4 +41,4 @@ function AddQuestionModal() {
   );
 }
 
-export default AddQuestionModal;
+export default AddAnswerModal;
