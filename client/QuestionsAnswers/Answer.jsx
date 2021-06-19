@@ -1,7 +1,7 @@
 import React from 'react';
 import moment from 'moment';
 import {Row, Col, Container} from 'react-bootstrap';
-import {Afont, qaMetaStyle, answerStyle, QAfont} from './QAstyle.jsx';
+import {Afont, qaMetaStyle} from './QAstyle.jsx';
 import PropTypes from 'prop-types';
 
 function Answer({answer}) {

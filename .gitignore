@@ -1,4 +1,7 @@
 config.js
 node_modules
 public/bundle.js
-/coverage
+package-lock.json
+/coverage/lcov-report/*
+coverage/lcov-report/index.html
+.vscode/*

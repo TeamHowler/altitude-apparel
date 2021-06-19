@@ -11,8 +11,8 @@ import StarBars from './StarBars.jsx';
 function RatingsAndReviews() {
   const {currentId, reviews, rating, count, updateReview,
     updateRating, updateCount, clickCount, reviewsCuedToDisplay,
-    updateReviewsCuedToDisplay, updateClickCount, modalShow, setReviewModalShow,
-    setMeta, reviewsByStars, updateReviewsByStars, sortingByStars, updateSortingByStars} = useContext(ProductContext);
+    updateReviewsCuedToDisplay, updateClickCount,
+    setReviewModalShow, setMeta, sortingByStars} = useContext(ProductContext);
 
   const fetchAllReviews = () => {
     if (!sortingByStars) {
@@ -86,7 +86,7 @@ function RatingsAndReviews() {
           `}
         </style>
         <hr id="roundedDivider"/>
-        <h2>  Ratings & Reviews</h2>
+        <h2>  Ratings and Reviews</h2>
         <Row >
           {/* Graphs: */}
           <Col border="primary" md={4}>
