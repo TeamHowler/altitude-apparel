@@ -130,16 +130,25 @@ function RatingsAndReviews() {
             {reviews.slice(0, clickCount * 2).map((review) =>
               <ReviewTiles key={review.review_id} review={review} />)}
             {/* Review buttons: */}
-            <Button
-              variant="outline-secondary"
-              onClick={handleMoreReviewsClick}>
-                More Reviews
-            </Button>{' '}
-            <Button
-              variant="outline-secondary"
-              onClick={handleAddReviewClick}>
-                Add A Review
-            </Button>{' '}
+            <br />
+            <Row>
+              <Col md={2} />
+              <Col md={5}>
+                <Button
+                  variant="outline-secondary"
+                  onClick={handleMoreReviewsClick}>
+                    More Reviews
+                </Button>{' '}
+              </Col>
+              <Col md={5}>
+                <Button
+                  variant="outline-secondary"
+                  onClick={handleAddReviewClick}>
+                    Add A Review
+                </Button>{' '}
+              </Col>
+            </Row>
+            <br />
             <AddReviewModal />
           </Col>
         </Row>
