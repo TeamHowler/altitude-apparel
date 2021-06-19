@@ -25,7 +25,6 @@ function CarouselComponent() {
               </Carousel.Item>
             );
           })}
-          {console.log(photos)}
         </Carousel>
       </Container>
     );

@@ -223,7 +223,7 @@ function AddReviewModalForm() {
       </Form.Group>
 
       {/* Rate the characteristics */}
-      <Form.Group controlId="characteristicsRadios">
+      <Form.Group >
         {Object.keys(meta['characteristics']).map((characteristic) => (
           <RadioButtons key={characteristic} characteristic={characteristic} />
         ))}

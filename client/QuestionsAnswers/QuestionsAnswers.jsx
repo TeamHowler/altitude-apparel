@@ -16,10 +16,7 @@ function QuestionsAnswers() {
     axios.get(`/qa/questions/${currentProduct.id}`)
         .then((result) => result.data.results).then(setQuestions);
   }
-  // function fetchAnswers() {
-  //   axios.get(`/qa/questions/${114310}/answers`)
-  //       .then((result) => result.data.results).then(updateAnswers);
-  // }
+
 
   useEffect(() => {
     if (currentProduct.id) {
@@ -32,7 +29,7 @@ function QuestionsAnswers() {
       <Container>
         <h3>Questions and Answers</h3>
         <SearchQuestions />
-        <QuestionsList questions={questions}/>
+        <QuestionsList questionList={questions}/>
       </Container>
     </section>
   );

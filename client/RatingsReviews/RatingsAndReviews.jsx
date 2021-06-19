@@ -5,23 +5,28 @@ import {Row, Col, DropdownButton, Dropdown, Button} from 'react-bootstrap/';
 import ReviewTiles from './ReviewTiles.jsx';
 import AddReviewModal from './AddReviewModal.jsx';
 import StarRatingComponent from 'react-star-rating-component';
+import StarBars from './StarBars.jsx';
 
 
 function RatingsAndReviews() {
   const {currentId, reviews, rating, count, updateReview,
-    updateRating, updateCount, clickCount,
-    updateClickCount, modalShow, setReviewModalShow,
-    setMeta} = useContext(ProductContext);
+    updateRating, updateCount, clickCount, reviewsCuedToDisplay,
+    updateReviewsCuedToDisplay, updateClickCount,
+    setReviewModalShow, setMeta, sortingByStars} = useContext(ProductContext);
 
   const fetchAllReviews = () => {
-    axios.get(`/reviews/${currentId}&count=${count}`)
-        .then((response) => {
-          updateReview(response.data.results);
-        })
-        .catch((err) => {
-          console.log(err);
-        });
+    if (!sortingByStars) {
+      axios.get(`/reviews/${currentId}&count=${count}`)
+          .then((response) => {
+            updateReview(response.data.results);
+            updateReviewsCuedToDisplay(response.data.results.length);
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+    }
   };
+
 
   const fetchRating = () => {
     axios.get(`/reviews/meta/${currentId}`)
@@ -33,7 +38,7 @@ function RatingsAndReviews() {
           let numOfRatings = 0;
           productRatings.forEach(function(value) {
             if (value === '1' || value === '2' || value === '3' ||
-            value === '4' || value === '5') {
+              value === '4' || value === '5') {
               sumOfRatings += parseInt(rate[value]) * parseInt(value);
               numOfRatings += parseInt(rate[value]);
             }
@@ -58,7 +63,7 @@ function RatingsAndReviews() {
   useEffect(() => {
     fetchAllReviews();
     fetchRating();
-  }, [count, modalShow]);
+  }, [count, sortingByStars]);
 
   if (reviews.length === 0) {
     return (
@@ -70,17 +75,18 @@ function RatingsAndReviews() {
     );
   } else {
     return (
-      <div id="ratings/reviews">
+      <div id="ratings/reviews" style={{background: '#f3f7f0'}}>
         <style type="text/css">
           {`
             #roundedDivider {
               border-top: 8px solid #bbb;
               border-radius: 5px;
+              background: '#f3f7f0';
             }
           `}
         </style>
         <hr id="roundedDivider"/>
-        <h2>Ratings & Reviews</h2>
+        <h2>  Ratings and Reviews</h2>
         <Row >
           {/* Graphs: */}
           <Col border="primary" md={4}>
@@ -95,10 +101,14 @@ function RatingsAndReviews() {
                 emptyStarColor={'#778899'}
               />
             </span>
+
+            {/* Star Bars */}
+            <StarBars />
+
           </Col>
 
           {/* Reviews: */}
-          <Col style={{background: 'lightblue'}} md={8} id="reviewTilesScroll">
+          <Col style={{background: '#f3f7f0'}} md={8} id="reviewTilesScroll">
             {/* Reviews Heading with Dropdown: */}
             <style type="text/css">
               {`
@@ -110,7 +120,7 @@ function RatingsAndReviews() {
               `}
             </style>
             <h5>
-              {count} reviews
+              {reviewsCuedToDisplay} reviews
               <DropdownButton id="dropdown-basic-button" title="Sort By:">
                 <Dropdown.Item href="#/action-1">Relevance</Dropdown.Item>
                 <Dropdown.Item href="#/action-2">Helpful</Dropdown.Item>
@@ -121,16 +131,25 @@ function RatingsAndReviews() {
             {reviews.slice(0, clickCount * 2).map((review) =>
               <ReviewTiles key={review.review_id} review={review} />)}
             {/* Review buttons: */}
-            <Button
-              variant="outline-secondary"
-              onClick={handleMoreReviewsClick}>
-                More Reviews
-            </Button>{' '}
-            <Button
-              variant="outline-secondary"
-              onClick={handleAddReviewClick}>
-                Add A Review
-            </Button>{' '}
+            <br />
+            <Row>
+              <Col md={2} />
+              <Col md={5}>
+                <Button
+                  variant="outline-secondary"
+                  onClick={handleMoreReviewsClick}>
+                    More Reviews
+                </Button>{' '}
+              </Col>
+              <Col md={5}>
+                <Button
+                  variant="outline-secondary"
+                  onClick={handleAddReviewClick}>
+                    Add A Review
+                </Button>{' '}
+              </Col>
+            </Row>
+            <br />
             <AddReviewModal />
           </Col>
         </Row>
