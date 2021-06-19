@@ -22,10 +22,6 @@ function Expanded({rightArrowClick, leftArrowClick}) {
           <CarouselComponent />
         </Container>
       </Modal.Body>
-      <button className="control-next" onClick={rightArrowClick}>
-        <i className="far fa-arrow-alt-circle-right fa-2x"></i></button>
-      <button className="control-prev" onClick={leftArrowClick}>
-        <i className="far fa-arrow-alt-circle-left fa-2x"></i></button>
     </Modal>
   );
 }

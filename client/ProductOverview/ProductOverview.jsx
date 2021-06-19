@@ -70,7 +70,7 @@ function ProductOverview() {
       border: transparent;
       position: absolute;
       zIndex: 2;
-      right: 1;
+      right: 0;
       top: 50%;
       opacity: .5;
   }
@@ -80,7 +80,7 @@ function ProductOverview() {
     border: transparent;
     position: absolute;
     zIndex: 2;
-    left: 1;
+    left: 0;
     top: 50%;
     opacity: .5;
 }
@@ -90,42 +90,48 @@ function ProductOverview() {
   border: transparent;
   position: absolute;
   zIndex: 2;
-  right: 10;
-  top: 10;
+  right: 0;
+  top: 0;
   opacity: .5;
 }
     `}
         </style>
-        <Container style={{background: '#f3f7f0'}} fluid>
-          <Row sx={2} md={2} lg={2}>
-            <Col >
-              <Card style={{height: '30rem', width: '25rem', overflow: 'hidden', marginBottom: '2rem'}}>
-                <Card.Body>
-                  <CarouselComponent />
-                  <CarouselOverlay />
-                  <Expanded rightArrowClick={rightArrowClick}
-                    leftArrowClick={leftArrowClick}/>
-                </Card.Body>
-                <span className="expand-btn" onClick={(e) => {
-                  e.preventDefault();
-                  setModalShow(true);
-                }}><i className="fas fa-expand fa-2x"></i></span>
-                <button className="control-next" onClick={rightArrowClick}>
-                  <i className="far fa-arrow-alt-circle-right fa-2x"></i>
-                </button>
-                <button className="control-prev" onClick={leftArrowClick}>
-                  <i className="far fa-arrow-alt-circle-left fa-2x"></i>
-                </button>
-              </Card>
-            </Col>
-            <Col style={{right: 0}}>
-              <ProductInfo />
+        <Container style={{background: '#f3f7f0', padding: '2rem', margin: 'auto'}}>
+          <Row>
+            <Col>
+              <Row>
+                <Col>
+                  <Card style={{height: '30rem', width: '25rem',
+                    overflow: 'hidden', marginBottom: '2rem'}}>
+                    <Card.Body>
+                      <CarouselComponent />
+                      <CarouselOverlay />
+                    </Card.Body>
+
+                    <span className="expand-btn" onClick={(e) => {
+                      e.preventDefault();
+                      setModalShow(true);
+                    }}><i className="fas fa-expand fa-2x"></i></span>
+                    <button className="control-next" onClick={rightArrowClick}>
+                      <i className="far fa-arrow-alt-circle-right fa-2x"></i>
+                    </button>
+                    <button className="control-prev" onClick={leftArrowClick}>
+                      <i className="far fa-arrow-alt-circle-left fa-2x"></i>
+                    </button>
+                  </Card>
+                </Col>
+                <Col>
+                  <ProductInfo />
+                </Col>
+              </Row>
+              <Row>
+                <Card style={{height: '10rem'}}><Card.Body>
+                  <h3>{currentProduct.slogan}</h3>
+                  <p>{currentProduct.description}</p>
+                </Card.Body></Card>
+              </Row>
             </Col>
           </Row>
-          <Card style={{height: '10rem'}}><Card.Body>
-            <h3>{currentProduct.slogan}</h3>
-            <p>{currentProduct.description}</p>
-          </Card.Body></Card>
         </Container>
       </>
     );
