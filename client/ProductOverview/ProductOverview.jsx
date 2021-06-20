@@ -107,7 +107,7 @@ function ProductOverview() {
                       <CarouselComponent />
                       <CarouselOverlay />
                     </Card.Body>
-
+                    {console.log(styles.results)}
                     <span className="expand-btn" onClick={(e) => {
                       e.preventDefault();
                       setModalShow(true);
