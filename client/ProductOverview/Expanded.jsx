@@ -3,7 +3,7 @@ import {ProductContext} from '../context.js';
 import {Modal, Container} from 'react-bootstrap';
 import CarouselComponent from './CarouselComponent.jsx';
 
-function Expanded(props) {
+function Expanded({rightArrowClick, leftArrowClick}) {
   const {showModal, setModalShow} = useContext(ProductContext);
   return (
     <Modal
@@ -22,6 +22,10 @@ function Expanded(props) {
           <CarouselComponent />
         </Container>
       </Modal.Body>
+      <button className="control-next" onClick={rightArrowClick}>
+        <i className="far fa-arrow-alt-circle-right fa-2x"></i></button>
+      <button className="control-prev" onClick={leftArrowClick}>
+        <i className="far fa-arrow-alt-circle-left fa-2x"></i></button>
     </Modal>
   );
 }

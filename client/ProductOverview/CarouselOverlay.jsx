@@ -3,7 +3,7 @@ import {Card, CardColumns, Col} from 'react-bootstrap';
 import {ProductContext} from '../context.js';
 
 function CarouselOverlay() {
-  const {currentStyle} = useContext(ProductContext);
+  const {currentStyle, updateActive} = useContext(ProductContext);
   if (currentStyle === undefined) {
     return <center><div className="spinner-border" role="status">
       <span className="sr-only">Loading...</span>
@@ -18,13 +18,13 @@ function CarouselOverlay() {
       top: 0;
       border: transparent;
       background-color: transparent;
-      width: 200px;
+      width: 100%;
       height: 100%;
       transition: .5s ease;
       opacity:0;
       color: green;
       font-size: 20px;
-      padding: 0px;
+      padding: 10px;
       z-index: 0;
       text-align: left;
     }
@@ -32,6 +32,7 @@ function CarouselOverlay() {
     /* When you mouse over the container, fade in the overlay title */
     .overlay:hover {
       opacity: 1;
+      cursor: pointer;
     }
 
     .cardOverlay {
@@ -46,8 +47,12 @@ function CarouselOverlay() {
         </style>
         <Col className="overlay">
           {currentStyle.photos.map((image) => {
-            return <Card key={currentStyle.photos.indexOf(image)}
-              className='cardOverlay'>
+            const index = currentStyle.photos.indexOf(image);
+            return <Card key={index} value = {index}
+              className='cardOverlay' onClick={(e) => {
+                e.preventDefault();
+                updateActive(index);
+              }}>
               <img src={image.url}
                 style={{borderRadius: '50%', height: '4rem',
                   width: '4rem', opacity: '50'}}/>

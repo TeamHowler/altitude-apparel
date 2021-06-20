@@ -61,12 +61,7 @@ function StarBars() {
           concatStarValues = concatStarValues.concat(reviewsByStars[index]);
         }
       });
-      const newnessSorted = concatStarValues.sort(function(a, b) {
-        const aDate = new Date(a.date);
-        const bDate = new Date(b.date);
-        return bDate - aDate;
-      });
-      updateReview(newnessSorted);
+      updateReview(concatStarValues);
       updateReviewsCuedToDisplay(concatStarValues.length);
     }
   };

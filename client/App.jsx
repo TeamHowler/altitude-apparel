@@ -38,6 +38,7 @@ function App() {
   const [currentQuant, updateQuant] = useState(0);
   const [cart, addToCart] = useState({});
   const [photos, setPhotos] = useState([]);
+  const [active, updateActive] = useState(0);
   const [reviewsByStars, updateReviewsByStars] = useState([[], [], [], [], []]);
   const [starBarToggle, updatestarBarToggle] =
     useState([false, false, false, false, false]);
@@ -94,6 +95,8 @@ function App() {
       addToCart,
       photos,
       setPhotos,
+      active,
+      updateActive,
       reviewsByStars,
       updateReviewsByStars,
       sortingByStars,
