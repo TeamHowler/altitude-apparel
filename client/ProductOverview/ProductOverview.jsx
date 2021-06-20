@@ -101,9 +101,9 @@ function ProductOverview() {
           <Col>
             <Row>
               <Col lg={6}>
-                <Card >
-                  <Card.Body style={{height: '30rem', width: 'auto',
-                    overflow: 'hidden', objectFit: 'contain'}}>
+                <Card style={{height: '30rem', width: 'auto',
+                    overflow: 'hidden', objectFit: 'contain', marginTop: '1rem'}}>
+                  <Card.Body >
                     <CarouselComponent />
                     <CarouselOverlay />
                   </Card.Body>
