@@ -1,7 +1,7 @@
 import React, {useContext, useEffect} from 'react';
 import axios from 'axios';
 import {ProductContext} from '../context.js';
-import {Row, Col, DropdownButton, Dropdown, Button} from 'react-bootstrap/';
+import {Row, Col, Button} from 'react-bootstrap/';
 import ReviewTiles from './ReviewTiles.jsx';
 import AddReviewModal from './AddReviewModal.jsx';
 import StarRatingComponent from 'react-star-rating-component';
@@ -12,7 +12,8 @@ function RatingsAndReviews() {
   const {currentId, reviews, rating, count, updateReview,
     updateRating, updateCount, clickCount, reviewsCuedToDisplay,
     updateReviewsCuedToDisplay, updateClickCount,
-    setReviewModalShow, setMeta, sortingByStars} = useContext(ProductContext);
+    setReviewModalShow, setMeta, sortingByStars,
+    updateReviewsByNewness} = useContext(ProductContext);
 
   const fetchAllReviews = () => {
     if (!sortingByStars) {
@@ -20,6 +21,7 @@ function RatingsAndReviews() {
           .then((response) => {
             updateReview(response.data.results);
             updateReviewsCuedToDisplay(response.data.results.length);
+            updateCount(response.data.results.length);
           })
           .catch((err) => {
             console.log(err);
@@ -44,7 +46,9 @@ function RatingsAndReviews() {
             }
           });
           const ave = Math.round(sumOfRatings/numOfRatings);
-          updateCount(numOfRatings);
+          if (reviews.length === 0) {
+            updateCount(numOfRatings);
+          }
           updateRating(ave);
         })
         .catch((err) => {
@@ -60,10 +64,26 @@ function RatingsAndReviews() {
     setReviewModalShow(true);
   };
 
+  function sortReviewsNewness() {
+    const newnessSort = reviews.sort(function(a, b) {
+      const aDate = new Date(a.date);
+      const bDate = new Date(b.date);
+      return bDate - aDate;
+    });
+    updateReviewsByNewness(newnessSort);
+  }
+
+  useEffect(() => {
+    fetchRating();
+  }, [reviews, sortingByStars]);
+
   useEffect(() => {
     fetchAllReviews();
-    fetchRating();
-  }, [count, sortingByStars]);
+  }, [count]);
+
+  useEffect(() => {
+    sortReviewsNewness();
+  }, [reviews]);
 
   if (reviews.length === 0) {
     return (
@@ -121,11 +141,11 @@ function RatingsAndReviews() {
             </style>
             <h5>
               {reviewsCuedToDisplay} reviews
-              <DropdownButton id="dropdown-basic-button" title="Sort By:">
+              {/* <DropdownButton id="dropdown-basic-button" title="Sort By:">
                 <Dropdown.Item href="#/action-1">Relevance</Dropdown.Item>
                 <Dropdown.Item href="#/action-2">Helpful</Dropdown.Item>
                 <Dropdown.Item href="#/action-3">Newest</Dropdown.Item>
-              </DropdownButton>
+              </DropdownButton> */}
             </h5>
             {/* Review tiles: */}
             {reviews.slice(0, clickCount * 2).map((review) =>
