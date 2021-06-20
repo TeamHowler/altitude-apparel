@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import {Button, Modal} from 'react-bootstrap';
-import {mL23} from './QAstyle.jsx';
+import {mL25} from './QAstyle.jsx';
 
 
 function AddQuestionModal() {
@@ -12,10 +12,12 @@ function AddQuestionModal() {
   return (
     <>
       <Button
-        style={mL23}
+        style={mL25}
+        size='sm'
         className="shadow-none"
         variant="outline-dark"
-        onClick={handleShow}>Add a Question
+        onClick={handleShow}>
+        Add a Question
       </Button>
 
       <Modal
