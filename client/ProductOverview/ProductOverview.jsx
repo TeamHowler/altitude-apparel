@@ -62,7 +62,7 @@ function ProductOverview() {
       });
     }
     return (
-      <>
+      <Container style={{background: '#f3f7f0', margin: 'auto'}}>
         <style>
           {`
     .control-next {
@@ -96,44 +96,40 @@ function ProductOverview() {
 }
     `}
         </style>
-        <Container style={{background: '#f3f7f0', padding: '2rem', margin: 'auto'}}>
-          <Row>
-            <Col>
-              <Row>
-                <Col>
-                  <Card style={{height: '30rem', width: '25rem',
-                    overflow: 'hidden', marginBottom: '2rem'}}>
-                    <Card.Body>
-                      <CarouselComponent />
-                      <CarouselOverlay />
-                    </Card.Body>
-                    {console.log(styles.results)}
-                    <span className="expand-btn" onClick={(e) => {
-                      e.preventDefault();
-                      setModalShow(true);
-                    }}><i className="fas fa-expand fa-2x"></i></span>
-                    <button className="control-next" onClick={rightArrowClick}>
-                      <i className="far fa-arrow-alt-circle-right fa-2x"></i>
-                    </button>
-                    <button className="control-prev" onClick={leftArrowClick}>
-                      <i className="far fa-arrow-alt-circle-left fa-2x"></i>
-                    </button>
-                  </Card>
-                </Col>
-                <Col>
-                  <ProductInfo />
-                </Col>
-              </Row>
-              <Row>
-                <Card style={{height: '10rem'}}><Card.Body>
-                  <h3>{currentProduct.slogan}</h3>
-                  <p>{currentProduct.description}</p>
-                </Card.Body></Card>
-              </Row>
-            </Col>
-          </Row>
-        </Container>
-      </>
+
+        <Row>
+          <Col>
+            <Row>
+              <Col lg={6}>
+                <Card >
+                  <Card.Body style={{height: '30rem', width: 'auto',
+                  overflow: 'hidden', objectFit: 'contain'}}>
+                    <CarouselComponent />
+                    <CarouselOverlay />
+                  </Card.Body>
+                  <span className="expand-btn" onClick={(e) => {
+                    e.preventDefault();
+                    setModalShow(true);
+                  }}><i className="fas fa-expand fa-2x"></i></span>
+                  <button className="control-next" onClick={rightArrowClick}>
+                    <i className="far fa-arrow-alt-circle-right fa-2x"></i>
+                  </button>
+                  <button className="control-prev" onClick={leftArrowClick}>
+                    <i className="far fa-arrow-alt-circle-left fa-2x"></i>
+                  </button>
+                </Card>
+              </Col>
+              <Col>
+                <ProductInfo />
+              </Col>
+            </Row>
+            <Card style={{height: '10rem'}}><Card.Body>
+              <h3>{currentProduct.slogan}</h3>
+              <p>{currentProduct.description}</p>
+            </Card.Body></Card>
+          </Col>
+        </Row>
+      </Container>
     );
   }
 }

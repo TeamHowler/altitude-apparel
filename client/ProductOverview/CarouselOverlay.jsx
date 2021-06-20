@@ -1,5 +1,5 @@
 import React, {useContext} from 'react';
-import {Card, CardColumns, Col} from 'react-bootstrap';
+import {Card, Col} from 'react-bootstrap';
 import {ProductContext} from '../context.js';
 
 function CarouselOverlay() {
@@ -17,6 +17,7 @@ function CarouselOverlay() {
       position: absolute;
       top: 0;
       border: transparent;
+      justify-content: center;
       background-color: transparent;
       width: 100%;
       height: 100%;
@@ -24,7 +25,6 @@ function CarouselOverlay() {
       opacity:0;
       color: green;
       font-size: 20px;
-      padding: 10px;
       z-index: 0;
       text-align: left;
     }

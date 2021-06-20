@@ -22,9 +22,9 @@ function ProductInfo() {
     );
   } else {
     return (
-      <Card style={{height: '30rem', width: '25rem'}}>
+      <Card style={{height: '30rem', width: 'auto', margin: 'auto',marginBottom: '1rem', marginTop: '1rem'}}>
         <Card.Body>
-          <Col>
+          <Col style={{margin: 'auto'}}>
             <Row style={{height: '1rem', marginBottom: '10px'}}>
               <style>
                 {`

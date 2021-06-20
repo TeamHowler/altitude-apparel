@@ -18,7 +18,7 @@ function Expanded({rightArrowClick, leftArrowClick}) {
       }}>
       </Modal.Header>
       <Modal.Body>
-        <Container style={{height: '45rem', width: 'auto'}}>
+        <Container style={{height: 'auto', width: '100%'}}>
           <CarouselComponent />
         </Container>
       </Modal.Body>
