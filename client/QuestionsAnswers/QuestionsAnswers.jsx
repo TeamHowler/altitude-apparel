@@ -3,6 +3,8 @@ import {ProductContext} from '../context.js';
 import axios from 'axios';
 import SearchQuestions from './SearchQuestions.jsx';
 import QuestionsList from './QuestionsList.jsx';
+import {qaSection, qaHeading} from './QAstyle.jsx';
+import {Container} from 'react-bootstrap';
 
 
 function QuestionsAnswers() {
@@ -11,13 +13,10 @@ function QuestionsAnswers() {
 
 
   function fetchQuestions() {
-    axios.get(`/qa/questions/${currentProduct.id}`)
+    axios.get(`/qa/questions/${currentProduct.id}&page=1&count=100`)
         .then((result) => result.data.results).then(setQuestions);
   }
-  // function fetchAnswers() {
-  //   axios.get(`/qa/questions/${114310}/answers`)
-  //       .then((result) => result.data.results).then(updateAnswers);
-  // }
+
 
   useEffect(() => {
     if (currentProduct.id) {
@@ -26,11 +25,12 @@ function QuestionsAnswers() {
   }, [currentProduct]);
 
   return (
-    <section id="QuestionsAndAnswers">
-      <h3>Questions and Answers</h3>
-      <SearchQuestions />
-      <QuestionsList questions={questions}/>
-
+    <section id="QuestionsAndAnswers" style={qaSection}>
+      <Container>
+        <h3 style={qaHeading}>Questions and Answers</h3>
+        <SearchQuestions />
+        <QuestionsList questionList={questions}/>
+      </Container>
     </section>
   );
 };

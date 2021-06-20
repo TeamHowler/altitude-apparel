@@ -3,7 +3,7 @@ import {ProductContext} from '../context.js';
 import {Modal, Container} from 'react-bootstrap';
 import CarouselComponent from './CarouselComponent.jsx';
 
-function Expanded(props) {
+function Expanded() {
   const {showModal, setModalShow} = useContext(ProductContext);
   return (
     <Modal
@@ -18,7 +18,7 @@ function Expanded(props) {
       }}>
       </Modal.Header>
       <Modal.Body>
-        <Container style={{height: '45rem', width: 'auto'}}>
+        <Container style={{height: 'auto', width: '100%'}}>
           <CarouselComponent />
         </Container>
       </Modal.Body>

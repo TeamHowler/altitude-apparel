@@ -4,12 +4,32 @@ import {Container, Col, Row, Card} from 'react-bootstrap';
 import CarouselComponent from './CarouselComponent.jsx';
 import axios from 'axios';
 import ProductInfo from './ProductInfo.jsx';
+import CarouselOverlay from './CarouselOverlay.jsx';
 
 
 function ProductOverview() {
   const {currentProduct, updateStyles,
-    styles, updateCurrentStyle, defaultStyle, setModalShow} =
+    styles, updateCurrentStyle, defaultStyle,
+    setModalShow, currentStyle, active, updateActive} =
     useContext(ProductContext);
+
+  function rightArrowClick(e) {
+    e.preventDefault();
+    if (currentStyle.photos.length -1 === active) {
+      updateActive(0);
+    } else {
+      updateActive(active + 1);
+    }
+  }
+
+  function leftArrowClick(e) {
+    e.preventDefault();
+    if (active === 0) {
+      updateActive(currentStyle.photos.length -1);
+    } else {
+      updateActive(active - 1);
+    }
+  }
 
   const getStyles = () => {
     axios.get(`/products/${currentProduct.id}/styles`)
@@ -20,7 +40,6 @@ function ProductOverview() {
           console.log(err);
         });
   };
-
 
   useEffect(() => {
     if (currentProduct.id === undefined) {
@@ -43,30 +62,73 @@ function ProductOverview() {
       });
     }
     return (
-      <Container style={{background: '#f3f7f0', padding: '2rem'}}>
-        <Row className="mb-3">
-          <Col style={{height: 'auto', width: '50%'}}>
-            <Card style={{height: '30rem', width: '100%'}}>
-              <Card.Body>
-                <CarouselComponent />
-                <Card.ImgOverlay style={{textAlign: 'right',
-                  margin: '1rem', zIndex: '100', height: '1rem'}}>
-                  <span style={{color: 'grey'}} onClick={(e) => {
+      <Container style={{background: '#f3f7f0', margin: 'auto'}}>
+        <style>
+          {`
+    .control-next {
+      background: transparent;
+      border: transparent;
+      position: absolute;
+      zIndex: 2;
+      right: 0;
+      top: 50%;
+      opacity: .5;
+  }
+
+  .control-prev {
+    background: transparent;
+    border: transparent;
+    position: absolute;
+    zIndex: 2;
+    left: 0;
+    top: 50%;
+    opacity: .5;
+}
+
+.expand-btn {
+  background: transparent;
+  border: transparent;
+  position: absolute;
+  zIndex: 2;
+  right: 0;
+  top: 0;
+  opacity: .5;
+}
+    `}
+        </style>
+
+        <Row>
+          <Col>
+            <Row>
+              <Col lg={6}>
+                <Card style={{height: '30rem', width: 'auto',
+                    overflow: 'hidden', objectFit: 'contain', marginTop: '1rem'}}>
+                  <Card.Body >
+                    <CarouselComponent />
+                    <CarouselOverlay />
+                  </Card.Body>
+                  <span className="expand-btn" onClick={(e) => {
                     e.preventDefault();
                     setModalShow(true);
                   }}><i className="fas fa-expand fa-2x"></i></span>
-                </Card.ImgOverlay>
-              </Card.Body>
-            </Card>
-          </Col>
-          <Col>
-            <ProductInfo />
+                  <button className="control-next" onClick={rightArrowClick}>
+                    <i className="far fa-arrow-alt-circle-right fa-2x"></i>
+                  </button>
+                  <button className="control-prev" onClick={leftArrowClick}>
+                    <i className="far fa-arrow-alt-circle-left fa-2x"></i>
+                  </button>
+                </Card>
+              </Col>
+              <Col>
+                <ProductInfo />
+              </Col>
+            </Row>
+            <Card style={{height: '10rem'}}><Card.Body>
+              <h3>{currentProduct.slogan}</h3>
+              <p>{currentProduct.description}</p>
+            </Card.Body></Card>
           </Col>
         </Row>
-        <Card style={{height: '10rem', width: '100%'}}><Card.Body>
-          <h3>{currentProduct.slogan}</h3>
-          <p>{currentProduct.description}</p>
-        </Card.Body></Card>
       </Container>
     );
   }

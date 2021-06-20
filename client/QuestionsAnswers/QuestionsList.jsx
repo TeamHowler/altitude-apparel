@@ -1,16 +1,26 @@
-import React from 'react';
+import React, {useState} from 'react';
 import PropTypes from 'prop-types';
 import Question from './Question.jsx';
-import {Container} from 'react-bootstrap';
-import {ulStyle} from './QAstyle.jsx';
+import {Container, Button, Row} from 'react-bootstrap';
+import {ulStyle, pL17, mL25} from './QAstyle.jsx';
+import AddQuestionModal from './AddQuestionModal.jsx';
 
-function QuestionsList({questions}) {
-  // sort questions by most helpful
-  questions = questions.sort(
+function QuestionsList({questionList}) {
+  const sortedQuestions = questionList.sort(
       ({question_helpfulness: a},
           {question_helpfulness: b}) => b-a);
+  const firstTwoQuestions = sortedQuestions.slice(0, 2);
+  const [moreQuestions, setMoreQuestions] = useState(false);
 
-  const firstTwoQuestions = questions.slice(0, 2);
+  let questions;
+  let buttonText;
+  if ( moreQuestions ) {
+    questions = sortedQuestions;
+    buttonText = 'Hide More Questions';
+  } else {
+    questions = firstTwoQuestions;
+    buttonText = 'Load More Questions';
+  }
 
   return (
     <Container style={ulStyle}>
@@ -20,12 +30,25 @@ function QuestionsList({questions}) {
           question={question}
         />,
       )}
+      <Row style={pL17}>
+        <Button
+          style={mL25}
+          size='sm'
+          className="shadow-none"
+          variant="outline-dark"
+          onClick={() => {
+            setMoreQuestions(!moreQuestions);
+          } }
+        >{buttonText}</Button>
+        <AddQuestionModal />
+      </Row>
+
     </Container>
   );
 }
 
 QuestionsList.propTypes = {
-  questions: PropTypes.array,
+  questionList: PropTypes.array,
 };
 
 export default QuestionsList;

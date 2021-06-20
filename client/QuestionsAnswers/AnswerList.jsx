@@ -1,20 +1,44 @@
-import React from 'react';
+import React, {useState} from 'react';
 import PropTypes from 'prop-types';
 import Answer from './Answer.jsx';
-import {Row, Col, Container} from 'react-bootstrap';
-import {QAfont, ulStyle} from './QAstyle.jsx';
-import {Route} from 'react-router';
+import {Row, Col, Button} from 'react-bootstrap';
+import {mL15, QAfont, font12MarginTB7, p0} from './QAstyle.jsx';
 
-function AnswerList({answers}) {
-  // sort answers by most helpful
-  answers = answers.sort(
+function AnswerList({answerList}) {
+  const sortedAnswers = answerList.sort(
       ({helpfulness: a},
           {helpfulness: b}) => b-a);
+  const firstTwoAnswers = sortedAnswers.slice(0, 2);
+  const [moreAnswers, loadMoreAnswers] = useState(false);
+
+  let answers;
+  let buttonText;
+  if ( moreAnswers ) {
+    answers = sortedAnswers;
+    buttonText = 'Hide More Answers';
+  } else {
+    answers = firstTwoAnswers;
+    buttonText = 'Load More Answers';
+  }
+
+  const renderButton = () => {
+    if ( sortedAnswers.length > 2 ) {
+      return <Button
+        className="shadow-none"
+        size='sm'
+        variant="outline-dark"
+        style={font12MarginTB7}
+        onClick={() =>
+          loadMoreAnswers(!moreAnswers)}>
+        {buttonText}</Button>;
+    }
+  };
+
   return (
     <div>
       <Row>
         <Col sm={.5} style={QAfont}>A: </Col>
-        <Col lg={24}>
+        <Col lg={10} style={p0}>
           {answers.map((answer) =>
             <Answer
               key={answer.id}
@@ -22,14 +46,17 @@ function AnswerList({answers}) {
             />,
           )}</Col>
       </Row>
-
+      <Row>
+        <Col style={mL15} sm={.5}> </Col>
+        <Col lg={5}>{renderButton()}</Col>
+      </Row>
 
     </div>
   );
 }
 
 AnswerList.propTypes = {
-  answers: PropTypes.array,
+  answerList: PropTypes.array,
 };
 
 export default AnswerList;

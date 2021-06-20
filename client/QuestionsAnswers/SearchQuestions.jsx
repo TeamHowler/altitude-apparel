@@ -6,7 +6,7 @@ function SearchQuestions() {
     <>
       <FormControl
         type='search'
-        placeholder='Type your question or keyword'/>
+        placeholder='Have a question? Search for answers…'/>
     </>
   );
 }

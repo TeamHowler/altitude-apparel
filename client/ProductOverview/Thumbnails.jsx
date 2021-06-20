@@ -24,10 +24,6 @@ function Thumbnails() {
           })
           }
         </Row>
-<<<<<<< HEAD
-        {/* {console.log(currentStyle)} */}
-=======
->>>>>>> c6627b1923e3a1f39d673dbaeaa15433abf3d0a1
       </Container>
     );
   }

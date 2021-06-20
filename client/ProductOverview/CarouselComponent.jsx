@@ -1,12 +1,11 @@
 import React, {useContext} from 'react';
-import CarouselPhotos from './CarouselPhotos.jsx';
+// import CarouselPhotos from './CarouselPhotos.jsx';
 import {ProductContext} from '../context.js';
-import {Carousel} from 'react-bootstrap';
+import {Carousel, Image} from 'react-bootstrap';
 
 function CarouselComponent() {
-  const {currentStyle} =
+  const {currentStyle, photos, setPhotos, active} =
    useContext(ProductContext);
-
 
   if (currentStyle === undefined) {
     return <center><div className="spinner-border" role="status">
@@ -14,46 +13,19 @@ function CarouselComponent() {
     </div></center>;
   } else {
     return (
-<<<<<<< HEAD
-      <Carousel interval={null}>
-        {currentStyle.photos.map((image) => {
+      <Carousel indicators={false} controls={false}
+        activeIndex={active} interval={null} style={{height: '25rem'}}>
+        {setPhotos(currentStyle.photos)}
+        {photos.map((image) => {
           return (
-
-            <Carousel.Item style={{height: '30rem',
-              width: '30rem', backgroundSize: 'cover'}}
-            key={image.url}>
-              <CarouselPhotos image={image} key={image.url} />
-
+            <Carousel.Item style={{textAlign: 'center'}}
+              key={image.url}>
+              <Image src={image.url} style={{height: '30rem', width: 'auto'}}/>
             </Carousel.Item>
           );
         })}
-        {/* {console.log('carousel, ', currentStyle)} */}
       </Carousel>
-=======
-      <>
-        <style>
-          {`
-          .carousel-control-next-icon {
-            background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='black' viewBox='0 0 8 8'%3E%3Cpath d='M2.75 0l-1.5 1.5 2.5 2.5-2.5 2.5 1.5 1.5 4-4-4-4z'/%3E%3C/svg%3E");
-        }
->>>>>>> c6627b1923e3a1f39d673dbaeaa15433abf3d0a1
 
-        .carousel-control-prev-icon {
-            background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='black' viewBox='0 0 8 8'%3E%3Cpath d='M5.25 0l-4 4 4 4 1.5-1.5-2.5-2.5 2.5-2.5-1.5-1.5z'/%3E%3C/svg%3E");
-        }
-          `}
-        </style>
-        <Carousel showThumbs={true} interval={null} style={{width: '100%'}}>
-          {currentStyle.photos.map((image) => {
-            return (
-              <Carousel.Item style={{textAlign: 'center'}}
-                key={image.url}>
-                <CarouselPhotos image={image} key={image.url} />
-              </Carousel.Item>
-            );
-          })}
-        </Carousel>
-      </>
     );
   };
 };

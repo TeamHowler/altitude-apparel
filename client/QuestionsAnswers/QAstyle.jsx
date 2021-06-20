@@ -1,10 +1,3 @@
-const qHelpfulStyle = {
-  display: 'inline',
-  fontSize: 12,
-  color: 'grey',
-  marginLeft: 10,
-};
-
 const ulStyle = {
   listStyleType: 'none',
   margin: 0,
@@ -12,14 +5,20 @@ const ulStyle = {
 };
 
 const qaMetaStyle = {
-  display: 'inline',
+  // display: 'inline',
   fontSize: 10,
   color: 'grey',
-  paddingBottom: 12,
+  // paddingBottom: 10,
+  marginTop: 7,
 };
 
 const qaStyle = {
   marginTop: 0,
+};
+
+const qaSection = {
+  backgroundColor: '#F3F7EF',
+  padding: 5,
 };
 
 const QAfont = {
@@ -27,9 +26,10 @@ const QAfont = {
   fontSize: 16,
 };
 
-const Afont = {
+const answerBody = {
   fontSize: 15,
   marginTop: 0,
+  textAlign: 'justify',
 };
 
 const Qfont = {
@@ -37,18 +37,57 @@ const Qfont = {
   fontWeight: 'bold',
 };
 
-const answerStyle = {
-  marginBottom: 20,
+const mL15 = {
+  marginLeft: 15,
+};
+
+const mL25 = {
+  marginLeft: 25,
+};
+
+const p0 = {
+  padding: 0,
+};
+
+const pL17 = {
+  paddingLeft: 17,
+};
+
+const font12MarginTB7 = {
+  marginTop: 7,
+  marginBottom: 7,
+  fontSize: 12,
+};
+
+const black14 = {
+  color: 'black',
+  fontSize: 14,
+};
+
+const grey10 = {
+  fontSize: 10,
+  color: 'grey',
+};
+
+const qaHeading = {
+  fontSize: 18,
 };
 
 
 module.exports = {
   ulStyle: ulStyle,
-  qHelpfulStyle: qHelpfulStyle,
   qaMetaStyle: qaMetaStyle,
   qaStyle: qaStyle,
-  answerStyle: answerStyle,
   QAfont: QAfont,
-  Afont: Afont,
+  answerBody: answerBody,
   Qfont: Qfont,
+  qaSection: qaSection,
+  mL15: mL15,
+  mL25: mL25,
+  p0: p0,
+  pL17: pL17,
+  font12MarginTB7: font12MarginTB7,
+  black14: black14,
+  grey10: grey10,
+  qaHeading: qaHeading,
 };
