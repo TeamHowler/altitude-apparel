@@ -3,7 +3,7 @@ import {ProductContext} from '../context.js';
 import axios from 'axios';
 import SearchQuestions from './SearchQuestions.jsx';
 import QuestionsList from './QuestionsList.jsx';
-import {qaSection} from './QAstyle.jsx';
+import {qaSection, qaHeading} from './QAstyle.jsx';
 import {Container} from 'react-bootstrap';
 
 
@@ -27,7 +27,7 @@ function QuestionsAnswers() {
   return (
     <section id="QuestionsAndAnswers" style={qaSection}>
       <Container>
-        <h3>Questions and Answers</h3>
+        <h3 style={qaHeading}>Questions and Answers</h3>
         <SearchQuestions />
         <QuestionsList questionList={questions}/>
       </Container>

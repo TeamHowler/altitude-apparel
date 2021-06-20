@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 
 function ReportAnswer({helpfulCount}) {
   const [disable, setDisable] = useState(false);
-	const [reportedText, setReportedText] = useState('Report')
+  const [reportedText, setReportedText] = useState('Report');
 
   return (
     <>
@@ -16,7 +16,7 @@ function ReportAnswer({helpfulCount}) {
         disabled={disable}
         onClick={() => {
           setDisable(true);
-					setReportedText('Reported!')
+          setReportedText('Reported!');
         } }
       > {reportedText}
       </Button>

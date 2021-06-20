@@ -10,10 +10,16 @@ function AnswerList({answerList}) {
           {helpfulness: b}) => b-a);
   const firstTwoAnswers = sortedAnswers.slice(0, 2);
   const [moreAnswers, loadMoreAnswers] = useState(false);
-  let answers;
 
-  moreAnswers ? answers = sortedAnswers :
-  answers = firstTwoAnswers;
+  let answers;
+  let buttonText;
+  if ( moreAnswers ) {
+    answers = sortedAnswers;
+    buttonText = 'Hide More Answers';
+  } else {
+    answers = firstTwoAnswers;
+    buttonText = 'Load More Answers';
+  }
 
   const renderButton = () => {
     if ( sortedAnswers.length > 2 ) {
@@ -24,7 +30,7 @@ function AnswerList({answerList}) {
         style={font12MarginTB7}
         onClick={() =>
           loadMoreAnswers(!moreAnswers)}>
-            LOAD MORE ANSWERS</Button>;
+        {buttonText}</Button>;
     }
   };
 

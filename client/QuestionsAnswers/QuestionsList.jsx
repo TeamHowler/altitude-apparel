@@ -13,10 +13,14 @@ function QuestionsList({questionList}) {
   const [moreQuestions, setMoreQuestions] = useState(false);
 
   let questions;
-
-  moreQuestions ? questions = sortedQuestions :
-  questions = firstTwoQuestions;
-
+  let buttonText;
+  if ( moreQuestions ) {
+    questions = sortedQuestions;
+    buttonText = 'Hide More Questions';
+  } else {
+    questions = firstTwoQuestions;
+    buttonText = 'Load More Questions';
+  }
 
   return (
     <Container style={ulStyle}>
@@ -32,8 +36,10 @@ function QuestionsList({questionList}) {
           size='sm'
           className="shadow-none"
           variant="outline-dark"
-          onClick={() => setMoreQuestions(!moreQuestions)}
-        >Load More Questions</Button>
+          onClick={() => {
+            setMoreQuestions(!moreQuestions);
+          } }
+        >{buttonText}</Button>
         <AddQuestionModal />
       </Row>
 

@@ -16,11 +16,13 @@ function Answer({answer}) {
           {answer.body}</Col>
         <Col></Col>
       </Row>
-      <Row>
+      <Row md={4} xl={4} lg={5}>
         <Col style={qaMetaStyle}>{`by ${answer.answerer_name},
-        ${moment(answer.date).format('MMMM Do YYYY')}`}
-        <AnswerHelpfulness helpfulCount={answer.helpfulness}/>
-        <ReportAnswer key={answer.id}/></Col>
+        ${moment(answer.date).format('MMMM Do YYYY')}`}</Col>
+        <Col>
+          <AnswerHelpfulness helpfulCount={answer.helpfulness}/>
+          <ReportAnswer key={answer.id}/>
+        </Col>
       </Row>
     </Container>
   );

@@ -5,10 +5,11 @@ const ulStyle = {
 };
 
 const qaMetaStyle = {
-  display: 'inline',
+  // display: 'inline',
   fontSize: 10,
   color: 'grey',
-  paddingBottom: 12,
+  // paddingBottom: 10,
+  marginTop: 7,
 };
 
 const qaStyle = {
@@ -68,6 +69,10 @@ const grey10 = {
   color: 'grey',
 };
 
+const qaHeading = {
+  fontSize: 18,
+};
+
 
 module.exports = {
   ulStyle: ulStyle,
@@ -84,4 +89,5 @@ module.exports = {
   font12MarginTB7: font12MarginTB7,
   black14: black14,
   grey10: grey10,
+  qaHeading: qaHeading,
 };
