@@ -26,6 +26,8 @@ function RatingsAndReviews() {
           .catch((err) => {
             console.log(err);
           });
+    } else {
+      return;
     }
   };
 
@@ -48,7 +50,7 @@ function RatingsAndReviews() {
           const ave = Math.round(sumOfRatings/numOfRatings);
           if (reviews.length === 0) {
             updateCount(numOfRatings);
-          }
+          };
           updateRating(ave);
         })
         .catch((err) => {
@@ -75,15 +77,19 @@ function RatingsAndReviews() {
 
   useEffect(() => {
     fetchRating();
-  }, [reviews, sortingByStars]);
+  }, []);
 
   useEffect(() => {
-    fetchAllReviews();
+    if (count === 0) {
+      return;
+    } else {
+      fetchAllReviews();
+    }
   }, [count]);
 
-  useEffect(() => {
-    sortReviewsNewness();
-  }, [reviews]);
+  // useEffect(() => {
+  //   sortReviewsNewness();
+  // }, [reviews]);
 
   if (reviews.length === 0) {
     return (
@@ -94,6 +100,7 @@ function RatingsAndReviews() {
       </center>
     );
   } else {
+    sortReviewsNewness();
     return (
       <div id="ratings/reviews" style={{background: '#f3f7f0'}}>
         <style type="text/css">
