@@ -1,10 +1,10 @@
 import React, {useContext} from 'react';
 // import CarouselPhotos from './CarouselPhotos.jsx';
 import {ProductContext} from '../context.js';
-import {Carousel, Row, Image, Col} from 'react-bootstrap';
+import {Carousel, Image} from 'react-bootstrap';
 
 function CarouselComponent() {
-  const {currentStyle, photos, setPhotos, active, updateActive} =
+  const {currentStyle, photos, setPhotos, active} =
    useContext(ProductContext);
 
   if (currentStyle === undefined) {

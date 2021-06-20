@@ -5,12 +5,12 @@ import CarouselComponent from './CarouselComponent.jsx';
 import axios from 'axios';
 import ProductInfo from './ProductInfo.jsx';
 import CarouselOverlay from './CarouselOverlay.jsx';
-import Expanded from './Expanded.jsx';
 
 
 function ProductOverview() {
   const {currentProduct, updateStyles,
-    styles, updateCurrentStyle, defaultStyle, setModalShow, currentStyle, active, updateActive} =
+    styles, updateCurrentStyle, defaultStyle,
+    setModalShow, currentStyle, active, updateActive} =
     useContext(ProductContext);
 
   function rightArrowClick(e) {
@@ -103,7 +103,7 @@ function ProductOverview() {
               <Col lg={6}>
                 <Card >
                   <Card.Body style={{height: '30rem', width: 'auto',
-                  overflow: 'hidden', objectFit: 'contain'}}>
+                    overflow: 'hidden', objectFit: 'contain'}}>
                     <CarouselComponent />
                     <CarouselOverlay />
                   </Card.Body>

@@ -1,5 +1,5 @@
 import React, {useContext, useState} from 'react';
-import {Card, Row, Col, Container} from 'react-bootstrap';
+import {Card, Row, Col} from 'react-bootstrap';
 import {ProductContext} from '../context.js';
 import Thumbnails from './Thumbnails.jsx';
 import Size from './Size.jsx';
@@ -22,7 +22,8 @@ function ProductInfo() {
     );
   } else {
     return (
-      <Card style={{height: '30rem', width: 'auto', margin: 'auto',marginBottom: '1rem', marginTop: '1rem'}}>
+      <Card style={{height: '30rem', width: 'auto',
+        margin: 'auto', marginBottom: '1rem', marginTop: '1rem'}}>
         <Card.Body>
           <Col style={{margin: 'auto'}}>
             <Row style={{height: '1rem', marginBottom: '10px'}}>

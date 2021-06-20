@@ -29,7 +29,7 @@ function Question({question}) {
         </Col>
       </Row>
 
-      <AnswerList answerList={answers}/>
+      {answers.length > 0 ? <AnswerList answerList={answers} /> : ' '}
     </Container>
   );
 }

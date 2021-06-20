@@ -3,7 +3,7 @@ import {ProductContext} from '../context.js';
 import {Modal, Container} from 'react-bootstrap';
 import CarouselComponent from './CarouselComponent.jsx';
 
-function Expanded({rightArrowClick, leftArrowClick}) {
+function Expanded() {
   const {showModal, setModalShow} = useContext(ProductContext);
   return (
     <Modal

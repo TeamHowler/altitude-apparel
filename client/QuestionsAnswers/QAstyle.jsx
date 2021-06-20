@@ -5,10 +5,11 @@ const ulStyle = {
 };
 
 const qaMetaStyle = {
-  display: 'inline',
+  // display: 'inline',
   fontSize: 10,
   color: 'grey',
-  paddingBottom: 12,
+  // paddingBottom: 10,
+  marginTop: 7,
 };
 
 const qaStyle = {
@@ -25,9 +26,10 @@ const QAfont = {
   fontSize: 16,
 };
 
-const Afont = {
+const answerBody = {
   fontSize: 15,
   marginTop: 0,
+  textAlign: 'justify',
 };
 
 const Qfont = {
@@ -35,16 +37,25 @@ const Qfont = {
   fontWeight: 'bold',
 };
 
-const mL23 = {
-  marginLeft: 23,
+const mL15 = {
+  marginLeft: 15,
+};
+
+const mL25 = {
+  marginLeft: 25,
+};
+
+const p0 = {
+  padding: 0,
 };
 
 const pL17 = {
   paddingLeft: 17,
 };
 
-const black12 = {
-  color: 'black',
+const font12MarginTB7 = {
+  marginTop: 7,
+  marginBottom: 7,
   fontSize: 12,
 };
 
@@ -58,18 +69,25 @@ const grey10 = {
   color: 'grey',
 };
 
+const qaHeading = {
+  fontSize: 18,
+};
+
 
 module.exports = {
   ulStyle: ulStyle,
   qaMetaStyle: qaMetaStyle,
   qaStyle: qaStyle,
   QAfont: QAfont,
-  Afont: Afont,
+  answerBody: answerBody,
   Qfont: Qfont,
   qaSection: qaSection,
-  mL23: mL23,
+  mL15: mL15,
+  mL25: mL25,
+  p0: p0,
   pL17: pL17,
-  black12: black12,
+  font12MarginTB7: font12MarginTB7,
   black14: black14,
   grey10: grey10,
+  qaHeading: qaHeading,
 };

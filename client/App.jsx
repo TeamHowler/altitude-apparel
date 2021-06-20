@@ -41,9 +41,10 @@ function App() {
   const [active, updateActive] = useState(0);
   const [reviewsByStars, updateReviewsByStars] = useState([[], [], [], [], []]);
   const [starBarToggle, updatestarBarToggle] =
-   useState([false, false, false, false, false]);
+    useState([false, false, false, false, false]);
   const [sortingByStars, updateSortingByStars] = useState(false);
   const [reviewsCuedToDisplay, updateReviewsCuedToDisplay] = useState(0);
+  const [reviewsByNewness, updateReviewsByNewness] = useState([]);
 
   const fetch = () => {
     axios.get(`/products/${currentId}`)
@@ -104,6 +105,8 @@ function App() {
       updatestarBarToggle,
       reviewsCuedToDisplay,
       updateReviewsCuedToDisplay,
+      reviewsByNewness,
+      updateReviewsByNewness,
     }}>
       <Container>
         <Navbar bg="light" expand="lg">
