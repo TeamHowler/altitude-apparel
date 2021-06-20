@@ -13,7 +13,7 @@ function QuestionsAnswers() {
 
 
   function fetchQuestions() {
-    axios.get(`/qa/questions/${currentProduct.id}`)
+    axios.get(`/qa/questions/${currentProduct.id}&page=1&count=100`)
         .then((result) => result.data.results).then(setQuestions);
   }
 

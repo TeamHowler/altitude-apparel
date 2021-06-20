@@ -1,20 +1,26 @@
 import React from 'react';
 import moment from 'moment';
 import {Row, Col, Container} from 'react-bootstrap';
-import {Afont, qaMetaStyle} from './QAstyle.jsx';
+import {answerBody, qaMetaStyle} from './QAstyle.jsx';
 import PropTypes from 'prop-types';
+import AnswerHelpfulness from './AnswerHelpfulness.jsx';
+import ReportAnswer from './ReportAnswer.jsx';
 
 function Answer({answer}) {
   return (
     <Container>
       <Row>
-        <Col style={Afont}>{answer.body}</Col>
+        <Col
+          lg={9}
+          style={answerBody}>
+          {answer.body}</Col>
+        <Col></Col>
       </Row>
       <Row>
         <Col style={qaMetaStyle}>{`by ${answer.answerer_name},
-        ${moment(answer.date).format('MMMM Do YYYY')}
-        | Helpful? Yes (${answer.helpfulness})
-        | Report`}</Col>
+        ${moment(answer.date).format('MMMM Do YYYY')}`}
+        <AnswerHelpfulness helpfulCount={answer.helpfulness}/>
+        <ReportAnswer key={answer.id}/></Col>
       </Row>
     </Container>
   );

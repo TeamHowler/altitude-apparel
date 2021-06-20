@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import PropTypes from 'prop-types';
 import Question from './Question.jsx';
 import {Container, Button, Row} from 'react-bootstrap';
-import {ulStyle, mL23, pL17} from './QAstyle.jsx';
+import {ulStyle, pL17, mL25} from './QAstyle.jsx';
 import AddQuestionModal from './AddQuestionModal.jsx';
 
 function QuestionsList({questionList}) {
@@ -28,10 +28,12 @@ function QuestionsList({questionList}) {
       )}
       <Row style={pL17}>
         <Button
-          style={mL23}
+          style={mL25}
+          size='sm'
           className="shadow-none"
-          onClick={(e) => setMoreQuestions(!moreQuestions)}
-          variant="outline-dark">Load More Questions</Button>
+          variant="outline-dark"
+          onClick={() => setMoreQuestions(!moreQuestions)}
+        >Load More Questions</Button>
         <AddQuestionModal />
       </Row>
 

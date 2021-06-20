@@ -3,11 +3,9 @@ import {Button} from 'react-bootstrap';
 import {grey10} from './QAstyle.jsx';
 import PropTypes from 'prop-types';
 
-function QuestionHelpfulness({helpfulCount}) {
-  const [count, setCount] = useState(helpfulCount);
+function ReportAnswer({helpfulCount}) {
   const [disable, setDisable] = useState(false);
-
-  const textCount = `Helpful? Yes (${count})`;
+	const [reportedText, setReportedText] = useState('Report')
 
   return (
     <>
@@ -17,17 +15,18 @@ function QuestionHelpfulness({helpfulCount}) {
         style={grey10}
         disabled={disable}
         onClick={() => {
-          setCount(count + 1); setDisable(true);
+          setDisable(true);
+					setReportedText('Reported!')
         } }
-      >{textCount}
+      > {reportedText}
       </Button>
     </>
   );
 }
 
-
-QuestionHelpfulness.propTypes = {
+ReportAnswer.propTypes = {
   helpfulCount: PropTypes.number,
 };
 
-export default QuestionHelpfulness;
+
+export default ReportAnswer;
