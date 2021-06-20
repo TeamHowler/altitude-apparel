@@ -1,10 +1,10 @@
 import React, {useContext} from 'react';
-import CarouselPhotos from './CarouselPhotos.jsx';
+// import CarouselPhotos from './CarouselPhotos.jsx';
 import {ProductContext} from '../context.js';
-import {Carousel, Container} from 'react-bootstrap';
+import {Carousel, Image} from 'react-bootstrap';
 
 function CarouselComponent() {
-  const {currentStyle, photos, setPhotos, active, updateActive} =
+  const {currentStyle, photos, setPhotos, active} =
    useContext(ProductContext);
 
   if (currentStyle === undefined) {
@@ -13,20 +13,19 @@ function CarouselComponent() {
     </div></center>;
   } else {
     return (
-      <Container>
-        <Carousel indicators={false} controls={false}
-          activeIndex={active} interval={null}>
-          {setPhotos(currentStyle.photos)}
-          {photos.map((image) => {
-            return (
-              <Carousel.Item style={{textAlign: 'center'}}
-                key={image.url}>
-                <CarouselPhotos image={image} key={image.url} />
-              </Carousel.Item>
-            );
-          })}
-        </Carousel>
-      </Container>
+      <Carousel indicators={false} controls={false}
+        activeIndex={active} interval={null} style={{height: '25rem'}}>
+        {setPhotos(currentStyle.photos)}
+        {photos.map((image) => {
+          return (
+            <Carousel.Item style={{textAlign: 'center'}}
+              key={image.url}>
+              <Image src={image.url} style={{height: '30rem', width: 'auto'}}/>
+            </Carousel.Item>
+          );
+        })}
+      </Carousel>
+
     );
   };
 };
