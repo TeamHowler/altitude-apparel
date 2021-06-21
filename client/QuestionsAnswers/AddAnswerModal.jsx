@@ -1,18 +1,17 @@
-import React, { useState, useContext } from 'react';
-import { Button, Modal, Form } from 'react-bootstrap';
-import { grey10 } from './QAstyle.jsx';
-import { ProductContext } from '../context.js';
+import React, {useState, useContext} from 'react';
+import {Button, Modal, Form} from 'react-bootstrap';
+import {grey10} from './QAstyle.jsx';
+import {ProductContext} from '../context.js';
 import PropTypes from 'prop-types';
 
-function AddAnswerModal({ questionBody }) {
+function AddAnswerModal({questionBody}) {
   const [show, setShow] = useState(false);
-  const { currentProduct } = useContext(ProductContext);
+  const {currentProduct} = useContext(ProductContext);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
   return (
     <>
-      {console.log(currentProduct)}
       <Button
         style={grey10}
         className="shadow-none"
@@ -72,6 +71,6 @@ function AddAnswerModal({ questionBody }) {
   );
 }
 AddAnswerModal.propTypes = {
-  questionBody: PropTypes.number,
+  questionBody: PropTypes.string,
 };
 export default AddAnswerModal;
