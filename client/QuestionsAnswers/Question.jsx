@@ -19,13 +19,15 @@ function Question({question}) {
   // }
 
   return (
+
     <Container>
+      {/* {console.log(question)} */}
       <Row>
         <Col sm={.5} style={QAfont}>Q:</Col>
         <Col m={4} style={Qfont}>{question.question_body}</Col>
         <Col m={6} style={qaMetaStyle}>
           <QuestionHelpfulness helpfulCount={helpfulCount}/>|
-          <AddAnswerModal />
+          <AddAnswerModal questionBody={question.question_body}/>
         </Col>
       </Row>
 
