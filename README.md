@@ -70,8 +70,6 @@ To make development easier we’ve added nodemon as an npm start script. To auto
 ## API Configuration
 Update `config.example.js` to be `config.js` and add your API Key to `module.exports`.
 
-```
-
 ## Testing
 To run the testing files, run the following terminal command:`npm run test`
 
