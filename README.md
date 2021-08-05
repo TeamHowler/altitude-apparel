@@ -51,6 +51,7 @@ Once the project moves into development, the press release can be used as a touc
 
 </details>
 
+# :computer: Pertinent info for developers:
 
 # :athletic_shoe: Altitude Apparel :shirt:
 Welcome to Altitude Apparel’s retail portal! Thank you for taking an interest in our code. Altitude Apparel is a Javascript library used to market & sell our apparel. Peruse the below topics to aid you in getting started working with this repo.
