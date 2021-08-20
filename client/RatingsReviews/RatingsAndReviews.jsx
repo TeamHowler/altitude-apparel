@@ -19,6 +19,7 @@ function RatingsAndReviews() {
     if (!sortingByStars) {
       axios.get(`/reviews/${currentId}&count=${count}`)
           .then((response) => {
+            console.log('response from axios get req for reviews', response);
             updateReview(response.data.results);
             updateReviewsCuedToDisplay(response.data.results.length);
             updateCount(response.data.results.length);
