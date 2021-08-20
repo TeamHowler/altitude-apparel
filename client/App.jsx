@@ -15,6 +15,14 @@ function App() {
   const [styles, updateStyles] = useState([]);
   const [currentStyle, updateCurrentStyle] = useState(undefined);
   const [defaultStyle, updateDefault] = useState(true);
+  const [showModal, setModalShow] = useState(false);
+  const [currentSize, updateSize] = useState('');
+  const [currentQuant, updateQuant] = useState(0);
+  const [cart, addToCart] = useState({});
+  const [photos, setPhotos] = useState([]);
+  const [active, updateActive] = useState(0);
+
+  // Ratings & Reviews useState:
   const [reviews, updateReview] = useState([]);
   const [rating, updateRating] = useState(0);
   const [count, updateCount] = useState(0);
@@ -22,27 +30,21 @@ function App() {
   const [modalShow, setReviewModalShow] = useState(false);
   const [meta, setMeta] = useState([]);
   const [newReview, updateNewReview] =
-    useState({
-      'product_id': currentId,
-      'rating': null,
-      'summary': '',
-      'name': '',
-      'body': '',
-      'recommend': null,
-      'email': null,
-      'photos': [],
-      'characteristics': {},
-    });
-  const [showModal, setModalShow] = useState(false);
-  const [currentSize, updateSize] = useState('');
-  const [currentQuant, updateQuant] = useState(0);
-  const [cart, addToCart] = useState({});
-  const [photos, setPhotos] = useState([]);
-  const [active, updateActive] = useState(0);
+  useState({
+    'product_id': currentId,
+    'rating': null,
+    'summary': '',
+    'name': '',
+    'body': '',
+    'recommend': null,
+    'email': null,
+    'photos': [],
+    'characteristics': {},
+  });
   const [reviewsByStars, updateReviewsByStars] = useState([[], [], [], [], []]);
+  const [sortingByStars, updateSortingByStars] = useState(false);
   const [starBarToggle, updatestarBarToggle] =
     useState([false, false, false, false, false]);
-  const [sortingByStars, updateSortingByStars] = useState(false);
   const [reviewsCuedToDisplay, updateReviewsCuedToDisplay] = useState(0);
   const [reviewsByNewness, updateReviewsByNewness] = useState([]);
 
@@ -63,13 +65,26 @@ function App() {
   return (
     <ProductContext.Provider value={{
       currentProduct,
+      currentId,
       styles,
       updateStyles,
       currentStyle,
       updateCurrentStyle,
-      reviews,
       defaultStyle,
       updateDefault,
+      showModal,
+      setModalShow,
+      currentSize,
+      updateSize,
+      currentQuant,
+      updateQuant,
+      cart,
+      addToCart,
+      photos,
+      setPhotos,
+      active,
+      updateActive,
+      // Ratings & Reviews Context:
       reviews,
       updateReview,
       rating,
@@ -84,19 +99,6 @@ function App() {
       setMeta,
       newReview,
       updateNewReview,
-      currentId,
-      showModal,
-      setModalShow,
-      currentSize,
-      updateSize,
-      currentQuant,
-      updateQuant,
-      cart,
-      addToCart,
-      photos,
-      setPhotos,
-      active,
-      updateActive,
       reviewsByStars,
       updateReviewsByStars,
       sortingByStars,
