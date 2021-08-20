@@ -10,7 +10,7 @@ import Expanded from './ProductOverview/Expanded.jsx';
 
 function App() {
   // eslint-disable-next-line no-unused-vars
-  const [currentId, setCurrentId] = useState(18078);
+  const [currentId, setCurrentId] = useState(46410);
   const [currentProduct, updateProduct] = useState([]);
   const [styles, updateStyles] = useState([]);
   const [currentStyle, updateCurrentStyle] = useState(undefined);
