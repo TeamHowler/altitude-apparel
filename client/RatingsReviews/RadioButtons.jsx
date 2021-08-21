@@ -1,9 +1,11 @@
 import React, {useContext} from 'react';
 import {ProductContext} from '../context.js';
 import {Form} from 'react-bootstrap/';
+import PropTypes from 'prop-types';
 
 function RadioButtons({characteristic}) {
   const {meta, newReview, updateNewReview} = useContext(ProductContext);
+
 
   function changeHandler(event) {
     // create shallow copy of obj storage
@@ -51,3 +53,7 @@ function RadioButtons({characteristic}) {
 }
 
 export default RadioButtons;
+
+RadioButtons.propTypes = {
+  characteristic: PropTypes.string,
+};

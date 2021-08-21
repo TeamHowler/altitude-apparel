@@ -5,7 +5,8 @@ import {Modal} from 'react-bootstrap/';
 import AddReviewModalForm from './AddReviewModalForm.jsx';
 
 function AddReviewModal() {
-  const {modalShow, setReviewModalShow, currentProduct} = useContext(ProductContext);
+  const {modalShow, setReviewModalShow, currentProduct} =
+    useContext(ProductContext);
 
   function handleCloseModalClick() {
     setReviewModalShow(false);
